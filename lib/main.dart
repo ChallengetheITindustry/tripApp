@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: primaryColor,
           elevation: 0.0,
         ),
-        body: Stack(children: [LoginPage()]),
+        body: Stack(children: [LoginPage(), LoginPageForm()]),
       ),
     );
   }
