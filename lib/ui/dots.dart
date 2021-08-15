@@ -8,6 +8,10 @@ class Dots extends StatelessWidget {
   double _currentPosition = 0;
   @override
   Widget build(BuildContext context) {
+    // 幅
+    double width = MediaQuery.of(context).size.width;
+    // 高さ
+    double height = MediaQuery.of(context).size.height;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -22,8 +26,8 @@ class Dots extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: double.infinity,
-            height: 100,
+            width: width,
+            height: height * 0.1,
           ),
         ],
       ),

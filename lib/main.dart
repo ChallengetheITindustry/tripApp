@@ -36,3 +36,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+// PageView.builder(
+//   itemBuilder: (context, index) {
+//     // index gives you current page position.
+//     return _buildPage();
+//   },
+//   itemCount: listItemCount, // Can be null
+// )
