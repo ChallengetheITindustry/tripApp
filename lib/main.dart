@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/ui/dots.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/login_signup_background.dart';
 import 'package:tripapp/ui/signup_page.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
           PageView(controller: controller, children: [
             LoginPageForm(),
             SignupPageForm(),
-          ])
+          ]),
+          Dots(),
         ]),
       ),
     );
