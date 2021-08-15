@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/colors.dart';
+import 'package:tripapp/ui/login_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: Column(
-            children: [],
+            children: [
+              LoginPage(),
+            ],
           ),
         ),
       ),
