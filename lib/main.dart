@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/dots.dart';
 import 'package:tripapp/ui/login_page.dart';
@@ -6,6 +7,11 @@ import 'package:tripapp/ui/login_signup_background.dart';
 import 'package:tripapp/ui/signup_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //向き指定
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp, //縦固定
+  ]);
   runApp(MyApp());
 }
 
@@ -16,6 +22,7 @@ class MyApp extends StatefulWidget {
 
 class _MyApp extends State {
   final PageController controller = PageController(initialPage: 0);
+  int _currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,12 +48,3 @@ class _MyApp extends State {
     );
   }
 }
-
-
-// PageView.builder(
-//   itemBuilder: (context, index) {
-//     // index gives you current page position.
-//     return _buildPage();
-//   },
-//   itemCount: listItemCount, // Can be null
-// )
