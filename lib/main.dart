@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tripapp/res/colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,15 +10,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'tripApp',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('旅アプリ'),
+          backgroundColor: primaryColor,
+          elevation: 0.0,
         ),
-        body: Text('テスト'),
+        body: Center(
+          child: Column(
+            children: [],
+          ),
+        ),
       ),
     );
   }
