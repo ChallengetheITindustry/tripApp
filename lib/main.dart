@@ -22,14 +22,8 @@ class MyApp extends StatelessWidget {
           elevation: 0.0,
         ),
         body: Stack(children: [
-          LoginPage(),
-          Column(
-            children: [
-              Container(
-                  width: 150, child: Image.asset('assets/images/airplane.png')),
-              LoginPageForm(),
-            ],
-          )
+          Background(),
+          LoginPageForm(),
         ]),
       ),
     );

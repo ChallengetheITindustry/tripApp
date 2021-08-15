@@ -28,7 +28,11 @@ class LoginPageForm extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(width: width, height: height * 0.1),
+            // スペースを開けたいときはSizedBoxを記述する
+            SizedBox(
+              width: width,
+              height: height * 0.1,
+            ),
             Container(
               width: width * 0.6,
               height: height * 0.1,
@@ -82,7 +86,10 @@ class LoginPageForm extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: Text('ログインする'),
+                  child: Text(
+                    'ログイン',
+                    style: TextStyle(fontSize: 20),
+                  ),
                   style: ElevatedButton.styleFrom(
                     primary: primaryColor,
                   ),
