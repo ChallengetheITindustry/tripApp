@@ -9,6 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final PageController controller = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
         ),
         body: Stack(children: [
           Background(),
-          SignupPageForm(),
+          PageView(controller: controller, children: [
+            LoginPageForm(),
+            SignupPageForm(),
+          ])
         ]),
       ),
     );
