@@ -9,7 +9,12 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyApp createState() => _MyApp();
+}
+
+class _MyApp extends State {
   final PageController controller = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
