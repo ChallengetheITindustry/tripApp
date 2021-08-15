@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/login_signup_background.dart';
+import 'package:tripapp/ui/signup_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Stack(children: [
           Background(),
-          LoginPageForm(),
+          SignupPageForm(),
         ]),
       ),
     );
