@@ -20,13 +20,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: primaryColor,
           elevation: 0.0,
         ),
-        body: Center(
-          child: Column(
-            children: [
-              LoginPage(),
-            ],
-          ),
-        ),
+        body: Stack(children: [LoginPage()]),
       ),
     );
   }
