@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 // Colors
 const primaryColor = Color(0xff3A4067);
 
+const formBorderColor = Color(0xffCAC9C9);
+
 // 幅と高さを取得するにはWidgetsAppかMaterialAppが存在している必要がある。
 
 // // 幅
