@@ -39,7 +39,7 @@ class LoginPageForm extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("MAIL"),
+                  Text("メールアドレス"),
                   TextFormField(
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -58,7 +58,7 @@ class LoginPageForm extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("PASSWORD"),
+                  Text("パスワード"),
                   TextFormField(
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -91,8 +91,12 @@ class LoginPageForm extends StatelessWidget {
                     style: TextStyle(fontSize: 20),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: primaryColor,
-                  ),
+                      primary: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30),
+                        ),
+                      )),
                 ))
           ],
         ),
