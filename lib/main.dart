@@ -6,7 +6,6 @@ import 'package:tripapp/ui/dots.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/login_signup_background.dart';
 import 'package:tripapp/ui/signup_page.dart';
-import 'package:tripapp/extension/extension.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,15 +25,13 @@ class MyApp extends StatefulWidget {
 
 class _MyApp extends State {
   final PageController controller = PageController(initialPage: 0);
-  int _currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'tripApp',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-      ),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,

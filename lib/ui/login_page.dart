@@ -97,8 +97,8 @@ class LoginPageForm extends StatelessWidget {
                       ],
                     ),
                     child: ElevatedButton(
-                      onPressed: () {
-                        model.signIn();
+                      onPressed: () async {
+                        await model.signIn();
                       },
                       child: Text(
                         'ログイン',

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:tripapp/extension/extension.dart';
 import 'package:tripapp/view_model/signup_model.dart';
 
 class SignupPageForm extends StatelessWidget {
@@ -120,8 +119,8 @@ class SignupPageForm extends StatelessWidget {
                       ],
                     ),
                     child: ElevatedButton(
-                      onPressed: () {
-                        model.signUp();
+                      onPressed: () async {
+                        await model.signUp();
                       },
                       child: Text(
                         '新規会員登録',

@@ -5,8 +5,6 @@ import 'package:dots_indicator/dots_indicator.dart';
 
 // ignore: must_be_immutable
 class Background extends StatelessWidget {
-  final _pageLength = 2;
-  double _currentPosition = 0.0;
   @override
   Widget build(BuildContext context) {
     // 幅
