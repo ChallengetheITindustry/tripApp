@@ -37,12 +37,12 @@ class _MyApp extends State {
           elevation: 0.0,
         ),
         body: Stack(children: [
+          Dots(),
           Background(),
           PageView(controller: controller, children: [
             LoginPageForm(),
             SignupPageForm(),
           ]),
-          Dots(),
         ]),
       ),
     );
