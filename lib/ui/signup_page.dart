@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/extension/extension.dart';
 
 class SignupPageForm extends StatelessWidget {
   @override
@@ -44,6 +45,9 @@ class SignupPageForm extends StatelessWidget {
                         ),
                       ),
                     ),
+                    onChanged: (String value) {
+                      newUserName = value;
+                    },
                   ),
                 ],
               ),
@@ -64,6 +68,9 @@ class SignupPageForm extends StatelessWidget {
                         ),
                       ),
                     ),
+                    onChanged: (String value) {
+                      newEmail = value;
+                    },
                   ),
                 ],
               ),
@@ -75,15 +82,23 @@ class SignupPageForm extends StatelessWidget {
                 children: [
                   Text("パスワード"),
                   TextFormField(
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(
-                          color: formBorderColor,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          borderSide: BorderSide(
+                            color: formBorderColor,
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                      obscureText: true,
+                      onChanged: (String value) {
+                        if (value.length >= 6) {
+                          newPassword = value;
+                          pswd_OK = true;
+                        } else {
+                          pswd_OK = false;
+                        }
+                      }),
                 ],
               ),
             ),
