@@ -76,6 +76,7 @@ class LoginPageForm extends StatelessWidget {
                             ),
                           ),
                         ),
+                        obscureText: true,
                         onChanged: (String value) {
                           model.password = value;
                         },
