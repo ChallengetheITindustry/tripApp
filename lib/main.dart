@@ -6,6 +6,7 @@ import 'package:tripapp/ui/dots.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/login_signup_background.dart';
 import 'package:tripapp/ui/signup_page.dart';
+import 'package:tripapp/extension/extension.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
