@@ -30,7 +30,7 @@ class Background extends StatelessWidget {
             children: [
               Container(
                 width: 150,
-                child: Image.asset('assets/images/airplane.png'),
+                child: Image.asset('assets/images/hikoki_animated.gif'),
               ),
             ],
           ),

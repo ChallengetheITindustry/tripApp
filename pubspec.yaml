@@ -20,3 +20,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/airplane.png
+    - assets/images/hikoki_animated.gif
