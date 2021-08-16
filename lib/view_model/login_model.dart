@@ -22,7 +22,7 @@ class SignInModel extends ChangeNotifier {
       email: email,
       password: password,
     );
-    print("User id is ${result.user!.uid}");
+    print("ログイン完了🚀");
     return result;
   }
 }
