@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/extension/extension.dart';
+import 'package:tripapp/view_model/signup_model.dart';
 
-class SignupPageForm extends StatefulWidget {
-  @override
-  _SignupPageForm createState() => _SignupPageForm();
-}
-
-class _SignupPageForm extends State {
+class SignupPageForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 幅
@@ -120,7 +116,9 @@ class _SignupPageForm extends State {
                   ],
                 ),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    SignUpModel();
+                  },
                   child: Text(
                     '新規会員登録',
                     style: TextStyle(fontSize: 20),
