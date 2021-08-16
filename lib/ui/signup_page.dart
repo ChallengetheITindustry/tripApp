@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/extension/extension.dart';
 
-class SignupPageForm extends StatelessWidget {
+class SignupPageForm extends StatefulWidget {
+  @override
+  _SignupPageForm createState() => _SignupPageForm();
+}
+
+class _SignupPageForm extends State {
   @override
   Widget build(BuildContext context) {
     // 幅
