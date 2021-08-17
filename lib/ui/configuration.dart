@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tripapp/res/const.dart';
 
 class ConfigurationPage extends StatelessWidget {
   @override

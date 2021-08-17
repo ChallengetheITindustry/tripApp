@@ -3,6 +3,7 @@ import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/configuration.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/signup_page.dart';
+import 'package:tripapp/ui/user_profile.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _HomePage extends State<HomePage> {
       label: 'ユーザー',
     ),
   ];
-  final tabs = <Widget>[SignupPageForm(), LoginPageForm(), ConfigurationPage()];
+  final tabs = <Widget>[SignupPageForm(), LoginPageForm(), UserProfilePage()];
 
   @override
   Widget build(BuildContext context) {
