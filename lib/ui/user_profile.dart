@@ -1,8 +1,12 @@
 import 'dart:async';
 
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/ui/login_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -83,9 +87,11 @@ class UserProfilePage extends StatelessWidget {
                                         "お問い合わせ",
                                         style: TextStyle(fontSize: 20),
                                       ),
+                                      subtitle: Text('外部サイト'),
                                       contentPadding: EdgeInsets.all(10.0),
                                       onTap: () {
-                                        Navigator.pop(context);
+                                        launch(
+                                            'https://forms.gle/bJndj6BKZbKiFSgi9');
                                       },
                                     ),
                                   ),
@@ -159,8 +165,18 @@ class UserProfilePage extends StatelessWidget {
                                         style: TextStyle(fontSize: 20),
                                       ),
                                       contentPadding: EdgeInsets.all(10.0),
-                                      onTap: () {
-                                        Navigator.pop(context);
+                                      onTap: () async {
+                                        // ログアウト処理
+                                        // 内部で保持しているログイン情報等が初期化される
+                                        // （現時点ではログアウト時はこの処理を呼び出せばOKと、思うぐらいで大丈夫です）
+                                        await FirebaseAuth.instance.signOut();
+                                        // ログイン画面に遷移＋チャット画面を破棄
+                                        await Navigator.of(context)
+                                            .pushReplacement(
+                                          MaterialPageRoute(builder: (context) {
+                                            return MyApp();
+                                          }),
+                                        );
                                       },
                                     ),
                                   ),
@@ -274,12 +290,22 @@ class UserProfilePage extends StatelessWidget {
                   Container(
                     child: Text(
                         // ログインユーザーのプロフィールコメントを表示
-                        '初めまして！現在日本一周しています！北海道→青森県→岩手県→福島県　YouTubeもやっています→https://www.youtube.com/watch?v=iSsct7423J4&t=28s'),
+                        '初めまして！現在日本一周しています！北海道→青森県→岩手県→福島県　YouTubeもやっています'),
                   ),
                   Container(
-                    child: Text(
-                        // ログインユーザーのプロフィールコメントを表示
-                        '初めまして！現在日本一周しています！北海道→青森県→岩手県→福島県　YouTubeもやっています→https://www.youtube.com/watch?v=iSsct7423J4&t=28s'),
+                    // ユーザー編集画面でリンクを登録できるように設定する
+                    child: Linkify(
+                      onOpen: (link) async {
+                        if (await canLaunch(
+                            'https://www.youtube.com/watch?v=iSsct7423J4&t=28s')) {
+                          await launch(
+                              'https://www.youtube.com/watch?v=iSsct7423J4&t=28s');
+                        } else {
+                          throw 'Could not launch $link';
+                        }
+                      },
+                      text: "https://www.youtube.com/watch?v=iSsct7423J4&t=28s",
+                    ),
                   ),
                 ],
               ),
