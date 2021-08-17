@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/configuration.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/signup_page.dart';
 import 'package:tripapp/ui/user_profile.dart';
