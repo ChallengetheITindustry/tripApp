@@ -21,8 +21,8 @@ class _HomePage extends State<HomePage> {
       label: 'タイムライン',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: '設定',
+      icon: Icon(Icons.manage_accounts),
+      label: 'ユーザー',
     ),
   ];
   final tabs = <Widget>[SignupPageForm(), LoginPageForm(), ConfigurationPage()];
