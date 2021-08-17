@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/signup_page.dart';
 
@@ -43,9 +44,11 @@ class _HomePage extends State<HomePage> {
     );
   }
 
+// ボトムナビゲーションの型
   Widget _buildBttomNavigator(BuildContext context) {
     return BottomNavigationBar(
       items: items,
+      fixedColor: primaryColor,
       currentIndex: _currentIndex,
       onTap: (index) {
         if (_currentIndex != index) {
