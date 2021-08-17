@@ -15,194 +15,198 @@ class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: IconButton(
-                  onPressed: () {
-                    showModalBottomSheet(
-                        //モーダルの背景の色、透過
-                        backgroundColor: Colors.transparent,
-                        //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Container(
-                            margin: EdgeInsets.only(top: 64),
-                            decoration: BoxDecoration(
-                              //モーダル自体の色
-                              color: Colors.white,
-                              //角丸にする
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
+        appBar: AppBar(backgroundColor: Colors.white, elevation: 0.0, actions: <
+            Widget>[
+          Container(
+              child: IconButton(
+            onPressed: () {},
+            icon:
+                Icon(Icons.add_alert_outlined, color: primaryColor, size: 35.0),
+          )),
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: IconButton(
+              onPressed: () {
+                showModalBottomSheet(
+                    //モーダルの背景の色、透過
+                    backgroundColor: Colors.transparent,
+                    //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        margin: EdgeInsets.only(top: 64),
+                        decoration: BoxDecoration(
+                          //モーダル自体の色
+                          color: Colors.white,
+                          //角丸にする
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                          ),
+                        ),
+                        child: ListView(
+                          //scrollDirection: Axis.horizontal, // 横
+                          padding: EdgeInsets.all(36.0),
+                          shrinkWrap: true,
+                          children: [
+                            Container(
+                              height: 80,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(5, 5))
+                                ],
+                              ),
+                              child: Card(
+                                child: ListTile(
+                                  leading: Icon(Icons.edit),
+                                  title: Text(
+                                    "ユーザー情報編集",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  contentPadding: EdgeInsets.all(10.0),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
                               ),
                             ),
-                            child: ListView(
-                              //scrollDirection: Axis.horizontal, // 横
-                              padding: EdgeInsets.all(36.0),
-                              shrinkWrap: true,
-                              children: [
-                                Container(
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black12,
-                                          blurRadius: 10.0,
-                                          spreadRadius: 1.0,
-                                          offset: Offset(5, 5))
-                                    ],
+                            Container(
+                              height: 80,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(5, 5))
+                                ],
+                              ),
+                              child: Card(
+                                child: ListTile(
+                                  leading: Icon(Icons.mail),
+                                  title: Text(
+                                    "お問い合わせ",
+                                    style: TextStyle(fontSize: 20),
                                   ),
-                                  child: Card(
-                                    child: ListTile(
-                                      leading: Icon(Icons.edit),
-                                      title: Text(
-                                        "ユーザー情報編集",
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                      contentPadding: EdgeInsets.all(10.0),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ),
+                                  subtitle: Text('外部サイト'),
+                                  contentPadding: EdgeInsets.all(10.0),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    launch(
+                                        'https://forms.gle/bJndj6BKZbKiFSgi9');
+                                  },
                                 ),
-                                Container(
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black12,
-                                          blurRadius: 10.0,
-                                          spreadRadius: 1.0,
-                                          offset: Offset(5, 5))
-                                    ],
-                                  ),
-                                  child: Card(
-                                    child: ListTile(
-                                      leading: Icon(Icons.mail),
-                                      title: Text(
-                                        "お問い合わせ",
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                      subtitle: Text('外部サイト'),
-                                      contentPadding: EdgeInsets.all(10.0),
-                                      onTap: () {
-                                        launch(
-                                            'https://forms.gle/bJndj6BKZbKiFSgi9');
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black12,
-                                          blurRadius: 10.0,
-                                          spreadRadius: 1.0,
-                                          offset: Offset(5, 5))
-                                    ],
-                                  ),
-                                  child: Card(
-                                    child: ListTile(
-                                      leading: Icon(Icons.book),
-                                      title: Text(
-                                        "利用規約",
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                      contentPadding: EdgeInsets.all(10.0),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => RulePage()),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black12,
-                                          blurRadius: 10.0,
-                                          spreadRadius: 1.0,
-                                          offset: Offset(5, 5))
-                                    ],
-                                  ),
-                                  child: Card(
-                                    child: ListTile(
-                                      leading: Icon(Icons.rule),
-                                      title: Text(
-                                        "プライバシーポリシー",
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                      contentPadding: EdgeInsets.all(10.0),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PribacyPage()),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 80,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black12,
-                                          blurRadius: 10.0,
-                                          spreadRadius: 1.0,
-                                          offset: Offset(5, 5))
-                                    ],
-                                  ),
-                                  child: Card(
-                                    child: ListTile(
-                                      leading: Icon(Icons.exit_to_app),
-                                      title: Text(
-                                        "ログアウト",
-                                        style: TextStyle(fontSize: 20),
-                                      ),
-                                      contentPadding: EdgeInsets.all(10.0),
-                                      onTap: () async {
-                                        // ログアウト処理
-                                        // 内部で保持しているログイン情報等が初期化される
-                                        // （現時点ではログアウト時はこの処理を呼び出せばOKと、思うぐらいで大丈夫です）
-                                        await FirebaseAuth.instance.signOut();
-                                        // ログイン画面に遷移＋チャット画面を破棄
-                                        await Navigator.of(context)
-                                            .pushReplacement(
-                                          MaterialPageRoute(builder: (context) {
-                                            return MyApp();
-                                          }),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          );
-                        });
-                  },
-                  icon: Icon(Icons.clear_all, color: primaryColor, size: 40.0),
-                ),
-              ),
-            ]),
+                            Container(
+                              height: 80,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(5, 5))
+                                ],
+                              ),
+                              child: Card(
+                                child: ListTile(
+                                  leading: Icon(Icons.book),
+                                  title: Text(
+                                    "利用規約",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  contentPadding: EdgeInsets.all(10.0),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => RulePage()),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 80,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(5, 5))
+                                ],
+                              ),
+                              child: Card(
+                                child: ListTile(
+                                  leading: Icon(Icons.rule),
+                                  title: Text(
+                                    "プライバシーポリシー",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  contentPadding: EdgeInsets.all(10.0),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => PribacyPage()),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 80,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 10.0,
+                                      spreadRadius: 1.0,
+                                      offset: Offset(5, 5))
+                                ],
+                              ),
+                              child: Card(
+                                child: ListTile(
+                                  leading: Icon(Icons.exit_to_app),
+                                  title: Text(
+                                    "ログアウト",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  contentPadding: EdgeInsets.all(10.0),
+                                  onTap: () async {
+                                    Navigator.pop(context);
+                                    // ログアウト処理
+                                    // 内部で保持しているログイン情報等が初期化される
+                                    // （現時点ではログアウト時はこの処理を呼び出せばOKと、思うぐらいで大丈夫です）
+                                    await FirebaseAuth.instance.signOut();
+                                    // ログイン画面に遷移＋チャット画面を破棄
+                                    await Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(builder: (context) {
+                                        return MyApp();
+                                      }),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    });
+              },
+              icon: Icon(Icons.clear_all, color: primaryColor, size: 40.0),
+            ),
+          ),
+        ]),
         body: Column(
           children: [
             SizedBox(

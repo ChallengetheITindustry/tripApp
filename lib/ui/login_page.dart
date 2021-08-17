@@ -100,6 +100,7 @@ class LoginPageForm extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () async {
                         await model.signIn();
+                        Navigator.pop(context);
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => HomePage()),
