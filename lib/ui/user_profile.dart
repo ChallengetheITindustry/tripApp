@@ -40,16 +40,24 @@ class UserProfilePage extends StatelessWidget {
                               padding: EdgeInsets.all(36.0),
                               shrinkWrap: true,
                               children: [
-                                SizedBox(
-                                  height: 100,
+                                Container(
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 10.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(5, 5))
+                                    ],
+                                  ),
                                   child: Card(
                                     child: ListTile(
-                                      leading: Icon(Icons.exit_to_app),
+                                      leading: Icon(Icons.edit),
                                       title: Text(
-                                        "ログアウト",
-                                        style: TextStyle(fontSize: 30),
+                                        "ユーザー情報編集",
+                                        style: TextStyle(fontSize: 20),
                                       ),
-                                      trailing: Icon(Icons.more_vert),
                                       contentPadding: EdgeInsets.all(10.0),
                                       onTap: () {
                                         Navigator.pop(context);
@@ -57,54 +65,104 @@ class UserProfilePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Card(
-                                  child: ListTile(
-                                    leading: Icon(Icons.people),
-                                    title: Text("ListTile with subTitle"),
-                                    trailing: Icon(Icons.more_vert),
-                                    subtitle: Text("This is subtitle."),
-                                    onTap: () {},
+                                Container(
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 10.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(5, 5))
+                                    ],
+                                  ),
+                                  child: Card(
+                                    child: ListTile(
+                                      leading: Icon(Icons.mail),
+                                      title: Text(
+                                        "お問い合わせ",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                      contentPadding: EdgeInsets.all(10.0),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
                                   ),
                                 ),
-                                Card(
-                                  child: ListTile(
-                                    leading: Icon(Icons.people),
-                                    title: Text("ListTile with long subTitle"),
-                                    trailing: Icon(Icons.more_vert),
-                                    subtitle: Text(
-                                        "This is subtitle. Subtitle is very long and use three lines"),
-                                    onTap: () {},
+                                Container(
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 10.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(5, 5))
+                                    ],
+                                  ),
+                                  child: Card(
+                                    child: ListTile(
+                                      leading: Icon(Icons.book),
+                                      title: Text(
+                                        "利用規約",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                      contentPadding: EdgeInsets.all(10.0),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
                                   ),
                                 ),
-                                Card(
-                                  child: ListTile(
-                                    leading: Icon(Icons.people),
-                                    title:
-                                        Text("ListTile with isThreeLine true"),
-                                    trailing: Icon(Icons.more_vert),
-                                    subtitle: Text(
-                                        "This is subtitle. Subtitle is very long and use three lines."),
-                                    onTap: () {},
-                                    isThreeLine: true,
+                                Container(
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 10.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(5, 5))
+                                    ],
+                                  ),
+                                  child: Card(
+                                    child: ListTile(
+                                      leading: Icon(Icons.rule),
+                                      title: Text(
+                                        "プライバシーポリシー",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                      contentPadding: EdgeInsets.all(10.0),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
                                   ),
                                 ),
-                                Card(
-                                  child: ListTile(
-                                    leading: Icon(Icons.people),
-                                    title: Text("ListTile with dense true"),
-                                    trailing: Icon(Icons.more_vert),
-                                    subtitle: Text("This is subtitle."),
-                                    onTap: () {},
-                                    dense: true,
+                                Container(
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 10.0,
+                                          spreadRadius: 1.0,
+                                          offset: Offset(5, 5))
+                                    ],
                                   ),
-                                ),
-                                Card(
-                                  child: ListTile(
-                                    leading: Icon(Icons.people),
-                                    title: Text("ListTile with enabled false"),
-                                    trailing: Icon(Icons.more_vert),
-                                    subtitle: Text("This is subtitle."),
-                                    enabled: false,
+                                  child: Card(
+                                    child: ListTile(
+                                      leading: Icon(Icons.exit_to_app),
+                                      title: Text(
+                                        "ログアウト",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                      contentPadding: EdgeInsets.all(10.0),
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
                                   ),
                                 ),
                               ],
@@ -216,7 +274,12 @@ class UserProfilePage extends StatelessWidget {
                   Container(
                     child: Text(
                         // ログインユーザーのプロフィールコメントを表示
-                        'あとは公共交通機関のルート・時間を気を付ければいいだけですからね、簡単に旅をアップグレードできます。'),
+                        '初めまして！現在日本一周しています！北海道→青森県→岩手県→福島県　YouTubeもやっています→https://www.youtube.com/watch?v=iSsct7423J4&t=28s'),
+                  ),
+                  Container(
+                    child: Text(
+                        // ログインユーザーのプロフィールコメントを表示
+                        '初めまして！現在日本一周しています！北海道→青森県→岩手県→福島県　YouTubeもやっています→https://www.youtube.com/watch?v=iSsct7423J4&t=28s'),
                   ),
                 ],
               ),
@@ -238,6 +301,7 @@ class UserProfilePage extends StatelessWidget {
                 ],
                 color: primaryColor,
               ),
+              // ユーザーが投稿した日記をここに表示させる
               child: ListView(
                 //scrollDirection: Axis.horizontal, // 横
                 padding: EdgeInsets.all(36.0),
