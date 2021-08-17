@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UserProfilePage extends StatelessWidget {
   @override
@@ -124,7 +127,6 @@ class UserProfilePage extends StatelessWidget {
                   CircleAvatar(
                     radius: 100,
                     backgroundColor: Colors.brown.shade800,
-                    child: Text('tripApp'),
                     backgroundImage: NetworkImage(
                         'https://images.unsplash.com/photo-1561731172-9d906d7b13bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80'),
                   ),
@@ -148,6 +150,7 @@ class UserProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,7 +182,16 @@ class UserProfilePage extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 15.0),
                         child: Container(
                             child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            launch('https://twitter.com/home');
+                            // 10秒後にURLで開いたページを閉じる処理（何かで使えるかも？？）
+                            Timer(
+                              const Duration(seconds: 10),
+                              () {
+                                closeWebView();
+                              },
+                            );
+                          },
                           icon: Icon(
                             EvaIcons.twitter,
                             size: 50,
