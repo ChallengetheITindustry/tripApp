@@ -115,7 +115,7 @@ class UserProfilePage extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: MediaQuery.of(context).size.height * 0.03,
             ),
             Center(
               child: Stack(
@@ -149,10 +149,21 @@ class UserProfilePage extends StatelessWidget {
                   Row(
                     children: [
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(child: Text('Taisei')),
                           Container(
-                            child: Text('reeksge@gmail.com'),
+                              child: Text(
+                            'Taisei',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
+                          Container(
+                            child: Text(
+                              'reeksge@gmail.com',
+                              style: TextStyle(color: formBorderColor),
+                            ),
                           )
                         ],
                       ),
@@ -167,7 +178,7 @@ class UserProfilePage extends StatelessWidget {
                   ),
                   Container(
                     child: Text(
-                        'テストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト'),
+                        'あとは公共交通機関のルート・時間を気を付ければいいだけですからね、簡単に旅をアップグレードできます。'),
                   ),
                 ],
               ),
