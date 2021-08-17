@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/ui/home_page.dart';
 import 'package:tripapp/view_model/login_model.dart';
 
 class LoginPageForm extends StatelessWidget {
@@ -99,6 +100,10 @@ class LoginPageForm extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () async {
                         await model.signIn();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
                       },
                       child: Text(
                         'ログイン',

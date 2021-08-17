@@ -17,11 +17,19 @@ class Background extends StatelessWidget {
           width: width,
           height: height * 0.4,
           decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
-              )),
+            color: primaryColor,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(50),
+              bottomRight: Radius.circular(50),
+            ),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10.0,
+                  spreadRadius: 1.0,
+                  offset: Offset(10, 10))
+            ],
+          ),
         ),
         Center(
           child: Column(

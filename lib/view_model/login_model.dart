@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tripapp/extension/extension.dart';
 
 class SignInModel extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
