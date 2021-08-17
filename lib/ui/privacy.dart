@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 
-class RulePage extends StatelessWidget {
+class PribacyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
         elevation: 2.0,
-        title: Text('利用規約'),
+        title: Text('プライバシーポリシー'),
         leading: IconButton(
           icon: Icon(Icons.backspace),
           onPressed: () {
@@ -26,7 +26,7 @@ class RulePage extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(5.0),
                     child: Text(
-                      "利用規約",
+                      "プライバシーポリシー",
                       softWrap: true,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -37,7 +37,7 @@ class RulePage extends StatelessWidget {
                       maxLines: 100,
                       child: Padding(
                         child: Text(
-                            "この利用規約（以下，「本規約」といいます。）は，＿＿＿＿＿（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。"),
+                            "＿＿＿＿＿＿＿＿（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。"),
                         padding: EdgeInsets.only(top: 10.0),
                       )),
                 ],
