@@ -7,6 +7,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/login_page.dart';
+import 'package:tripapp/ui/rule.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -117,6 +118,11 @@ class UserProfilePage extends StatelessWidget {
                                       contentPadding: EdgeInsets.all(10.0),
                                       onTap: () {
                                         Navigator.pop(context);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => RulePage()),
+                                        );
                                       },
                                     ),
                                   ),
