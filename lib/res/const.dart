@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Colors
-const primaryColor = Color(0xff1EA737);
+const primaryColor = Color(0xff284E8A);
 
 const formBorderColor = Color(0xffCAC9C9);
 
