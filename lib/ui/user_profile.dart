@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 
@@ -151,16 +152,22 @@ class UserProfilePage extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                              child: Text(
-                            'Taisei',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
+                          Column(
+                            children: [
+                              Container(
+                                  child: Text(
+                                // ログインユーザーの名前を表示
+                                'Taisei',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )),
+                            ],
+                          ),
                           Container(
                             child: Text(
+                              // ログインユーザーのメールアドレスを表示
                               'reeksge@gmail.com',
                               style: TextStyle(color: formBorderColor),
                             ),
@@ -168,16 +175,35 @@ class UserProfilePage extends StatelessWidget {
                         ],
                       ),
                       Spacer(),
-                      Container(
-                        child: Icon(Icons.ten_k),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: Container(
+                            child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            EvaIcons.twitter,
+                            size: 50,
+                            color: twitterColor,
+                          ),
+                        )),
                       ),
-                      Container(
-                        child: Icon(Icons.ten_k),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 15.0),
+                        child: Container(
+                            child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            EvaIcons.heart,
+                            size: 50,
+                            color: heartColor,
+                          ),
+                        )),
                       ),
                     ],
                   ),
                   Container(
                     child: Text(
+                        // ログインユーザーのプロフィールコメントを表示
                         'あとは公共交通機関のルート・時間を気を付ければいいだけですからね、簡単に旅をアップグレードできます。'),
                   ),
                 ],
