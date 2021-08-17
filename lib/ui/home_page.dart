@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/ui/configuration.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/signup_page.dart';
 
@@ -24,10 +25,7 @@ class _HomePage extends State<HomePage> {
       label: '設定',
     ),
   ];
-  final tabs = <Widget>[
-    SignupPageForm(),
-    LoginPageForm(),
-  ];
+  final tabs = <Widget>[SignupPageForm(), LoginPageForm(), ConfigurationPage()];
 
   @override
   Widget build(BuildContext context) {
