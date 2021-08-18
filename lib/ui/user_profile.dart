@@ -9,6 +9,7 @@ import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/privacy.dart';
 import 'package:tripapp/ui/rule.dart';
+import 'package:tripapp/ui/tourist_spot.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserProfilePage extends StatelessWidget {
@@ -19,7 +20,12 @@ class UserProfilePage extends StatelessWidget {
             Widget>[
           Container(
               child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TouristSpot()),
+              );
+            },
             icon:
                 Icon(Icons.add_alert_outlined, color: primaryColor, size: 35.0),
           )),
@@ -210,7 +216,7 @@ class UserProfilePage extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
+              height: MediaQuery.of(context).size.height * 0.02,
             ),
             Center(
               child: Stack(
@@ -309,8 +315,47 @@ class UserProfilePage extends StatelessWidget {
             ),
             Spacer(),
             Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: Row(
+                children: [
+                  Container(
+                    width: 150,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10.0,
+                            spreadRadius: 1.0,
+                            offset: Offset(5, 5))
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    width: 150,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10.0,
+                            spreadRadius: 1.0,
+                            offset: Offset(5, 5))
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+            Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: MediaQuery.of(context).size.height * 0.4,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
