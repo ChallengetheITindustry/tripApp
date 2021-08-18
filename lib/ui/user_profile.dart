@@ -304,33 +304,13 @@ class UserProfilePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
-                    child: Text(
-                        // ログインユーザーのプロフィールコメントを表示
-                        '初めまして！現在日本一周しています！北海道→青森県→岩手県→福島県　YouTubeもやっています'),
-                  ),
-                  Container(
-                    // ユーザー編集画面でリンクを登録できるように設定する
-                    child: Linkify(
-                      onOpen: (link) async {
-                        if (await canLaunch(
-                            'https://www.youtube.com/watch?v=iSsct7423J4&t=28s')) {
-                          await launch(
-                              'https://www.youtube.com/watch?v=iSsct7423J4&t=28s');
-                        } else {
-                          throw 'Could not launch $link';
-                        }
-                      },
-                      text: "https://www.youtube.com/watch?v=iSsct7423J4&t=28s",
-                    ),
-                  ),
                 ],
               ),
             ),
             Spacer(),
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.4,
+              height: MediaQuery.of(context).size.height * 0.45,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
@@ -340,7 +320,7 @@ class UserProfilePage extends StatelessWidget {
                       color: Colors.black12,
                       blurRadius: 10.0,
                       spreadRadius: 1.0,
-                      offset: Offset(10, 10))
+                      offset: Offset(-10, -10))
                 ],
                 color: primaryColor,
               ),
@@ -370,21 +350,41 @@ class UserProfilePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50.0),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 30.0),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50.0),
                       child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10.0,
+                                spreadRadius: 1.0,
+                                offset: Offset(10, 10))
+                          ],
+                          color: primaryColor,
+                        ),
                         child: Image.network(
                             'https://images.unsplash.com/photo-1561731172-e6a4d2a9a409?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1268&q=80'),
                       ),
                     ),
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50.0),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 30.0),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50.0),
                       child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10.0,
+                                spreadRadius: 1.0,
+                                offset: Offset(10, 10))
+                          ],
+                          color: primaryColor,
+                        ),
                         child: Image.network(
                             'https://images.unsplash.com/photo-1597395529362-361ba4b8ec24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80'),
                       ),
