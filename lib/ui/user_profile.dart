@@ -3,10 +3,8 @@ import 'dart:async';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/privacy.dart';
 import 'package:tripapp/ui/rule.dart';
 import 'package:tripapp/ui/tourist_spot.dart';
@@ -315,47 +313,8 @@ class UserProfilePage extends StatelessWidget {
             ),
             Spacer(),
             Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Row(
-                children: [
-                  Container(
-                    width: 150,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(20.0),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 10.0,
-                            spreadRadius: 1.0,
-                            offset: Offset(5, 5))
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  Container(
-                    width: 150,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(20.0),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 10.0,
-                            spreadRadius: 1.0,
-                            offset: Offset(5, 5))
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Spacer(),
-            Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.4,
+              height: MediaQuery.of(context).size.height * 0.45,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
