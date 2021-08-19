@@ -150,6 +150,7 @@ class _TouristSpot extends State {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Widget Cards1(BuildContext context) {
     var _hasPadding = false;
     return AnimatedPadding(
