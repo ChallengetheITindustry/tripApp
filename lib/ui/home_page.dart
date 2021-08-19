@@ -25,7 +25,7 @@ class _HomePage extends State<HomePage> {
       label: 'ユーザー',
     ),
   ];
-  final tabs = <Widget>[SignupPageForm(), LoginPageForm(), UserProfilePage()];
+  final tabs = <Widget>[UserHomePage(), LoginPageForm(), UserProfilePage()];
 
   @override
   Widget build(BuildContext context) {
