@@ -75,7 +75,8 @@ class _UserHomePage extends State {
                 child: Icon(Icons.image),
               ),
             ],
-          )
+          ),
+          Container()
         ],
       )),
     );
