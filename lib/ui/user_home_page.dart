@@ -1,5 +1,7 @@
 import 'dart:io';
 
+// ignore: unused_import
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tripapp/res/const.dart';
@@ -76,7 +78,19 @@ class _UserHomePage extends State {
               ),
             ],
           ),
-          Container()
+          // コレクション内のドキュメント一覧を表示
+
+          // Column(
+          //   children: documentList.map((document) {
+          //     return ListTile(
+          //       title: Text('${document['name']}さん'),
+          //       subtitle: Text('${document['age']}歳'),
+          //     );
+          //   }).toList(),
+          // ),
+
+          // // ドキュメントの情報を表示
+          // Card(child: ListTile(title: Text(orderDocumentInfo))),
         ],
       )),
     );
