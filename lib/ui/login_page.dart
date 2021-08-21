@@ -119,6 +119,9 @@ class LoginPageForm extends StatelessWidget {
                                   ElevatedButton(
                                     child: Text("ごめん🙇‍♂️"),
                                     onPressed: () => Navigator.pop(context),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: primaryColor, //ボタンの背景色
+                                    ),
                                   ),
                                 ],
                               );
