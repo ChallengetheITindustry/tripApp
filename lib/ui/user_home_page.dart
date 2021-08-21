@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tripapp/res/const.dart';
 
+import 'mail_verify.dart';
+
 class UserHomePage extends StatefulWidget {
   @override
   _UserHomePage createState() => _UserHomePage();
@@ -74,6 +76,16 @@ class _UserHomePage extends State {
               FloatingActionButton(
                 backgroundColor: primaryColor,
                 onPressed: _getImage,
+                child: Icon(Icons.image),
+              ),
+              FloatingActionButton(
+                backgroundColor: primaryColor,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MailVerifyPage()),
+                  );
+                },
                 child: Icon(Icons.image),
               ),
             ],

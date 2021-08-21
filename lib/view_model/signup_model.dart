@@ -57,6 +57,7 @@ class SignUpModel extends ChangeNotifier {
   }
 
   Future getCurrentUser() async {
+    // ignore: await_only_futures
     return await _auth.currentUser!;
   }
 }

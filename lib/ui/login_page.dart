@@ -1,10 +1,14 @@
+// ignore: unused_import
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/home_page.dart';
 import 'package:tripapp/view_model/login_model.dart';
+
+import 'mail_verify.dart';
 
 class LoginPageForm extends StatelessWidget {
   @override
@@ -101,32 +105,50 @@ class LoginPageForm extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       onPressed: () async {
-                        try {
-                          await model.signIn();
-                          Navigator.pop(context);
+                        // メール認証していないユーザーの場合はメール認証画面へ飛ばすように設定する
+                        final FirebaseAuth _auth = FirebaseAuth.instance;
+                        // メール認証完了しているか取得
+                        final _isVerified =
+                            // ignore: await_only_futures
+                            await _auth.currentUser!.emailVerified;
+
+                        if (!_isVerified) {
+                          // サインアウトする
+                          await _auth.signOut();
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(
+                                builder: (context) => MailVerifyPage()),
                           );
-                        } catch (e) {
-                          showDialog(
-                            context: context,
-                            builder: (_) {
-                              return AlertDialog(
-                                title: Text(e.toString()),
-                                actions: [
-                                  // ボタン領域
-                                  ElevatedButton(
-                                    child: Text("ごめん🙇‍♂️"),
-                                    onPressed: () => Navigator.pop(context),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: primaryColor, //ボタンの背景色
+                        } else {
+                          try {
+                            await model.signIn();
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                            );
+                          } catch (e) {
+                            showDialog(
+                              context: context,
+                              builder: (_) {
+                                return AlertDialog(
+                                  title: Text(e.toString()),
+                                  actions: [
+                                    // ボタン領域
+                                    ElevatedButton(
+                                      child: Text("ごめん🙇‍♂️"),
+                                      onPressed: () => Navigator.pop(context),
+                                      style: ElevatedButton.styleFrom(
+                                        primary: primaryColor, //ボタンの背景色
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         }
                       },
                       child: Text(

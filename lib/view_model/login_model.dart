@@ -21,6 +21,7 @@ class SignInModel extends ChangeNotifier {
       email: email,
       password: password,
     );
+
     return result;
   }
 }
