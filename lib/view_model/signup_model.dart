@@ -19,12 +19,15 @@ class SignUpModel extends ChangeNotifier {
   late User _user;
 
   Future<String> signUp() async {
+    if (newUserName.isEmpty) {
+      throw 'ユーザー名の入力忘れてない？😥';
+    }
     if (newEmail.isEmpty) {
-      throw 'メールアドレスをを入力してください';
+      throw 'メールアドレスの入力忘れてない？😥';
     }
 
     if (newPassword.isEmpty) {
-      throw 'パスワードをを入力してください';
+      throw 'パスワードの入力忘れてない？😥';
     }
 
     try {

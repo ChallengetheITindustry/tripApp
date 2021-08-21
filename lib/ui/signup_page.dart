@@ -120,8 +120,29 @@ class SignupPageForm extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       onPressed: () async {
-                        await model.signUp();
-                        await model.UserInfoAdd();
+                        try {
+                          await model.signUp();
+                          await model.UserInfoAdd();
+                        } catch (e) {
+                          showDialog(
+                            context: context,
+                            builder: (_) {
+                              return AlertDialog(
+                                title: Text(e.toString()),
+                                actions: [
+                                  // ボタン領域
+                                  ElevatedButton(
+                                    child: Text("ごめん🙇‍♂️"),
+                                    onPressed: () => Navigator.pop(context),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: primaryColor, //ボタンの背景色
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       child: Text(
                         '新規会員登録',
