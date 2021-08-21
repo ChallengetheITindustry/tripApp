@@ -18,7 +18,7 @@ class SignUpModel extends ChangeNotifier {
   late UserCredential _result;
   late User _user;
 
-  Future signUp() async {
+  Future<String> signUp() async {
     if (newEmail.isEmpty) {
       throw 'メールアドレスをを入力してください';
     }
@@ -41,6 +41,8 @@ class SignUpModel extends ChangeNotifier {
     } catch (error) {
       throw error;
     }
+
+    return _result.user!.uid;
   }
 
   // ユーザー情報をFirestoreに保存する
@@ -49,5 +51,9 @@ class SignUpModel extends ChangeNotifier {
     await FirebaseFirestore.instance
         .collection('users')
         .add({'name': newUserName, 'mail': newEmail, 'password': newPassword});
+  }
+
+  Future getCurrentUser() async {
+    return await _auth.currentUser!;
   }
 }

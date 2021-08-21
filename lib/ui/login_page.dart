@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/res/const.dart';
@@ -99,12 +101,30 @@ class LoginPageForm extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       onPressed: () async {
-                        await model.signIn();
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
+                        try {
+                          await model.signIn();
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomePage()),
+                          );
+                        } catch (e) {
+                          showDialog(
+                            context: context,
+                            builder: (_) {
+                              return AlertDialog(
+                                title: Text(e.toString()),
+                                actions: [
+                                  // ボタン領域
+                                  ElevatedButton(
+                                    child: Text("ごめん🙇‍♂️"),
+                                    onPressed: () => Navigator.pop(context),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       child: Text(
                         'ログイン',
