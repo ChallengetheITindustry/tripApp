@@ -105,52 +105,51 @@ class LoginPageForm extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       onPressed: () async {
-                        // メール認証していないユーザーの場合はメール認証画面へ飛ばすように設定する
-                        final FirebaseAuth _auth = FirebaseAuth.instance;
-                        // メール認証完了しているか取得
-                        final _isVerified =
-                            // ignore: await_only_futures
-                            await _auth.currentUser!.emailVerified;
+                        // // メール認証していないユーザーの場合はメール認証画面へ飛ばすように設定する
+                        // final FirebaseAuth _auth = FirebaseAuth.instance;
+                        // // メール認証完了しているか取得
+                        // final _isVerified =
+                        //     // ignore: await_only_futures
+                        //     await _auth.currentUser!.emailVerified;
 
-                        if (!_isVerified) {
-                          // サインアウトする
-                          await _auth.signOut();
+                        // if (!_isVerified) {
+                        //   // サインアウトする
+                        //   await _auth.signOut();
+                        //   Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => MailVerifyPage()),
+                        //   );
+                        // } else {
+                        try {
+                          await model.signIn();
+                          Navigator.pop(context);
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => MailVerifyPage()),
+                            MaterialPageRoute(builder: (context) => HomePage()),
                           );
-                        } else {
-                          try {
-                            await model.signIn();
-                            Navigator.pop(context);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()),
-                            );
-                          } catch (e) {
-                            showDialog(
-                              context: context,
-                              builder: (_) {
-                                return AlertDialog(
-                                  title: Text(e.toString()),
-                                  actions: [
-                                    // ボタン領域
-                                    ElevatedButton(
-                                      child: Text("ごめん🙇‍♂️"),
-                                      onPressed: () => Navigator.pop(context),
-                                      style: ElevatedButton.styleFrom(
-                                        primary: primaryColor, //ボタンの背景色
-                                      ),
+                        } catch (e) {
+                          showDialog(
+                            context: context,
+                            builder: (_) {
+                              return AlertDialog(
+                                title: Text(e.toString()),
+                                actions: [
+                                  // ボタン領域
+                                  ElevatedButton(
+                                    child: Text("ごめん🙇‍♂️"),
+                                    onPressed: () => Navigator.pop(context),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: primaryColor, //ボタンの背景色
                                     ),
-                                  ],
-                                );
-                              },
-                            );
-                          }
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         }
                       },
+                      // },
                       child: Text(
                         'ログイン',
                         style: TextStyle(fontSize: 20),
