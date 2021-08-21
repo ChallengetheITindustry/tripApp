@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/view_model/signup_model.dart';
 
+import 'home_page.dart';
+
 class SignupPageForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -123,6 +125,11 @@ class SignupPageForm extends StatelessWidget {
                         try {
                           await model.signUp();
                           await model.UserInfoAdd();
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomePage()),
+                          );
                         } catch (e) {
                           showDialog(
                             context: context,
