@@ -1,0 +1,25 @@
+DB設計
+
+ユーザー情報
+
+users:
+  documentID: userID
+  name: String?
+  mail:
+  password:
+  imageURL: Firestorageに保存する？？
+  createdAt: Date
+
+
+  とりあえずFirestoreに
+  ・name
+  ・mail
+  ・password
+  上記の三つを格納できるように設定する
+
+
+やること
+  8/21
+・firestoreにユーザー情報を保存する
+・ユーザー情報に対してCRUD処理を行うことができるように実装する。
+・Firestoreについて学習する

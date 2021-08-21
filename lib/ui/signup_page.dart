@@ -4,6 +4,9 @@ import 'package:tripapp/res/const.dart';
 import 'package:tripapp/view_model/signup_model.dart';
 
 class SignupPageForm extends StatelessWidget {
+  String name = '';
+  String mail = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     // 幅
