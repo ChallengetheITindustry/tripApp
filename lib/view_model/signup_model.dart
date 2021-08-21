@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -40,5 +41,13 @@ class SignUpModel extends ChangeNotifier {
     } catch (error) {
       throw error;
     }
+  }
+
+  // ユーザー情報をFirestoreに保存する
+  // ignore: non_constant_identifier_names
+  Future UserInfoAdd() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .add({'name': newUserName, 'mail': newEmail, 'password': newPassword});
   }
 }

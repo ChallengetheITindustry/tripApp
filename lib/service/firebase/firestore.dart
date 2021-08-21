@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class FireStore extends ChangeNotifier {
+class FireStoreModel extends ChangeNotifier {
   // 指定したドキュメントの情報
   String orderDocumentInfo = '';
 
