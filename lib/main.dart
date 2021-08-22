@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,13 +22,25 @@ void main() async {
 
 class MyApp extends StatefulWidget {
   @override
-  _MyApp createState() => _MyApp();
+  MyAppPage createState() => MyAppPage();
 }
 
-class _MyApp extends State {
-  final PageController controller = PageController(initialPage: 0);
+class MyAppPage extends State {
+  final PageController _controller = PageController(initialPage: 0);
+
+  // ignore: unused_field
+  double _currentPage = 0;
+
+  final _pageLength = 2;
+  // main.dartファイルの_currentPageを参照し、これが変わることによってアクティブなdotが変更される
+
+  List _pages = [LoginPageForm(), SignupPageForm()];
   @override
   Widget build(BuildContext context) {
+    // 幅
+    double width = MediaQuery.of(context).size.width;
+    // 高さ
+    double height = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'tripApp',
@@ -39,12 +52,38 @@ class _MyApp extends State {
           elevation: 0.0,
         ),
         body: Stack(children: [
-          Dots(),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  child: DotsIndicator(
+                    dotsCount: _pageLength,
+                    position: _currentPage,
+                    decorator: DotsDecorator(
+                      activeColor: primaryColor,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: width,
+                  height: height * 0.1,
+                ),
+              ],
+            ),
+          ),
           Background(),
-          PageView(controller: controller, children: [
-            LoginPageForm(),
-            SignupPageForm(),
-          ]),
+          PageView.builder(
+              itemCount: _pages.length,
+              controller: _controller,
+              onPageChanged: (int index) {
+                setState(() {
+                  _currentPage = index.toDouble();
+                });
+              },
+              itemBuilder: (context, index) {
+                return _pages[index];
+              }),
         ]),
       ),
     );
