@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,28 @@ import 'package:tripapp/ui/rule.dart';
 import 'package:tripapp/ui/tourist_spot.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class UserProfilePage extends StatelessWidget {
+class UserProfilePage extends StatefulWidget {
+  @override
+  _UserProfilePage createState() => _UserProfilePage();
+}
+
+class _UserProfilePage extends State {
+  // ドキュメント情報を入れる箱を用意
+  List<DocumentSnapshot> documentList = [];
+
+  // ignore: unused_element
+  Future _getFirestore() async {
+    // 指定コレクションのドキュメント一覧を取得
+    final snapshot = await FirebaseFirestore.instance.collection('users').get();
+    // ドキュメント一覧を配列で格納
+    setState(() {
+      documentList = snapshot.docs;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    _getFirestore();
     return Scaffold(
         appBar: AppBar(backgroundColor: Colors.white, elevation: 0.0, actions: <
             Widget>[
@@ -251,15 +271,20 @@ class UserProfilePage extends StatelessWidget {
                         children: [
                           Column(
                             children: [
-                              Container(
-                                  child: Text(
-                                // ログインユーザーの名前を表示
-                                'Taisei',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )),
+                              // ドキュメント情報を表示
+                              Column(
+                                children: documentList.map((document) {
+                                  return Container(
+                                      child: Text(
+                                    // ログインユーザーの名前を表示
+                                    '${document['name']}',
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ));
+                                }).toList(),
+                              ),
                             ],
                           ),
                           Container(

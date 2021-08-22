@@ -51,9 +51,21 @@ class SignUpModel extends ChangeNotifier {
   // ユーザー情報をFirestoreに保存する
   // ignore: non_constant_identifier_names
   Future UserInfoAdd() async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .add({'name': newUserName, 'mail': newEmail, 'password': newPassword});
+    // ignore: await_only_futures
+    final User user = await FirebaseAuth.instance.currentUser!;
+    // ignore: unused_local_variable
+    final String uid = user.uid.toString();
+
+    // DocumentSnapshot snapshot = await FirebaseFirestore.instance
+    //     .collection('users')
+    //     .doc(documentId)
+    //     .get();
+
+    await FirebaseFirestore.instance.collection('users').doc(uid).set({
+      'name': newUserName,
+      'mail': newEmail,
+      'password': newPassword,
+    });
   }
 
   Future getCurrentUser() async {

@@ -1,3 +1,4 @@
+// ＊使ってないファイル
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:tripapp/res/const.dart';
