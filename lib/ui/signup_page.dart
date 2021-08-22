@@ -86,6 +86,13 @@ class SignupPageForm extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("パスワード"),
+                      Text(
+                        "＊6字以上",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: formBorderColor,
+                        ),
+                      ),
                       TextFormField(
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(

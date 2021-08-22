@@ -10,11 +10,11 @@ class SignInModel extends ChangeNotifier {
 
   Future signIn() async {
     if (email.isEmpty) {
-      throw 'メールアドレスの入力忘れてない？😥';
+      throw 'メールアドレスを入力してください';
     }
 
     if (password.isEmpty) {
-      throw 'パスワードの入力忘れてない？😥';
+      throw 'パスワードを入力してください';
     }
 
     final result = await _auth.signInWithEmailAndPassword(

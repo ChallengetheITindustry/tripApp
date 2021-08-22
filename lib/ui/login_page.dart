@@ -133,7 +133,7 @@ class LoginPageForm extends StatelessWidget {
                                 actions: [
                                   // ボタン領域
                                   ElevatedButton(
-                                    child: Text("ごめん🙇‍♂️"),
+                                    child: Text("OK"),
                                     onPressed: () => Navigator.pop(context),
                                     style: ElevatedButton.styleFrom(
                                       primary: primaryColor, //ボタンの背景色
