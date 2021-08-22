@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tripapp/res/const.dart';
 
-import 'mail_verify.dart';
-
 class UserHomePage extends StatefulWidget {
   @override
   _UserHomePage createState() => _UserHomePage();
