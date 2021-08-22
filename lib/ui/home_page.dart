@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/login_page.dart';
+import 'package:tripapp/ui/timeline.dart';
 import 'package:tripapp/ui/user_home_page.dart';
 import 'package:tripapp/ui/user_profile.dart';
 
@@ -25,7 +25,7 @@ class _HomePage extends State<HomePage> {
       label: 'ユーザー',
     ),
   ];
-  final tabs = <Widget>[UserHomePage(), LoginPageForm(), UserProfilePage()];
+  final tabs = <Widget>[UserHomePage(), TimeLinePage(), UserProfilePage()];
 
   @override
   Widget build(BuildContext context) {

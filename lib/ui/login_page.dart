@@ -1,14 +1,10 @@
 // ignore: unused_import
 import 'dart:math';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/home_page.dart';
 import 'package:tripapp/view_model/login_model.dart';
-
-import 'mail_verify.dart';
 
 class LoginPageForm extends StatelessWidget {
   @override
