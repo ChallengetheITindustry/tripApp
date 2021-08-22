@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/dots.dart';
 import 'package:tripapp/ui/login_page.dart';
 import 'package:tripapp/ui/login_signup_background.dart';
 import 'package:tripapp/ui/signup_page.dart';
@@ -22,25 +21,23 @@ void main() async {
 
 class MyApp extends StatefulWidget {
   @override
-  MyAppPage createState() => MyAppPage();
+  _MyApp createState() => _MyApp();
 }
 
-class MyAppPage extends State {
+class _MyApp extends State {
   final PageController _controller = PageController(initialPage: 0);
 
   // ignore: unused_field
+  // この定数で現在どこのフォームにいるかを取得してdot_indicatorに伝えている
   double _currentPage = 0;
 
+//ページの長さを設定）
   final _pageLength = 2;
-  // main.dartファイルの_currentPageを参照し、これが変わることによってアクティブなdotが変更される
 
+//main.dartに表示させるリスト
   List _pages = [LoginPageForm(), SignupPageForm()];
   @override
   Widget build(BuildContext context) {
-    // 幅
-    double width = MediaQuery.of(context).size.width;
-    // 高さ
-    double height = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'tripApp',
@@ -56,18 +53,20 @@ class MyAppPage extends State {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  child: DotsIndicator(
-                    dotsCount: _pageLength,
-                    position: _currentPage,
-                    decorator: DotsDecorator(
-                      activeColor: primaryColor,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50.0),
+                  child: Container(
+                    child: DotsIndicator(
+                      dotsCount: _pageLength,
+                      position: _currentPage,
+                      decorator: DotsDecorator(
+                        activeColor: primaryColor,
+                        activeSize: const Size(15.0, 15.0),
+                        activeShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0)),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: width,
-                  height: height * 0.1,
                 ),
               ],
             ),

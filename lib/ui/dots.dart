@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
 
 // ignore: must_be_immutable
