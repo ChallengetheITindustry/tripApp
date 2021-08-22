@@ -56,11 +56,6 @@ class SignUpModel extends ChangeNotifier {
     // ignore: unused_local_variable
     final String uid = user.uid.toString();
 
-    // DocumentSnapshot snapshot = await FirebaseFirestore.instance
-    //     .collection('users')
-    //     .doc(documentId)
-    //     .get();
-
     await FirebaseFirestore.instance.collection('users').doc(uid).set({
       'name': newUserName,
       'mail': newEmail,

@@ -16,16 +16,22 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePage extends State {
-  // ドキュメント情報を入れる箱を用意
-  List<DocumentSnapshot> documentList = [];
+  String currentUserName = '';
+  String currentUserMail = '';
 
   // ignore: unused_element
   Future _getFirestore() async {
+    // ignore: await_only_futures
+    final User user = await FirebaseAuth.instance.currentUser!;
+    // ignore: unused_local_variable
+    final String uid = user.uid.toString();
     // 指定コレクションのドキュメント一覧を取得
-    final snapshot = await FirebaseFirestore.instance.collection('users').get();
-    // ドキュメント一覧を配列で格納
+    final snapshot =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
     setState(() {
-      documentList = snapshot.docs;
+      currentUserName = snapshot['name'];
+      currentUserMail = snapshot['mail'];
     });
   }
 
@@ -269,28 +275,19 @@ class _UserProfilePage extends State {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            children: [
-                              // ドキュメント情報を表示
-                              Column(
-                                children: documentList.map((document) {
-                                  return Container(
-                                      child: Text(
-                                    // ログインユーザーの名前を表示
-                                    '${document['name']}',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ));
-                                }).toList(),
-                              ),
-                            ],
-                          ),
+                          Container(
+                              child: Text(
+                            // ログインユーザーの名前を表示
+                            currentUserName,
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )),
                           Container(
                             child: Text(
                               // ログインユーザーのメールアドレスを表示
-                              'reeksge@gmail.com',
+                              currentUserMail,
                               style: TextStyle(color: formBorderColor),
                             ),
                           )
