@@ -8,14 +8,15 @@ import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/privacy.dart';
 import 'package:tripapp/ui/rule.dart';
 import 'package:tripapp/ui/tourist_spot.dart';
+import 'package:tripapp/ui/user_edit_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserProfilePage extends StatefulWidget {
   @override
-  _UserProfilePage createState() => _UserProfilePage();
+  UserProfilePage1 createState() => UserProfilePage1();
 }
 
-class _UserProfilePage extends State {
+class UserProfilePage1 extends State {
   String currentUserName = '';
   String currentUserMail = '';
 
@@ -100,6 +101,11 @@ class _UserProfilePage extends State {
                                   contentPadding: EdgeInsets.all(10.0),
                                   onTap: () {
                                     Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => UserEditInfo()),
+                                    );
                                   },
                                 ),
                               ),
