@@ -4,6 +4,8 @@ import 'package:tripapp/ui/timeline.dart';
 import 'package:tripapp/ui/user_home_page.dart';
 import 'package:tripapp/ui/user_profile.dart';
 
+import 'create_trip_plan.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePage createState() => _HomePage();
@@ -25,7 +27,8 @@ class _HomePage extends State<HomePage> {
       label: 'ユーザー',
     ),
   ];
-  final tabs = <Widget>[UserHomePage(), TimeLinePage(), UserProfilePage()];
+  final tabs = <Widget>[CreateTripPlan(), TimeLinePage(), UserProfilePage()];
+  // UserHomePage()
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +48,7 @@ class _HomePage extends State<HomePage> {
 // ボトムナビゲーションの型
   Widget _buildBttomNavigator(BuildContext context) {
     return BottomNavigationBar(
+      elevation: 10.0,
       items: items,
       fixedColor: primaryColor,
       currentIndex: _currentIndex,

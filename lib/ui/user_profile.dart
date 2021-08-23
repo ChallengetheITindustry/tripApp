@@ -346,13 +346,6 @@ class UserProfilePage1 extends State {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
                     topRight: Radius.circular(50.0)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10.0,
-                      spreadRadius: 1.0,
-                      offset: Offset(-10, -10))
-                ],
                 color: primaryColor,
               ),
               // ユーザーが投稿した日記をここに表示させる

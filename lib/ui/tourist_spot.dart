@@ -29,7 +29,7 @@ class _TouristSpot extends State {
       ),
       body: PageView(
         controller: controller,
-        children: [Cards(context), Cards1(context)],
+        children: [Cards(context), Cards1(context), Cards2(context)],
       ),
     );
   }
@@ -264,6 +264,121 @@ class _TouristSpot extends State {
       ),
     );
   }
+
+  // ignore: non_constant_identifier_names
+  Widget Cards2(BuildContext context) {
+    var _hasPadding = false;
+    return AnimatedPadding(
+      duration: const Duration(milliseconds: 80),
+      padding: EdgeInsets.all(_hasPadding ? 100 : 0),
+      child: GestureDetector(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                height: MediaQuery.of(context).size.height * 0.15,
+                decoration: BoxDecoration(
+                  //モーダル自体の色
+                  color: Colors.white,
+                  //角丸にする
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'みなとみらい',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                  ),
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: Image.network(
+                    'https://images.unsplash.com/photo-1593579052349-e4a296361548?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1778&q=80'),
+              ),
+              Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    decoration: BoxDecoration(
+                      //モーダル自体の色
+                      color: Colors.white,
+                      //角丸にする
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10.0,
+                            spreadRadius: 1.0,
+                            offset: Offset(10, 10))
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTapDown: (TapDownDetails downDetails) {
+                      setState(() {
+                        _hasPadding = true;
+                      });
+                    },
+                    onTap: () {
+                      print('Card tapped.');
+                      setState(() {
+                        _hasPadding = false;
+                      });
+                      Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            transitionDuration: Duration(milliseconds: 500),
+                            pageBuilder: (_, __, ___) => DetailPage2(),
+                          ));
+                    },
+                    onTapCancel: () {
+                      setState(() {
+                        _hasPadding = false;
+                      });
+                    },
+                    child: Container(
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        decoration: BoxDecoration(
+                          //モーダル自体の色
+                          color: heartColor,
+                          //角丸にする
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            '詳細',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 // 詳細画面を押したときに画面が拡大するアニメーションを実装する
@@ -327,6 +442,136 @@ class DetailPage1 extends StatelessWidget {
                   Navigator.pop(context);
                 }),
             Spacer()
+          ],
+        ));
+  }
+}
+
+class DetailPage2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: <Widget>[
+            Stack(
+              children: [
+                Container(
+                  child: Image.network(
+                      'https://images.unsplash.com/photo-1611386666512-773de05f25f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 550.0, left: 30),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10.0,
+                              spreadRadius: 10.0,
+                              offset: Offset(10, 10))
+                        ],
+                      ),
+                      child: Text('みなとみらい',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                              color: Colors.white))),
+                )
+              ],
+            ),
+            Container(
+              width: 400,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: Container(
+                      child: Text(
+                        'みなとみらいでおしゃれな休日？',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Container(
+                      child: Text(
+                        'みなとみらいでおしゃれな休日はいかがですか？\nショッピングもしてもいいしカフェでのんびりしてもいい。\n普段できないことをここみなとみらいで思いっきり楽しみましょう',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: formBorderColor),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          child: Icon(
+                            Icons.star,
+                            color: Colors.white,
+                          ),
+                          decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20),
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 10.0,
+                                  spreadRadius: 1.0,
+                                  offset: Offset(10, 10))
+                            ],
+                          ),
+                        ),
+                        Spacer(),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            width: 280,
+                            height: 100,
+                            child: Center(
+                                child: Text(
+                              '戻る',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            )),
+                            decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 10.0,
+                                    spreadRadius: 1.0,
+                                    offset: Offset(10, 10))
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
           ],
         ));
   }
