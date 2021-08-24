@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/timeline.dart';
-import 'package:tripapp/ui/user_home_page.dart';
 import 'package:tripapp/ui/user_profile.dart';
 
 import 'create_trip_plan.dart';
