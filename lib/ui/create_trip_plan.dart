@@ -7,6 +7,7 @@ class CreateTripPlan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    // ignore: unused_local_variable
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(

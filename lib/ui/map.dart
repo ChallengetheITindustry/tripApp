@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
 
 class MapPage extends StatefulWidget {
@@ -10,8 +11,55 @@ class _MapPage extends State {
   String dropdownValue = '北海道';
 
   bool hokkaido = true;
+  bool aomori = true;
+  bool iwate = true;
+  bool miyagi = true;
+  bool akita = true;
+  bool yamagata = true;
+  bool hukushima = true;
+  bool ibaraki = true;
+  bool tochigi = true;
+  bool gunma = true;
+  bool saitama = true;
+  bool chiba = true;
+  bool tokyo = true;
+  bool kanagawa = true;
+  bool niigata = true;
+  bool toyama = true;
+  bool ishikawa = true;
+  bool hukui = true;
+  bool yamanashi = true;
+  bool nagano = true;
+  bool gihu = true;
+  bool shizuoka = true;
+  bool aichi = true;
+  bool mie = true;
+  bool shiga = true;
+  bool kyoto = true;
+  bool osaka = true;
+  bool hyogo = true;
+  bool nara = true;
+  bool wakayama = true;
+  bool tottori = true;
+  bool shimane = true;
+  bool okayama = true;
+  bool hiroshima = true;
+  bool yamaguchi = true;
+  bool tokushima = true;
+  bool kagawa = true;
+  bool ehime = true;
+  bool kouchi = true;
+  bool hukuoka = true;
+  bool saga = true;
+  bool nagasaki = true;
+  bool kumamoto = true;
+  bool oita = true;
+  bool miyazaki = true;
+  bool kagoshima = true;
+  bool okinawa = true;
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
