@@ -34,3 +34,18 @@ ToDo
 ・Firestoreについて学習する
 ・ユーザー情報についてCURD処理を実装する
 ・タイムラインにfirestoreから取得した情報を一覧で表示できるようにする
+
+
+使いたいパッケージ
+・Status_change
+・snackBar
+・GoogleFonts
+・Hero
+・AnimatedIcon
+・RefreshIndicator
+・LiquidSwipe
+・Reorderable List View
+・Lottie
+・IN App Payment
+・animations: package
+・https://www.youtube.com/watch?v=hDVZykwl13I&t=217s

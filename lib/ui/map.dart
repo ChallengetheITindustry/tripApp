@@ -8,6 +8,8 @@ class MapPage extends StatefulWidget {
 
 class _MapPage extends State {
   String dropdownValue = '北海道';
+
+  bool hokkaido = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,14 +21,22 @@ class _MapPage extends State {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            child: Text(
-              '47都道府県を制覇しよう！！',
-              style: TextStyle(color: primaryColor),
-            ),
+          Stack(
+            children: [
+              Center(
+                  child:
+                      Container(child: Image.asset('assets/images/2525.png'))),
+              hokkaido != false
+                  ? Positioned(
+                      right: 2,
+                      child: Container(
+                        width: 180,
+                        child: Image.asset('assets/images/hokkaido.png'),
+                      ),
+                    )
+                  : Container(),
+            ],
           ),
-          Center(
-              child: Container(child: Image.asset('assets/images/2525.png'))),
           Container(
             width: MediaQuery.of(context).size.width * 0.5,
             child: Row(
@@ -108,7 +118,17 @@ class _MapPage extends State {
                 ),
                 Spacer(),
                 Container(
-                  child: TextButton(onPressed: () {}, child: Text('保存')),
+                  child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          if (hokkaido == true) {
+                            hokkaido = false;
+                          } else {
+                            hokkaido = true;
+                          }
+                        });
+                      },
+                      child: Text('保存')),
                 )
               ],
             ),
