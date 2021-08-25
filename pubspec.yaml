@@ -30,5 +30,6 @@ flutter:
     - assets/images/airplane.png
     - assets/images/hikoki_animated.gif
     - assets/images/2525.png
-    - assets/images/okinawa.png
     - assets/images/hokkaido.png
+    - assets/images/aomori.png
+    - assets/images/iwate.png

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
@@ -8,6 +10,7 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPage extends State {
+  // ドロップダウンメニューの初期値
   String dropdownValue = '北海道';
 
   bool hokkaido = true;
@@ -60,6 +63,14 @@ class _MapPage extends State {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    // コレクションIDとドキュメントIDを指定して取得
+    final document = FirebaseFirestore.instance
+        .collection('users')
+        .doc('apZW1DX21tOAuxF4m3nNeOARl623')
+        .collection('prefecture')
+        .doc('qGDMEWLapCPGoTR78CIk')
+        .get();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -74,15 +85,35 @@ class _MapPage extends State {
               Center(
                   child:
                       Container(child: Image.asset('assets/images/2525.png'))),
+              // 北海道
               hokkaido != false
                   ? Positioned(
-                      right: 2,
+                      // right: SizeConfig.blockSizeHorizontal,
+                      left: SizeConfig.blockSizeHorizontal * 57.5,
                       child: Container(
-                        width: 180,
+                        width: SizeConfig.blockSizeHorizontal * 42,
                         child: Image.asset('assets/images/hokkaido.png'),
                       ),
                     )
                   : Container(),
+              // 青森
+              Positioned(
+                top: SizeConfig.blockSizeVertical * 13.2,
+                left: SizeConfig.blockSizeHorizontal * 60,
+                child: Container(
+                  width: SizeConfig.blockSizeHorizontal * 8.5,
+                  child: Image.asset('assets/images/aomori.png'),
+                ),
+              ),
+              // 岩手
+              Positioned(
+                top: SizeConfig.blockSizeVertical * 16.5,
+                left: SizeConfig.blockSizeHorizontal * 62,
+                child: Container(
+                  width: SizeConfig.blockSizeHorizontal * 10.5,
+                  child: Image.asset('assets/images/iwate.png'),
+                ),
+              )
             ],
           ),
           Container(
@@ -167,7 +198,7 @@ class _MapPage extends State {
                 Spacer(),
                 Container(
                   child: TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         setState(() {
                           if (hokkaido == true) {
                             hokkaido = false;
@@ -175,6 +206,19 @@ class _MapPage extends State {
                             hokkaido = true;
                           }
                         });
+                        // // ignore: await_only_futures
+                        // final User user =
+                        //     await FirebaseAuth.instance.currentUser!;
+                        // // ignore: unused_local_variable
+                        // final String uid = user.uid.toString();
+                        // // サブコレクション内にドキュメント作成
+                        // await FirebaseFirestore.instance
+                        //     .collection('users') // コレクションID
+                        //     .doc(uid) // ドキュメントID << usersコレクション内のドキュメント
+                        //     .collection('prefecture') // サブコレクションID
+                        //     .doc(
+                        //         'qGDMEWLapCPGoTR78CIk') // ドキュメントID << サブコレクション内のドキュメント
+                        //     .update({'hokkaido': true});
                       },
                       child: Text('保存')),
                 )
