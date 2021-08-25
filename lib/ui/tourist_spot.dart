@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
 
 // ignore: must_be_immutable
@@ -450,6 +451,7 @@ class DetailPage1 extends StatelessWidget {
 class DetailPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
@@ -460,8 +462,9 @@ class DetailPage2 extends StatelessWidget {
                   child: Image.network(
                       'https://images.unsplash.com/photo-1611386666512-773de05f25f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 550.0, left: 30),
+                Positioned(
+                  top: SizeConfig.blockSizeVertical * 55,
+                  left: SizeConfig.blockSizeHorizontal * 10,
                   child: Container(
                       decoration: BoxDecoration(
                         boxShadow: [
@@ -480,43 +483,74 @@ class DetailPage2 extends StatelessWidget {
                 )
               ],
             ),
+            SizedBox(
+              height: SizeConfig.blockSizeVertical * 2,
+            ),
             Container(
-              width: 400,
+              width: SizeConfig.blockSizeHorizontal * 90,
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30.0),
-                    child: Container(
-                      child: Text(
-                        'みなとみらいでおしゃれな休日？',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
+                  Container(
+                    child: Text(
+                      'みなとみらいでおしゃれな休日？',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Container(
-                      child: Text(
-                        'みなとみらいでおしゃれな休日はいかがですか？\nショッピングもしてもいいしカフェでのんびりしてもいい。\n普段できないことをここみなとみらいで思いっきり楽しみましょう',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: formBorderColor),
-                      ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 2,
+                  ),
+                  Container(
+                    child: Text(
+                      '開港の歴史が残る美しい建造物や、みなとみらいを代表する横浜ランドマークタワーのような、都会的なスポットが融合する横浜らしいエリアです。',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: formBorderColor),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          child: Icon(
-                            Icons.star,
-                            color: Colors.white,
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 2,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        width: SizeConfig.blockSizeHorizontal * 25,
+                        height: SizeConfig.blockSizeVertical * 10,
+                        child: Icon(
+                          Icons.star,
+                          color: Colors.white,
+                        ),
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            topLeft: Radius.circular(20),
                           ),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10.0,
+                                spreadRadius: 1.0,
+                                offset: Offset(10, 10))
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: SizeConfig.blockSizeHorizontal * 60,
+                          height: SizeConfig.blockSizeVertical * 10,
+                          child: Center(
+                              child: Text(
+                            '戻る',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          )),
                           decoration: BoxDecoration(
                             color: primaryColor,
                             borderRadius: BorderRadius.only(
@@ -534,40 +568,8 @@ class DetailPage2 extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            width: 280,
-                            height: 100,
-                            child: Center(
-                                child: Text(
-                              '戻る',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            )),
-                            decoration: BoxDecoration(
-                              color: primaryColor,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                                topLeft: Radius.circular(20),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    blurRadius: 10.0,
-                                    spreadRadius: 1.0,
-                                    offset: Offset(10, 10))
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   )
                 ],
               ),

@@ -50,12 +50,7 @@ class CreateTripPlan extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TouristSpot()),
-                    );
-                  },
+                  onPressed: () {},
                   child: Text('旅に出る',
                       style: TextStyle(
                         color: primaryColor,
