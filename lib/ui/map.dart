@@ -92,28 +92,31 @@ class _MapPage extends State {
                       left: SizeConfig.blockSizeHorizontal * 57.5,
                       child: Container(
                         width: SizeConfig.blockSizeHorizontal * 42,
-                        child: Image.asset('assets/images/hokkaido.png'),
+                        child: ColorFiltered(
+                            colorFilter:
+                                ColorFilter.mode(primaryColor, BlendMode.srcIn),
+                            child: Image.asset('assets/images/hokkaido.png')),
                       ),
                     )
                   : Container(),
               // 青森
-              Positioned(
-                top: SizeConfig.blockSizeVertical * 13.2,
-                left: SizeConfig.blockSizeHorizontal * 60,
-                child: Container(
-                  width: SizeConfig.blockSizeHorizontal * 8.5,
-                  child: Image.asset('assets/images/aomori.png'),
-                ),
-              ),
-              // 岩手
-              Positioned(
-                top: SizeConfig.blockSizeVertical * 16.5,
-                left: SizeConfig.blockSizeHorizontal * 62,
-                child: Container(
-                  width: SizeConfig.blockSizeHorizontal * 10.5,
-                  child: Image.asset('assets/images/iwate.png'),
-                ),
-              )
+              // Positioned(
+              //   top: SizeConfig.blockSizeVertical * 13.2,
+              //   left: SizeConfig.blockSizeHorizontal * 60,
+              //   child: Container(
+              //     width: SizeConfig.blockSizeHorizontal * 8.5,
+              //     child: Image.asset('assets/images/aomori.png'),
+              //   ),
+              // ),
+              // // 岩手
+              // Positioned(
+              //   top: SizeConfig.blockSizeVertical * 16.5,
+              //   left: SizeConfig.blockSizeHorizontal * 62,
+              //   child: Container(
+              //     width: SizeConfig.blockSizeHorizontal * 10.5,
+              //     child: Image.asset('assets/images/iwate.png'),
+              //   ),
+              // )
             ],
           ),
           Container(
