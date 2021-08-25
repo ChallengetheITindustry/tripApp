@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tripapp/config/config.dart';
 import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/privacy.dart';
@@ -38,6 +39,7 @@ class UserProfilePage1 extends State {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     _getFirestore();
     return Scaffold(
         appBar: AppBar(backgroundColor: Colors.white, elevation: 0.0, actions: <
@@ -336,7 +338,7 @@ class UserProfilePage1 extends State {
             Spacer(),
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: SizeConfig.blockSizeVertical * 45,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50.0),
