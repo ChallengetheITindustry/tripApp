@@ -44,12 +44,7 @@ class UserProfilePage1 extends State {
             Widget>[
           Container(
               child: IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TouristSpot()),
-              );
-            },
+            onPressed: () {},
             icon:
                 Icon(Icons.add_alert_outlined, color: primaryColor, size: 35.0),
           )),
