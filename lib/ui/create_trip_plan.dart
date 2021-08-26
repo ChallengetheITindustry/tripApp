@@ -3,6 +3,7 @@ import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/prefecture.dart';
 
+import 'creata_plan.dart';
 import 'map.dart';
 
 class CreateTripPlan extends StatelessWidget {
@@ -49,7 +50,12 @@ class CreateTripPlan extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreatePlan()),
+                    );
+                  },
                   child: Text('旅に出る',
                       style: TextStyle(
                         color: primaryColor,
