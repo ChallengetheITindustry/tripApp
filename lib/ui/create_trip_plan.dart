@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/tourist_spot.dart';
+import 'package:tripapp/ui/prefecture.dart';
 
 import 'map.dart';
 
@@ -10,7 +10,6 @@ class CreateTripPlan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    final width = MediaQuery.of(context).size.width;
     // ignore: unused_local_variable
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -72,7 +71,7 @@ class CreateTripPlan extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => TouristSpot()),
+                      MaterialPageRoute(builder: (context) => PrefecturePage()),
                     );
                   },
                   child: Text('目的地を探す',

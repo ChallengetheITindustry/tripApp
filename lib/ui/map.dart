@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
@@ -64,12 +62,6 @@ class _MapPage extends State {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     // コレクションIDとドキュメントIDを指定して取得
-    final document = FirebaseFirestore.instance
-        .collection('users')
-        .doc('apZW1DX21tOAuxF4m3nNeOARl623')
-        .collection('prefecture')
-        .doc('qGDMEWLapCPGoTR78CIk')
-        .get();
 
     return Scaffold(
       appBar: AppBar(

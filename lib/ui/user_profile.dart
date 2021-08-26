@@ -8,7 +8,6 @@ import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/privacy.dart';
 import 'package:tripapp/ui/rule.dart';
-import 'package:tripapp/ui/tourist_spot.dart';
 import 'package:tripapp/ui/user_edit_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
