@@ -92,23 +92,75 @@ class _MapPage extends State {
                     )
                   : Container(),
               // 青森
-              // Positioned(
-              //   top: SizeConfig.blockSizeVertical * 13.2,
-              //   left: SizeConfig.blockSizeHorizontal * 60,
-              //   child: Container(
-              //     width: SizeConfig.blockSizeHorizontal * 8.5,
-              //     child: Image.asset('assets/images/aomori.png'),
-              //   ),
-              // ),
+              // hokkaido != false
+              //     ? Positioned(
+              //         top: SizeConfig.blockSizeVertical * 13.2,
+              //         left: SizeConfig.blockSizeHorizontal * 60.03,
+              //         child: Container(
+              //           width: SizeConfig.blockSizeHorizontal * 8.5,
+              //           child: ColorFiltered(
+              //               colorFilter:
+              //                   ColorFilter.mode(primaryColor, BlendMode.srcIn),
+              //               child: Image.asset('assets/images/aomori.png')),
+              //         ),
+              //       )
+              //     : Container(),
               // // 岩手
-              // Positioned(
-              //   top: SizeConfig.blockSizeVertical * 16.5,
-              //   left: SizeConfig.blockSizeHorizontal * 62,
-              //   child: Container(
-              //     width: SizeConfig.blockSizeHorizontal * 10.5,
-              //     child: Image.asset('assets/images/iwate.png'),
-              //   ),
-              // )
+              // hokkaido != false
+              //     ? Positioned(
+              //         top: SizeConfig.blockSizeVertical * 16.48,
+              //         left: SizeConfig.blockSizeHorizontal * 62.2,
+              //         child: Container(
+              //           width: SizeConfig.blockSizeHorizontal * 10.6,
+              //           child: ColorFiltered(
+              //               colorFilter:
+              //                   ColorFilter.mode(primaryColor, BlendMode.srcIn),
+              //               child: Image.asset('assets/images/iwate.png')),
+              //         ),
+              //       )
+              //     : Container(),
+              // // 秋田
+              // hokkaido != false
+              //     ? Positioned(
+              //         top: SizeConfig.blockSizeVertical * 16.4,
+              //         left: SizeConfig.blockSizeHorizontal * 57,
+              //         child: Container(
+              //           width: SizeConfig.blockSizeHorizontal * 10.5,
+              //           child: ColorFiltered(
+              //               colorFilter:
+              //                   ColorFilter.mode(primaryColor, BlendMode.srcIn),
+              //               child: Image.asset('assets/images/akita.png')),
+              //         ),
+              //       )
+              //     : Container(),
+              // // 宮城
+              // hokkaido != false
+              //     ? Positioned(
+              //         top: SizeConfig.blockSizeVertical * 20.7,
+              //         left: SizeConfig.blockSizeHorizontal * 61.7,
+              //         child: Container(
+              //           width: SizeConfig.blockSizeHorizontal * 8,
+              //           child: ColorFiltered(
+              //               colorFilter:
+              //                   ColorFilter.mode(primaryColor, BlendMode.srcIn),
+              //               child: Image.asset('assets/images/miyagi.png')),
+              //         ),
+              //       )
+              //     : Container(),
+              // 山形
+              hokkaido != false
+                  ? Positioned(
+                      top: SizeConfig.blockSizeVertical * 20.5,
+                      left: SizeConfig.blockSizeHorizontal * 57,
+                      child: Container(
+                        width: SizeConfig.blockSizeHorizontal * 8.8,
+                        child: ColorFiltered(
+                            colorFilter:
+                                ColorFilter.mode(primaryColor, BlendMode.srcIn),
+                            child: Image.asset('assets/images/yamagata.png')),
+                      ),
+                    )
+                  : Container(),
             ],
           ),
           Container(
