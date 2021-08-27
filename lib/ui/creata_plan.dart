@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/ui/create_trip_data.dart';
 
 class CreatePlan extends StatefulWidget {
   @override
@@ -84,19 +85,24 @@ class _CreatePlan extends State {
                     primary: Colors.white,
                   ),
                   onPressed: () async {
-                    // ignore: await_only_futures
-                    final User user = await FirebaseAuth.instance.currentUser!;
-                    // ignore: unused_local_variable
-                    final String uid = user.uid.toString();
+                    // // ignore: await_only_futures
+                    // final User user = await FirebaseAuth.instance.currentUser!;
+                    // // ignore: unused_local_variable
+                    // final String uid = user.uid.toString();
 
-                    // サブコレクション内にドキュメント作成
-                    await FirebaseFirestore.instance
-                        .collection('users') // コレクションID
-                        .doc(uid) // ドキュメントID << usersコレクション内のドキュメント
-                        .collection('plan') // サブコレクションID
-                        .add({
-                      'concept': tripConcept,
-                    }); // データ
+                    // // サブコレクション内にドキュメント作成
+                    // await FirebaseFirestore.instance
+                    //     .collection('users') // コレクションID
+                    //     .doc(uid) // ドキュメントID << usersコレクション内のドキュメント
+                    //     .collection('plan') // サブコレクションID
+                    //     .add({
+                    //   'concept': tripConcept,
+                    // }); // データ
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreateData(tripConcept)),
+                    );
                   },
                   child: Text('決定',
                       style: TextStyle(
