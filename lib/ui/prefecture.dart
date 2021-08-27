@@ -54,6 +54,56 @@ class PrefecturePage extends StatelessWidget {
     "沖縄県",
   ];
 
+  final listImage = [
+    _imageItem("hokkaido"),
+    _imageItem("aomori"),
+    //   _imageItem("iwate"),
+    //   _imageItem("miyagi"),
+    //   _imageItem("akita"),
+    //   _imageItem("yamagata"),
+    //   _imageItem("hukushima"),
+    //   _imageItem("ibaraki"),
+    //   _imageItem("tochigi"),
+    //   _imageItem("gunma"),
+    //   _imageItem("saitama"),
+    //   _imageItem("chiba"),
+    //   _imageItem("tokyo"),
+    //   _imageItem("kanagawa"),
+    //   _imageItem("niigata"),
+    //   _imageItem("toyama"),
+    //   _imageItem("shikawa"),
+    //   _imageItem("fukui"),
+    //   _imageItem("yamanashi"),
+    //   _imageItem("nagano"),
+    //   _imageItem("gihu"),
+    //   _imageItem("shizuoka"),
+    //   _imageItem("aichi"),
+    //   _imageItem("mie"),
+    //   _imageItem("shiga"),
+    //   _imageItem("kyoto"),
+    //   _imageItem("osaka"),
+    //   _imageItem("hyogo"),
+    //   _imageItem("nara"),
+    //   _imageItem("wakayama"),
+    //   _imageItem("tottori"),
+    //   _imageItem("shimane"),
+    //   _imageItem("okayama"),
+    //   _imageItem("hiroshima"),
+    //   _imageItem("yamaguchi"),
+    //   _imageItem("tokushima"),
+    //   _imageItem("kagawa"),
+    //   _imageItem("ehime"),
+    //   _imageItem("kouchi"),
+    //   _imageItem("fukuoka"),
+    //   _imageItem("saga"),
+    //   _imageItem("nagasaki"),
+    //   _imageItem("kumamoto"),
+    //   _imageItem("oita"),
+    //   _imageItem("miyazaki"),
+    //   _imageItem("kagoshima"),
+    //   _imageItem("okinawa"),
+  ];
+
   // final listImage = [
   //   "assets/images/hokkaido.jpeg",
   //   "assets/images/aomori.jpeg",
@@ -125,26 +175,29 @@ class PrefecturePage extends StatelessWidget {
         children: [
           GridView.count(
             crossAxisCount: 3,
-            children: List.generate(47, (index) {
-              return Container(
-                  padding: const EdgeInsets.all(8.0),
-                  alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TouristSpot()),
-                      );
-                    },
-                    child: GridTile(
-                        child: Icon(Icons.ac_unit),
-                        footer: Center(
-                          child: Text(
-                            listItem[index],
-                          ),
-                        )),
-                  ));
-            }),
+            children: [],
+            // children: List.generate(47, (index) {
+            //   return Container(
+            //       padding: const EdgeInsets.all(8.0),
+            //       alignment: Alignment.center,
+            //       child: InkWell(
+            //         onTap: () {
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(builder: (context) => TouristSpot()),
+            //           );
+            //         },
+            //         child: GridTile(
+            //           footer: Center(
+            //             child: Text(
+            //               listItem[index],
+            //             ),
+            //           ),
+            //           child: Text('テスト'),
+            //         ),
+            //       ));
+            // }
+            // ),
           ),
         ],
       ),
@@ -152,4 +205,12 @@ class PrefecturePage extends StatelessWidget {
   }
 }
 
-// Image.asset(listImage[index])
+Widget _imageItem(String name) {
+  var image = "images/" + name + ".png";
+  return Container(
+    child: Image.asset(
+      image,
+      fit: BoxFit.cover,
+    ),
+  );
+}

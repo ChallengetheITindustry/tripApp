@@ -36,8 +36,8 @@ flutter:
     - assets/images/akita.png
     - assets/images/miyagi.png
     - assets/images/yamagata.png
-    # - assets/images/hokkaido.jpeg
-    # - assets/images/aomori.jpeg
+    - assets/images/hokkaido.jpeg
+    - assets/images/aomori.jpeg
     # - assets/images/iwate.jpeg
     # - assets/images/miyagi.jpeg
     # - assets/images/akita.jpeg
