@@ -22,6 +22,7 @@ dependencies:
   cloud_firestore: ^2.5.0
   firebase_storage: ^10.0.2
   status_change: ^2.0.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
