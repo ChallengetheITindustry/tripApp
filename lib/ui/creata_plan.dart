@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/create_trip_data.dart';
+import 'package:intl/intl.dart';
 
 class CreatePlan extends StatefulWidget {
   @override
@@ -61,6 +62,12 @@ class _CreatePlan extends State {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              child: Text(
+                '旅のコンセプトを決めよう',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
             Center(
               child: Container(
                   width: SizeConfig.blockSizeHorizontal * 70,

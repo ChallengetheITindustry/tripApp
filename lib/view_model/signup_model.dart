@@ -9,7 +9,7 @@ class SignUpModel extends ChangeNotifier {
   String newUserName = ""; // 登録に関する情報を表示
   String newEmail = ""; // 入力されたメールアドレス
   String newPassword = ""; // 入力されたパスワード
-  String createdAt = '';
+  String createdAt = "";
   // ignore: non_constant_identifier_names
   bool pswd_OK = true; // パスワードが有効な文字数を満たしているかどうか
 
