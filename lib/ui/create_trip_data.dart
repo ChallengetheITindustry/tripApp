@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
@@ -41,7 +43,7 @@ class _CreateData extends State {
           Column(
             children: <Widget>[
               // ignore: unnecessary_brace_in_string_interps
-              Center(child: Text("${_date}")),
+              Center(child: Text("${_date.year}-${_date.month}-${_date.day}")),
             ],
           ),
           FloatingActionButton(
@@ -49,7 +51,7 @@ class _CreateData extends State {
               child: Icon(Icons.timer),
               onPressed: () {
                 _selectDate(context);
-              })
+              }),
         ],
       ),
     ));
