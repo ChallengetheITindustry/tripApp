@@ -31,7 +31,7 @@ class _MyApp extends State {
   // この定数で現在どこのフォームにいるかを取得してdot_indicatorに伝えている
   double _currentPage = 0;
 
-//ページの長さを設定）
+//ページの長さを設定
   final _pageLength = 2;
 
 //main.dartに表示させるリスト

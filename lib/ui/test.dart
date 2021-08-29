@@ -16,6 +16,7 @@ class TestPage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State {
+  // nullable
   Image? _img;
   Text? _text;
 
@@ -51,13 +52,14 @@ class _MyHomePageState extends State {
     }
   }
 
+// firestorageに画像を保存する関数
   void _upload() async {
-    // imagePickerで画像を選択する
-    // upload
-    PickedFile pickerFile = (await ImagePicker()
-        .pickImage(source: ImageSource.gallery)) as PickedFile;
-    File file = File(pickerFile.path);
-
+    // ImagePickerで写真フォルダを開き、選択した画像をpickerFileに格納
+    final pickerFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    // pickerFileのpathをFile()に変換し、fileに格納
+    File file = File(pickerFile!.path);
+// firestorageをインスタンス化
     FirebaseStorage storage = FirebaseStorage.instance;
     try {
       await storage.ref("UL/upload-pic.png").putFile(file);
@@ -85,7 +87,7 @@ class _MyHomePageState extends State {
           ),
         ),
         floatingActionButton:
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           FloatingActionButton(
             backgroundColor: primaryColor,
             onPressed: _download,
