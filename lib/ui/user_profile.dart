@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
@@ -6,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
@@ -24,6 +26,9 @@ class UserProfilePage1 extends State {
   String currentUserName = '';
   String currentUserMail = '';
   String uid = '';
+  // nullable
+  Image? _img;
+  String userProfile = '';
 
   // ignore: unused_element
   Future _getFirestore() async {
@@ -58,10 +63,25 @@ class UserProfilePage1 extends State {
     }
   }
 
+  Future _download() async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+
+    // 画像
+    Reference imageRef = storage.ref().child("UserProfile").child("$uid");
+    String imageUrl = await imageRef.getDownloadURL();
+
+    // 画面に反映
+    setState(() {
+      userProfile = imageUrl.toString();
+      // _img = Image.network(imageUrl);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     _getFirestore();
+    _download();
     return Scaffold(
         appBar: AppBar(backgroundColor: Colors.white, elevation: 0.0, actions: <
             Widget>[
@@ -276,13 +296,14 @@ class UserProfilePage1 extends State {
                   CircleAvatar(
                     radius: 100,
                     backgroundColor: Colors.brown.shade800,
-                    backgroundImage: NetworkImage(
-                        'https://images.unsplash.com/photo-1561731172-9d906d7b13bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1268&q=80'),
+                    // ignore: unnecessary_null_comparison
+                    backgroundImage: NetworkImage(userProfile),
                   ),
                   // StackでRawMaterialButtonを重ねることによりCircleAvatarをタップできるような表現に変更
                   RawMaterialButton(
-                    onPressed: () {
+                    onPressed: () async {
                       _upload();
+                      await _download();
                     },
                     child: Container(
                       width: 200.0, // CircleAvatarのradiusの2倍
@@ -294,68 +315,33 @@ class UserProfilePage1 extends State {
                 ],
               ),
             ),
+            SizedBox(
+              height: SizeConfig.blockSizeVertical * 2,
+            ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.8,
+              width: MediaQuery.of(context).size.width * 0.6,
               child: Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Column(
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                              child: Text(
-                            // ログインユーザーの名前を表示
-                            currentUserName,
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
-                          Container(
-                            child: Text(
-                              // ログインユーザーのメールアドレスを表示
-                              currentUserMail,
-                              style: TextStyle(color: formBorderColor),
-                            ),
-                          )
-                        ],
-                      ),
-                      Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Container(
-                            child: IconButton(
-                          onPressed: () {
-                            launch('https://twitter.com/home');
-                            // 10秒後にURLで開いたページを閉じる処理（何かで使えるかも？？）
-                            Timer(
-                              const Duration(seconds: 10),
-                              () {
-                                closeWebView();
-                              },
-                            );
-                          },
-                          icon: Icon(
-                            EvaIcons.twitter,
-                            size: 50,
-                            color: twitterColor,
+                      Container(
+                          child: Text(
+                        // ログインユーザーの名前を表示
+                        currentUserName,
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )),
+                      Container(
+                        child: Text(
+                          // ログインユーザーのメールアドレスを表示
+                          currentUserMail,
+                          style: TextStyle(
+                            color: formBorderColor,
                           ),
-                        )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: Container(
-                            child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            EvaIcons.heart,
-                            size: 50,
-                            color: heartColor,
-                          ),
-                        )),
-                      ),
+                        ),
+                      )
                     ],
                   ),
                 ],
