@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -88,10 +89,19 @@ class UserProfilePage1 extends State {
           Container(
               child: IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TestPage()),
-              );
+              showDialog(
+                  context: context,
+                  builder: (_) => CupertinoAlertDialog(
+                        title: Text("ここに通知欄を表示します。"),
+                        actions: [
+                          CupertinoDialogAction(
+                              child: Text('実装したらgithubに挙げる'),
+                              isDestructiveAction: true,
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              }),
+                        ],
+                      ));
             },
             icon:
                 Icon(Icons.add_alert_outlined, color: primaryColor, size: 35.0),
@@ -347,7 +357,9 @@ class UserProfilePage1 extends State {
                 ],
               ),
             ),
-            Spacer(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
             Container(
               width: MediaQuery.of(context).size.width,
               height: SizeConfig.blockSizeVertical * 45,

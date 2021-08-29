@@ -1,5 +1,7 @@
 // ignore: unused_import
 import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 
@@ -12,21 +14,21 @@ class _UserEditInfo extends State {
   String currentUserName = '';
   String currentUserMail = '';
 
-  // // ignore: unused_element
-  // Future _getFirestore() async {
-  //   // ignore: await_only_futures
-  //   final User user = await FirebaseAuth.instance.currentUser!;
-  //   // ignore: unused_local_variable
-  //   final String uid = user.uid.toString();
-  //   // 指定コレクションのドキュメント一覧を取得
-  //   final snapshot =
-  //       await FirebaseFirestore.instance.collection('users').doc(uid).get();
+  // ignore: unused_element
+  Future _getFirestore() async {
+    // ignore: await_only_futures
+    final User user = await FirebaseAuth.instance.currentUser!;
+    // ignore: unused_local_variable
+    final String uid = user.uid.toString();
+    // 指定コレクションのドキュメント一覧を取得
+    final snapshot =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
-  //   setState(() {
-  //     currentUserName = snapshot['name'];
-  //     currentUserMail = snapshot['mail'];
-  //   });
-  // }
+    setState(() {
+      currentUserName = snapshot['name'];
+      currentUserMail = snapshot['mail'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
