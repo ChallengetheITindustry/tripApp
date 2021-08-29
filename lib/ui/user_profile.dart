@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
@@ -20,6 +23,7 @@ class UserProfilePage extends StatefulWidget {
 class UserProfilePage1 extends State {
   String currentUserName = '';
   String currentUserMail = '';
+  String uid = '';
 
   // ignore: unused_element
   Future _getFirestore() async {
@@ -34,7 +38,24 @@ class UserProfilePage1 extends State {
     setState(() {
       currentUserName = snapshot['name'];
       currentUserMail = snapshot['mail'];
+      this.uid = uid;
     });
+  }
+
+  // firestorageに画像を保存する関数
+  void _upload() async {
+    // ImagePickerで写真フォルダを開き、選択した画像をpickerFileに格納
+    final pickerFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    // pickerFileのpathをFile()に変換し、fileに格納
+    File file = File(pickerFile!.path);
+// firestorageをインスタンス化
+    FirebaseStorage storage = FirebaseStorage.instance;
+    try {
+      await storage.ref("UserProfile/$uid").putFile(file);
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -261,7 +282,7 @@ class UserProfilePage1 extends State {
                   // StackでRawMaterialButtonを重ねることによりCircleAvatarをタップできるような表現に変更
                   RawMaterialButton(
                     onPressed: () {
-                      showAboutDialog(context: context);
+                      _upload();
                     },
                     child: Container(
                       width: 200.0, // CircleAvatarのradiusの2倍
