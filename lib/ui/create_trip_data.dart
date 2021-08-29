@@ -1,9 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class CreateData extends StatefulWidget {

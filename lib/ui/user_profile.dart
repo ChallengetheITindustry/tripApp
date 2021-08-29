@@ -8,6 +8,7 @@ import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/privacy.dart';
 import 'package:tripapp/ui/rule.dart';
+import 'package:tripapp/ui/test.dart';
 import 'package:tripapp/ui/user_edit_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -45,7 +46,12 @@ class UserProfilePage1 extends State {
             Widget>[
           Container(
               child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TestPage()),
+              );
+            },
             icon:
                 Icon(Icons.add_alert_outlined, color: primaryColor, size: 35.0),
           )),

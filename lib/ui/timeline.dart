@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 
@@ -9,22 +8,7 @@ class TimeLinePage extends StatefulWidget {
 
 // ignore: must_be_immutable
 class _TimeLinePage extends State {
-  List<String> documentList = ['こんにちは'];
-
-  String test = '';
-
-  // ignore: unused_element
-  Future _fireStoreGet() async {
-    // コレクション内のドキュメント一覧を取得
-    // ignore: unused_local_variable
-    final snapshot =
-        await FirebaseFirestore.instance.collection('timeline').get();
-    // 取得したドキュメント一覧をUIに反映
-
-    documentList = snapshot.docs.cast<String>();
-
-    setState(() {});
-  }
+  List<String> documentList = ['テスト'];
 
   @override
   Widget build(BuildContext context) {

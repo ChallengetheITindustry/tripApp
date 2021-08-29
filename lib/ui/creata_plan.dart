@@ -1,10 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/create_trip_data.dart';
-import 'package:intl/intl.dart';
 
 class CreatePlan extends StatefulWidget {
   @override

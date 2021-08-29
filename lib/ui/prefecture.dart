@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/tourist_spot.dart';
 
 class PrefecturePage extends StatelessWidget {
   final listItem = [
