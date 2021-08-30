@@ -86,7 +86,7 @@ class CreateTripPlan extends StatelessWidget {
                 ),
               ),
             ),
-            ListPage(),
+            Spacer(),
           ],
         ),
       ],
@@ -165,25 +165,6 @@ class Background extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class ListPage extends StatelessWidget {
-  final controller = PageController(initialPage: 0);
-  final listItems = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-  ];
-  @override
-  Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    return ListView.builder(
-      itemCount: listItems.length,
-      itemBuilder: (context, index) {
-        return Text(listItems[index]);
-      },
     );
   }
 }

@@ -37,9 +37,22 @@ class LoginPageForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // スペースを開けたいときはSizedBoxを記述する
-                SizedBox(
-                  width: width,
+                Container(
+                  width: width * 0.6,
                   height: height * 0.1,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "さぁ、どこ行こう？",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   width: width * 0.6,

@@ -36,6 +36,7 @@ class _MyApp extends State {
 
 //main.dartに表示させるリスト
   List _pages = [LoginPageForm(), SignupPageForm()];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,33 +45,7 @@ class _MyApp extends State {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          elevation: 0.0,
-        ),
         body: Stack(children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 50.0),
-                  child: Container(
-                    child: DotsIndicator(
-                      dotsCount: _pageLength,
-                      position: _currentPage,
-                      decorator: DotsDecorator(
-                        activeColor: primaryColor,
-                        activeSize: const Size(15.0, 15.0),
-                        activeShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0)),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           Background(),
           PageView.builder(
               itemCount: _pages.length,
@@ -83,6 +58,28 @@ class _MyApp extends State {
               itemBuilder: (context, index) {
                 return _pages[index];
               }),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50.0),
+                  child: Container(
+                    child: DotsIndicator(
+                      dotsCount: _pageLength,
+                      position: _currentPage,
+                      decorator: DotsDecorator(
+                        activeColor: Colors.white,
+                        activeSize: const Size(15.0, 15.0),
+                        activeShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0)),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ]),
       ),
     );

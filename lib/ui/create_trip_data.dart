@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/ui/select_destination.dart';
 
 // ignore: must_be_immutable
 class CreateData extends StatefulWidget {
@@ -48,6 +49,16 @@ class _CreateData extends State {
               child: Icon(Icons.timer),
               onPressed: () {
                 _selectDate(context);
+              }),
+          FloatingActionButton(
+              backgroundColor: primaryColor,
+              child: Icon(Icons.next_plan),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SelectDestionationPage()),
+                );
               }),
         ],
       ),

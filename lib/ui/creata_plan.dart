@@ -61,7 +61,7 @@ class _CreatePlan extends State {
           children: [
             Container(
               child: Text(
-                '旅のコンセプトを決めよう',
+                '🚀旅のコンセプトを決めよう🚀',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),

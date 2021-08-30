@@ -32,6 +32,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/airplane.png
+    - assets/images/top_image.png
+    - assets/images/top_image2.png
     - assets/images/hikoki_animated.gif
     - assets/images/2525.png
     - assets/images/hokkaido.png

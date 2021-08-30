@@ -30,8 +30,12 @@ users:
 ・dotが上手く機能するように設定する ← 完了
 
   8/29
-・Firestrageに画像を保存・取得できるようにする
+・Firestrageに画像を保存・取得できるようにする ← 完了
 ・firestrageに画像を保存・取得できるようになったら何をプランに含めるかを決定し、firestrageとfirestoreに保存できるように実装する。
+
+planテーブルに含めるもの
+・concept
+
 
 
 ToDo

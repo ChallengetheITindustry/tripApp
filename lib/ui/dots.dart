@@ -26,7 +26,7 @@ class Dots extends StatelessWidget {
               dotsCount: _pageLength,
               position: _currentPosition,
               decorator: DotsDecorator(
-                activeColor: primaryColor,
+                activeColor: Colors.white,
               ),
             ),
           ),
