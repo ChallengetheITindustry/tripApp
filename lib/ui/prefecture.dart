@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/ui/tourist_spot.dart';
 
 class PrefecturePage extends StatelessWidget {
   final listItem = [
@@ -56,51 +57,51 @@ class PrefecturePage extends StatelessWidget {
   final listImage = [
     _imageItem("hokkaido"),
     _imageItem("aomori"),
-    //   _imageItem("iwate"),
-    //   _imageItem("miyagi"),
-    //   _imageItem("akita"),
-    //   _imageItem("yamagata"),
-    //   _imageItem("hukushima"),
-    //   _imageItem("ibaraki"),
-    //   _imageItem("tochigi"),
-    //   _imageItem("gunma"),
-    //   _imageItem("saitama"),
-    //   _imageItem("chiba"),
-    //   _imageItem("tokyo"),
-    //   _imageItem("kanagawa"),
-    //   _imageItem("niigata"),
-    //   _imageItem("toyama"),
-    //   _imageItem("shikawa"),
-    //   _imageItem("fukui"),
-    //   _imageItem("yamanashi"),
-    //   _imageItem("nagano"),
-    //   _imageItem("gihu"),
-    //   _imageItem("shizuoka"),
-    //   _imageItem("aichi"),
-    //   _imageItem("mie"),
-    //   _imageItem("shiga"),
-    //   _imageItem("kyoto"),
-    //   _imageItem("osaka"),
-    //   _imageItem("hyogo"),
-    //   _imageItem("nara"),
-    //   _imageItem("wakayama"),
-    //   _imageItem("tottori"),
-    //   _imageItem("shimane"),
-    //   _imageItem("okayama"),
-    //   _imageItem("hiroshima"),
-    //   _imageItem("yamaguchi"),
-    //   _imageItem("tokushima"),
-    //   _imageItem("kagawa"),
-    //   _imageItem("ehime"),
-    //   _imageItem("kouchi"),
-    //   _imageItem("fukuoka"),
-    //   _imageItem("saga"),
-    //   _imageItem("nagasaki"),
-    //   _imageItem("kumamoto"),
-    //   _imageItem("oita"),
-    //   _imageItem("miyazaki"),
-    //   _imageItem("kagoshima"),
-    //   _imageItem("okinawa"),
+    _imageItem("iwate"),
+    _imageItem("miyagi"),
+    _imageItem("akita"),
+    _imageItem("yamagata"),
+    _imageItem("hukushima"),
+    _imageItem("ibaraki"),
+    _imageItem("tochigi"),
+    _imageItem("gunma"),
+    _imageItem("saitama"),
+    _imageItem("chiba"),
+    _imageItem("tokyo"),
+    _imageItem("kanagawa"),
+    _imageItem("niigata"),
+    _imageItem("toyama"),
+    _imageItem("ishikawa"),
+    _imageItem("fukui"),
+    _imageItem("yamanashi"),
+    _imageItem("nagano"),
+    _imageItem("gihu"),
+    _imageItem("shizuoka"),
+    _imageItem("aichi"),
+    _imageItem("mie"),
+    _imageItem("shiga"),
+    _imageItem("kyoto"),
+    _imageItem("osaka"),
+    _imageItem("hyogo"),
+    _imageItem("nara"),
+    _imageItem("wakayama"),
+    _imageItem("tottori"),
+    _imageItem("shimane"),
+    _imageItem("okayama"),
+    _imageItem("hiroshima"),
+    _imageItem("yamaguchi"),
+    _imageItem("tokushima"),
+    _imageItem("kagawa"),
+    _imageItem("ehime"),
+    _imageItem("kouchi"),
+    _imageItem("fukuoka"),
+    _imageItem("saga"),
+    _imageItem("nagasaki"),
+    _imageItem("kumamoto"),
+    _imageItem("oita"),
+    _imageItem("miyazaki"),
+    _imageItem("kagoshima"),
+    _imageItem("okinawa"),
   ];
 
   // final listImage = [
@@ -174,29 +175,40 @@ class PrefecturePage extends StatelessWidget {
         children: [
           GridView.count(
             crossAxisCount: 3,
-            children: [],
-            // children: List.generate(47, (index) {
-            //   return Container(
-            //       padding: const EdgeInsets.all(8.0),
-            //       alignment: Alignment.center,
-            //       child: InkWell(
-            //         onTap: () {
-            //           Navigator.push(
-            //             context,
-            //             MaterialPageRoute(builder: (context) => TouristSpot()),
-            //           );
-            //         },
-            //         child: GridTile(
-            //           footer: Center(
-            //             child: Text(
-            //               listItem[index],
-            //             ),
-            //           ),
-            //           child: Text('テスト'),
-            //         ),
-            //       ));
-            // }
-            // ),
+            children: List.generate(47, (index) {
+              return Container(
+                  padding: const EdgeInsets.all(8.0),
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TouristSpot()),
+                      );
+                    },
+                    child: GridTile(
+                      footer: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            listItem[index],
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              shadows: <Shadow>[
+                                Shadow(
+                                  blurRadius: 2.0,
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      child: listImage[index],
+                    ),
+                  ));
+            }),
           ),
         ],
       ),
@@ -205,7 +217,7 @@ class PrefecturePage extends StatelessWidget {
 }
 
 Widget _imageItem(String name) {
-  var image = "images/" + name + ".png";
+  var image = "assets/images/" + name + ".jpeg";
   return Container(
     child: Image.asset(
       image,
