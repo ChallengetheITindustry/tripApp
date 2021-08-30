@@ -104,55 +104,6 @@ class PrefecturePage extends StatelessWidget {
     _imageItem("okinawa"),
   ];
 
-  // final listImage = [
-  //   "assets/images/hokkaido.jpeg",
-  //   "assets/images/aomori.jpeg",
-  //   "assets/images/iwate.jpeg",
-  //   "assets/images/miyagi.jpeg",
-  //   "assets/images/akita.jpeg",
-  //   "assets/images/yamagata.jpeg",
-  //   "assets/images/hukushima.jpeg",
-  //   "assets/images/ibaraki.jpeg",
-  //   "assets/images/tochigi.jpeg",
-  //   "assets/images/gunma.jpeg",
-  //   "assets/images/saitama.jpeg",
-  //   "assets/images/chiba.jpeg",
-  //   "assets/images/tokyo.jpeg",
-  //   "assets/images/kanagawa.jpeg",
-  //   "assets/images/niigata.jpeg",
-  //   "assets/images/toyama.jpeg",
-  //   "assets/images/ishikawa.jpeg",
-  //   "assets/images/fukui.jpeg",
-  //   "assets/images/yamanashi.jpeg",
-  //   "assets/images/nagano.jpeg",
-  //   "assets/images/gihu.jpeg",
-  //   "assets/images/shizuoka.jpeg",
-  //   "assets/images/aichi.jpeg",
-  //   "assets/images/mie.jpeg",
-  //   "assets/images/shiga.jpeg",
-  //   "assets/images/kyoto.jpeg",
-  //   "assets/images/osaka.jpeg",
-  //   "assets/images/hyogo.jpeg",
-  //   "assets/images/nara.jpeg",
-  //   "assets/images/wakayama.jpeg",
-  //   "assets/images/tottori.jpeg",
-  //   "assets/images/shimane.jpeg",
-  //   "assets/images/okayama.jpeg",
-  //   "assets/images/hiroshima.jpeg",
-  //   "assets/images/yamaguchi.jpeg",
-  //   "assets/images/tokushima.jpeg",
-  //   "assets/images/kagawa.jpeg",
-  //   "assets/images/ehime.jpeg",
-  //   "assets/images/kouchi.jpeg",
-  //   "assets/images/fukuoka.jpeg",
-  //   "assets/images/saga.jpeg",
-  //   "assets/images/nagasaki.jpeg",
-  //   "assets/images/kumamoto.jpeg",
-  //   "assets/images/oita.jpeg",
-  //   "assets/images/miyazaki.jpeg",
-  //   "assets/images/kagoshima.jpeg",
-  //   "assets/images/okinawa.jpeg",
-  // ];
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -186,26 +137,29 @@ class PrefecturePage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => TouristSpot()),
                       );
                     },
-                    child: GridTile(
-                      footer: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            listItem[index],
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              shadows: <Shadow>[
-                                Shadow(
-                                  blurRadius: 2.0,
-                                  color: Color.fromARGB(255, 0, 0, 0),
-                                ),
-                              ],
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: GridTile(
+                        footer: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              listItem[index],
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                    blurRadius: 2.0,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        child: listImage[index],
                       ),
-                      child: listImage[index],
                     ),
                   ));
             }),
