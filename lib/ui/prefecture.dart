@@ -132,18 +132,43 @@ class PrefecturePage extends StatelessWidget {
                   alignment: Alignment.center,
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => TouristSpot()),
-                      );
+                      (() {
+                        // widget内にif文やswitch文を使用する場合は、即時関数を使用する。
+                        // switch (listItem[index]) {
+                        //   case listItem[index] == 0:
+                        //     return Text('こんにちは');
+                        //   case 'PENDING':
+                        //     return Text('こんにちは');
+                        //   case 'APPROVED':
+                        //     return Text('こんにちは');
+                        //   case 'DENIED':
+                        //     return Text('こんにちは');
+                        //   case 'OPEN':
+                        //     return Text('こんにちは');
+                        //   default:
+                        //     return Text('こんにちは');
+                        // }
+                      })();
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => TouristSpot()),
+                      // );
                     },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: GridTile(
-                        footer: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 5.0,
+                              spreadRadius: 5.0,
+                              offset: Offset(5, 5))
+                        ],
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: GridTile(
+                          footer: Center(
+                            child: Text(
                               listItem[index],
                               style: TextStyle(
                                 color: Colors.white,
@@ -156,9 +181,9 @@ class PrefecturePage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ],
+                          ),
+                          child: listImage[index],
                         ),
-                        child: listImage[index],
                       ),
                     ),
                   ));
