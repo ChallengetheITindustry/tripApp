@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 // Colors
-const primaryColor = Color(0xff284E8A);
+const primaryColor = Color(0xff5466C2);
 
+// #5466C2
+// #284E8A
 const formBorderColor = Color(0xffCAC9C9);
 
 const twitterColor = Color(0xff55acee);

@@ -20,7 +20,7 @@ class Background extends StatelessWidget {
           bottom: 0,
           child: Container(
             width: width,
-            height: height * 0.6,
+            height: height * 0.55,
             decoration: BoxDecoration(
               color: primaryColor,
               borderRadius: BorderRadius.only(
@@ -53,7 +53,7 @@ class Background extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                width: SizeConfig.blockSizeHorizontal * 60,
+                width: SizeConfig.blockSizeHorizontal * 80,
                 child: Image.asset('assets/images/top_image2.png'),
               ),
             ],

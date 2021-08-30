@@ -47,17 +47,6 @@ class _MyApp extends State {
       home: Scaffold(
         body: Stack(children: [
           Background(),
-          PageView.builder(
-              itemCount: _pages.length,
-              controller: _controller,
-              onPageChanged: (int index) {
-                setState(() {
-                  _currentPage = index.toDouble();
-                });
-              },
-              itemBuilder: (context, index) {
-                return _pages[index];
-              }),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -80,6 +69,25 @@ class _MyApp extends State {
               ],
             ),
           ),
+          PageView.builder(
+              itemCount: _pages.length,
+              controller: _controller,
+              onPageChanged: (int index) {
+                setState(() {
+                  _currentPage = index.toDouble();
+                });
+              },
+              itemBuilder: (context, index) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    _pages[index],
+                    SizedBox(
+                      height: 150,
+                    )
+                  ],
+                );
+              }),
         ]),
       ),
     );
