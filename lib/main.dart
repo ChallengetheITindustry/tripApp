@@ -42,7 +42,6 @@ class _MyApp extends State {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'tripApp',
-      theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       home: Scaffold(
         body: Stack(children: [
