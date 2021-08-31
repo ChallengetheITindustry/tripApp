@@ -147,7 +147,41 @@ class _TimeLinePage extends State {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (_) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.transparent,
+                                      title: Text(
+                                        "タイトル",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      content: Text(
+                                        "ここにユーザーさんの旅の計画を表示します。",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      actions: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Colors.transparent,
+                                          ),
+                                          child: Text(
+                                            "閉じる",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                               icon: Icon(
                                 Icons.chat_bubble_outline,
                                 size: 30,
