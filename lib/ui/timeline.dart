@@ -19,42 +19,14 @@ class _TimeLinePage extends State {
   bool sounds = false;
   @override
   Widget build(BuildContext context) {
+    AudioCache _player = AudioCache();
+    final play = _player.loop('fire.mp3');
+
     SizeConfig().init(context);
     return Scaffold(
         backgroundColor: timelineBackground,
         body: Stack(
           children: [
-            Positioned(
-              top: SizeConfig.blockSizeVertical * 8,
-              right: SizeConfig.blockSizeHorizontal * 80,
-              child: Container(
-                child: sounds != false
-                    ? IconButton(
-                        onPressed: () {
-                          setState(() {
-                            sounds = false;
-                          });
-                        },
-                        icon: Icon(
-                          Icons.volume_up_outlined,
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                      )
-                    : IconButton(
-                        onPressed: () {
-                          setState(() {
-                            sounds = true;
-                          });
-                        },
-                        icon: Icon(
-                          Icons.volume_off_outlined,
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                      ),
-              ),
-            ),
             Container(child: Image.asset('assets/images/moon.png')),
             Positioned(
               top: SizeConfig.blockSizeVertical * 20,
@@ -82,6 +54,34 @@ class _TimeLinePage extends State {
                 ],
               ),
             ),
+            Positioned(
+              top: SizeConfig.blockSizeVertical * 30,
+              left: SizeConfig.blockSizeHorizontal * 45,
+              child: Container(
+                  width: SizeConfig.blockSizeHorizontal * 20,
+                  child: Image.asset('assets/images/hukidashimaruleft.png')),
+            ),
+            Positioned(
+              top: SizeConfig.blockSizeVertical * 39,
+              left: SizeConfig.blockSizeHorizontal * 25,
+              child: Container(
+                  width: SizeConfig.blockSizeHorizontal * 20,
+                  child: Image.asset('assets/images/hukidashimaruleft.png')),
+            ),
+            Positioned(
+              top: SizeConfig.blockSizeVertical * 42,
+              left: SizeConfig.blockSizeHorizontal * 55,
+              child: Container(
+                  width: SizeConfig.blockSizeHorizontal * 20,
+                  child: Image.asset('assets/images/hukidashimaruleft.png')),
+            ),
+            Positioned(
+              top: SizeConfig.blockSizeVertical * 27,
+              left: SizeConfig.blockSizeHorizontal * 12,
+              child: Container(
+                  width: SizeConfig.blockSizeHorizontal * 20,
+                  child: Image.asset('assets/images/hukidashimaruleft.png')),
+            ),
             // ListView.builder(
             //   itemCount: list.length,
             //   itemBuilder: (BuildContext context, int index) {
@@ -91,6 +91,37 @@ class _TimeLinePage extends State {
             //     );
             //   },
             // ),
+            Positioned(
+              top: SizeConfig.blockSizeVertical * 8,
+              right: SizeConfig.blockSizeHorizontal * 80,
+              child: Container(
+                child: sounds != false
+                    ? IconButton(
+                        onPressed: () {
+                          setState(() async {
+                            sounds = false;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.volume_up_outlined,
+                          size: 40,
+                          color: Colors.white,
+                        ),
+                      )
+                    : IconButton(
+                        onPressed: () {
+                          setState(() {
+                            sounds = true;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.volume_off_outlined,
+                          size: 40,
+                          color: Colors.white,
+                        ),
+                      ),
+              ),
+            ),
 
             Column(
               mainAxisAlignment: MainAxisAlignment.end,

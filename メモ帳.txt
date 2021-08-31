@@ -42,6 +42,8 @@ ToDo
 ・Firestoreについて学習する
 ・ユーザー情報についてCURD処理を実装する
 ・タイムラインにfirestoreから取得した情報を一覧で表示できるようにする
+・焚き火の音楽は著作権を明記しなければいけない↓
+https://pocket-se.info/rules/compensation-plan/
 
 
 使いたいパッケージ
