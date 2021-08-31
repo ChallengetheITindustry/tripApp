@@ -149,10 +149,10 @@ class PrefecturePage extends StatelessWidget {
                         //     return Text('こんにちは');
                         // }
                       })();
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => TouristSpot()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TouristSpot()),
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(
