@@ -1,9 +1,8 @@
-import 'package:chewie/chewie.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:video_player/video_player.dart';
 
 import 'map.dart';
 
@@ -14,6 +13,10 @@ class TimeLinePage extends StatefulWidget {
 
 // ignore: must_be_immutable
 class _TimeLinePage extends State {
+  // AudioCache _player = AudioCache();
+  // _player.loop('fire.mp3');
+
+  bool sounds = false;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -25,14 +28,31 @@ class _TimeLinePage extends State {
               top: SizeConfig.blockSizeVertical * 8,
               right: SizeConfig.blockSizeHorizontal * 80,
               child: Container(
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.volume_up_outlined,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                ),
+                child: sounds != false
+                    ? IconButton(
+                        onPressed: () {
+                          setState(() {
+                            sounds = false;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.volume_up_outlined,
+                          size: 40,
+                          color: Colors.white,
+                        ),
+                      )
+                    : IconButton(
+                        onPressed: () {
+                          setState(() {
+                            sounds = true;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.volume_off_outlined,
+                          size: 40,
+                          color: Colors.white,
+                        ),
+                      ),
               ),
             ),
             Container(child: Image.asset('assets/images/moon.png')),
