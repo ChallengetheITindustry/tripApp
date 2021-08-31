@@ -18,3 +18,7 @@ const heartColor = Color(0xffF44336);
 
 // // 高さ
 // double height = MediaQuery.of(context).size.height;
+
+// タイムラインの背景
+const timelineBackground = Color(0xff7C9AF2);
+// #4A75DB
