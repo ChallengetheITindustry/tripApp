@@ -89,19 +89,23 @@ class UserProfilePage1 extends State {
           Container(
               child: IconButton(
             onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) => CupertinoAlertDialog(
-                        title: Text("ここに通知欄を表示します。"),
-                        actions: [
-                          CupertinoDialogAction(
-                              child: Text('実装したらgithubに挙げる'),
-                              isDestructiveAction: true,
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              }),
-                        ],
-                      ));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TestPage()),
+              );
+              // showDialog(
+              //     context: context,
+              //     builder: (_) => CupertinoAlertDialog(
+              //           title: Text("ここに通知欄を表示します。"),
+              //           actions: [
+              //             CupertinoDialogAction(
+              //                 child: Text('実装したらgithubに挙げる'),
+              //                 isDestructiveAction: true,
+              //                 onPressed: () {
+              //                   Navigator.of(context).pop();
+              //                 }),
+              //           ],
+              //         ));
             },
             icon:
                 Icon(Icons.add_alert_outlined, color: primaryColor, size: 35.0),

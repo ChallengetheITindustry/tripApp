@@ -13,15 +13,11 @@ class TimeLinePage extends StatefulWidget {
 
 // ignore: must_be_immutable
 class _TimeLinePage extends State {
-  // AudioCache _player = AudioCache();
-  // _player.loop('fire.mp3');
-
   bool sounds = false;
   @override
   Widget build(BuildContext context) {
     AudioCache _player = AudioCache();
-    final play = _player.loop('fire.mp3');
-
+    _player.loop('fire.mp3');
     SizeConfig().init(context);
     return Scaffold(
         backgroundColor: timelineBackground,
@@ -110,7 +106,7 @@ class _TimeLinePage extends State {
                       )
                     : IconButton(
                         onPressed: () {
-                          setState(() {
+                          setState(() async {
                             sounds = true;
                           });
                         },
