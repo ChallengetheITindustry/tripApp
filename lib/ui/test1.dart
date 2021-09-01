@@ -8,18 +8,25 @@ class TestPage1 extends StatefulWidget {
 
 // ignore: must_be_immutable
 class _TestPage1 extends State {
-  double _margin = 20;
-  void _onTap() => setState(() => _margin = 100);
+  double _x = 0;
+  double _y = 0;
+
+  void _onTap() {
+    setState(() {
+      _x = 100;
+      _y = 600;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedContainer(
-        width: 200,
-        height: 200,
-        color: Colors.blueAccent,
-        margin: EdgeInsets.all(_margin),
-        duration: Duration(seconds: 10),
-      ),
+          width: 200,
+          height: 200,
+          color: Colors.blueAccent,
+          duration: Duration(seconds: 10),
+          transform: Matrix4.translationValues(_x, _y, 0)),
       floatingActionButton: FloatingActionButton(onPressed: _onTap),
     );
   }

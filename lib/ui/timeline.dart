@@ -13,6 +13,14 @@ class TimeLinePage extends StatefulWidget {
 
 // ignore: must_be_immutable
 class _TimeLinePage extends State {
+  double _y = 0;
+
+  void _onTap() {
+    setState(() {
+      _y = 600;
+    });
+  }
+
   bool sounds = false;
   @override
   Widget build(BuildContext context) {
@@ -50,34 +58,38 @@ class _TimeLinePage extends State {
                 ],
               ),
             ),
-            Positioned(
-              top: SizeConfig.blockSizeVertical * 30,
-              left: SizeConfig.blockSizeHorizontal * 45,
-              child: Container(
-                  width: SizeConfig.blockSizeHorizontal * 20,
-                  child: Image.asset('assets/images/hukidashimaruleft.png')),
-            ),
-            Positioned(
-              top: SizeConfig.blockSizeVertical * 39,
-              left: SizeConfig.blockSizeHorizontal * 25,
-              child: Container(
-                  width: SizeConfig.blockSizeHorizontal * 20,
-                  child: Image.asset('assets/images/hukidashimaruleft.png')),
-            ),
+            // Positioned(
+            //   top: SizeConfig.blockSizeVertical * 30,
+            //   left: SizeConfig.blockSizeHorizontal * 45,
+            //   child: Container(
+            //       width: SizeConfig.blockSizeHorizontal * 20,
+            //       child: Image.asset('assets/images/hukidashimaruleft.png')),
+            // ),
+            // Positioned(
+            //   top: SizeConfig.blockSizeVertical * 39,
+            //   left: SizeConfig.blockSizeHorizontal * 25,
+            //   child: Container(
+            //       width: SizeConfig.blockSizeHorizontal * 20,
+            //       child: Image.asset('assets/images/hukidashimaruleft.png')),
+            // ),
+
             Positioned(
               top: SizeConfig.blockSizeVertical * 42,
               left: SizeConfig.blockSizeHorizontal * 55,
-              child: Container(
-                  width: SizeConfig.blockSizeHorizontal * 20,
-                  child: Image.asset('assets/images/hukidashimaruleft.png')),
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                    width: SizeConfig.blockSizeHorizontal * 20,
+                    child: Image.asset('assets/images/hukidashimaruleft.png')),
+              ),
             ),
-            Positioned(
-              top: SizeConfig.blockSizeVertical * 27,
-              left: SizeConfig.blockSizeHorizontal * 12,
-              child: Container(
-                  width: SizeConfig.blockSizeHorizontal * 20,
-                  child: Image.asset('assets/images/hukidashimaruleft.png')),
-            ),
+            // Positioned(
+            //   top: SizeConfig.blockSizeVertical * 27,
+            //   left: SizeConfig.blockSizeHorizontal * 12,
+            //   child: Container(
+            //       width: SizeConfig.blockSizeHorizontal * 20,
+            //       child: Image.asset('assets/images/hukidashimaruleft.png')),
+            // ),
             // ListView.builder(
             //   itemCount: list.length,
             //   itemBuilder: (BuildContext context, int index) {
@@ -210,5 +222,30 @@ class _TimeLinePage extends State {
             ),
           ],
         ));
+  }
+}
+
+class _TestPage1 extends State {
+  double _x = 0;
+  double _y = 0;
+
+  void _onTap() {
+    setState(() {
+      _x = 100;
+      _y = 600;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: AnimatedContainer(
+          width: 200,
+          height: 200,
+          color: Colors.blueAccent,
+          duration: Duration(seconds: 10),
+          transform: Matrix4.translationValues(_x, _y, 0)),
+      floatingActionButton: FloatingActionButton(onPressed: _onTap),
+    );
   }
 }
