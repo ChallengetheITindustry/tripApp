@@ -65,6 +65,7 @@ class LoginPageForm extends StatelessWidget {
                     children: [
                       Text("メールアドレス"),
                       TextFormField(
+                        initialValue: 'reeksge@gmail.com',
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
@@ -87,6 +88,7 @@ class LoginPageForm extends StatelessWidget {
                     children: [
                       Text("パスワード"),
                       TextFormField(
+                        initialValue: '123456',
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
