@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/view_model/signup_model.dart';
 import 'mail_verify.dart';
@@ -7,10 +8,7 @@ import 'mail_verify.dart';
 class SignupPageForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // 幅
-    double width = MediaQuery.of(context).size.width;
-    // 高さ
-    double height = MediaQuery.of(context).size.height;
+    SizeConfig().init(context);
     return ChangeNotifierProvider<SignUpModel>(
       create: (_) => SignUpModel(),
       child: Consumer<SignUpModel>(builder: (context, model, child) {
@@ -29,14 +27,14 @@ class SignupPageForm extends StatelessWidget {
                     offset: Offset(10, 10))
               ],
             ),
-            width: width * 0.8,
-            height: height * 0.5,
+            width: SizeConfig.screenWidth * 0.8,
+            height: SizeConfig.screenHeight * 0.5,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  width: width * 0.6,
-                  height: height * 0.1,
+                  width: SizeConfig.screenWidth * 0.6,
+                  height: SizeConfig.screenHeight * 0.1,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -58,8 +56,8 @@ class SignupPageForm extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: width * 0.6,
-                  height: height * 0.1,
+                  width: SizeConfig.screenWidth * 0.6,
+                  height: SizeConfig.screenHeight * 0.1,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -81,7 +79,7 @@ class SignupPageForm extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: width * 0.6,
+                  width: SizeConfig.screenWidth * 0.6,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -115,8 +113,8 @@ class SignupPageForm extends StatelessWidget {
                   ),
                 ),
                 Container(
-                    width: width * 0.6,
-                    height: 50,
+                    width: SizeConfig.screenWidth * 0.6,
+                    height: SizeConfig.blockSizeVertical * 6,
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(

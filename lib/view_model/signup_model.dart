@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class SignUpModel extends ChangeNotifier {
   final _auth = FirebaseAuth.instance;
 
   // 新規会員登録
-  String newUserName = ""; // 登録に関する情報を表示
+  String newUserName = ""; // 入力されたユーザー名
   String newEmail = ""; // 入力されたメールアドレス
   String newPassword = ""; // 入力されたパスワード
   String createdAt = "";
@@ -21,14 +22,14 @@ class SignUpModel extends ChangeNotifier {
 
   Future<String> signUp() async {
     if (newUserName.isEmpty) {
-      throw 'ユーザー名の入力忘れてない？😥';
+      throw 'ユーザー名を入力してください';
     }
     if (newEmail.isEmpty) {
-      throw 'メールアドレスの入力忘れてない？😥';
+      throw 'メールアドレスを入力してください';
     }
 
     if (newPassword.isEmpty) {
-      throw 'パスワードの入力忘れてない？😥';
+      throw 'パスワードを入力してください';
     }
 
     try {
@@ -58,7 +59,9 @@ class SignUpModel extends ChangeNotifier {
     final String uid = user.uid.toString();
 
     DateTime now = DateTime.now();
-    createdAt = now.toString();
+    DateFormat outputFormat = DateFormat('yyyy-MM-dd(E) hh:mm');
+    String date = outputFormat.format(now);
+    createdAt = date.toString();
 
     await FirebaseFirestore.instance.collection('users').doc(uid).set({
       'name': newUserName,
@@ -66,10 +69,5 @@ class SignUpModel extends ChangeNotifier {
       'password': newPassword,
       'createdAt': createdAt,
     });
-  }
-
-  Future getCurrentUser() async {
-    // ignore: await_only_futures
-    return await _auth.currentUser!;
   }
 }

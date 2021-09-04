@@ -1,14 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
@@ -28,6 +25,7 @@ class UserProfilePage1 extends State {
   String currentUserMail = '';
   String uid = '';
   // nullable
+  // ignore: unused_field
   Image? _img;
   String userProfile = '';
 

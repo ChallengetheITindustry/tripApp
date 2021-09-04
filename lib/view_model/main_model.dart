@@ -12,6 +12,7 @@ class MainModel extends ChangeNotifier {
   //main.dartに表示させるフォーム
   List pages = [LoginPageForm(), SignupPageForm()];
 
+  // ignore: non_constant_identifier_names
   void ChangePage(int index) {
     currentPage = index.toDouble();
     notifyListeners();
