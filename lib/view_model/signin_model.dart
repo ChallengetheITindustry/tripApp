@@ -8,6 +8,13 @@ class SignInModel extends ChangeNotifier {
   String email = ""; // メールアドレス
   String password = ""; // パスワード
 
+  bool obscureText = false;
+
+  void changeObscureText() {
+    obscureText = !obscureText;
+    notifyListeners();
+  }
+
   Future signIn() async {
     if (email.isEmpty) {
       throw 'メールアドレスを入力してください';

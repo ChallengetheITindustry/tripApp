@@ -92,8 +92,15 @@ class LoginPageForm extends StatelessWidget {
                               color: formBorderColor,
                             ),
                           ),
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                model.changeObscureText();
+                              },
+                              icon: model.obscureText == false
+                                  ? Icon(Icons.visibility)
+                                  : Icon(Icons.visibility_off)),
                         ),
-                        obscureText: true,
+                        obscureText: model.obscureText,
                         onChanged: (String value) {
                           model.password = value;
                         },
