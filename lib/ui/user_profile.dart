@@ -1,3 +1,4 @@
+// リファクタリングする
 import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,6 +14,7 @@ import 'package:tripapp/ui/privacy.dart';
 import 'package:tripapp/ui/rule.dart';
 import 'package:tripapp/ui/test.dart';
 import 'package:tripapp/ui/user_edit_info.dart';
+import 'package:tripapp/ui/user_profile_2.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserProfilePage extends StatefulWidget {
@@ -94,33 +96,37 @@ class UserProfilePage1 extends State {
             leading: IconButton(
               color: primaryColor,
               onPressed: () {
-                showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (_) {
-                    return AlertDialog(
-                      title: Text("メモ帳を追加"),
-                      content: TextFormField(
-                        onChanged: _handleText,
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          child: Text("戻る"),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                        ElevatedButton(
-                          child: Text("追加"),
-                          onPressed: () async {
-                            await FirebaseFirestore.instance
-                                .collection('timeline') // コレクションID/ ドキュメントID
-                                .add({'title': _title}); //
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    );
-                  },
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserProfilePage2()),
                 );
+                // showDialog(
+                //   context: context,
+                //   barrierDismissible: false,
+                //   builder: (_) {
+                //     return AlertDialog(
+                //       title: Text("メモ帳を追加"),
+                //       content: TextFormField(
+                //         onChanged: _handleText,
+                //       ),
+                //       actions: [
+                //         ElevatedButton(
+                //           child: Text("戻る"),
+                //           onPressed: () => Navigator.pop(context),
+                //         ),
+                //         ElevatedButton(
+                //           child: Text("追加"),
+                //           onPressed: () async {
+                //             await FirebaseFirestore.instance
+                //                 .collection('timeline') // コレクションID/ ドキュメントID
+                //                 .add({'title': _title}); //
+                //             Navigator.pop(context);
+                //           },
+                //         ),
+                //       ],
+                //     );
+                //   },
+                // );
               },
               icon: Icon(Icons.add),
             ),
