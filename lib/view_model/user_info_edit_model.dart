@@ -8,8 +8,7 @@ import 'package:image_picker/image_picker.dart';
 class UserInfoEditModel extends ChangeNotifier {
   // ignore: await_only_futures
   final User user = FirebaseAuth.instance.currentUser!;
-  // ignore: unused_local_variable
-  final String uid = user.uid.toString();
+  late String uid = user.uid.toString();
   // ignore: unused_field
   Image? _img;
   String userProfile = '';
