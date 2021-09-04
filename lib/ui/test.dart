@@ -4,6 +4,7 @@ import 'package:tripapp/ui/test1.dart';
 
 // ignore: must_be_immutable
 class TestPage extends StatelessWidget {
+  List planList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

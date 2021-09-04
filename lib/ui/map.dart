@@ -11,53 +11,53 @@ class _MapPage extends State {
   // ドロップダウンメニューの初期値
   String dropdownValue = '北海道';
 
-  bool hokkaido = true;
-  bool aomori = true;
-  bool iwate = true;
-  bool miyagi = true;
-  bool akita = true;
-  bool yamagata = true;
-  bool hukushima = true;
-  bool ibaraki = true;
-  bool tochigi = true;
-  bool gunma = true;
-  bool saitama = true;
-  bool chiba = true;
-  bool tokyo = true;
-  bool kanagawa = true;
-  bool niigata = true;
-  bool toyama = true;
-  bool ishikawa = true;
-  bool hukui = true;
-  bool yamanashi = true;
-  bool nagano = true;
-  bool gihu = true;
-  bool shizuoka = true;
-  bool aichi = true;
-  bool mie = true;
-  bool shiga = true;
-  bool kyoto = true;
-  bool osaka = true;
-  bool hyogo = true;
-  bool nara = true;
-  bool wakayama = true;
-  bool tottori = true;
-  bool shimane = true;
-  bool okayama = true;
-  bool hiroshima = true;
-  bool yamaguchi = true;
-  bool tokushima = true;
-  bool kagawa = true;
-  bool ehime = true;
-  bool kouchi = true;
-  bool hukuoka = true;
-  bool saga = true;
-  bool nagasaki = true;
-  bool kumamoto = true;
-  bool oita = true;
-  bool miyazaki = true;
-  bool kagoshima = true;
-  bool okinawa = true;
+  bool hokkaido = false;
+  bool aomori = false;
+  bool iwate = false;
+  bool miyagi = false;
+  bool akita = false;
+  bool yamagata = false;
+  bool hukushima = false;
+  bool ibaraki = false;
+  bool tochigi = false;
+  bool gunma = false;
+  bool saitama = false;
+  bool chiba = false;
+  bool tokyo = false;
+  bool kanagawa = false;
+  bool niigata = false;
+  bool toyama = false;
+  bool ishikawa = false;
+  bool hukui = false;
+  bool yamanashi = false;
+  bool nagano = false;
+  bool gihu = false;
+  bool shizuoka = false;
+  bool aichi = false;
+  bool mie = false;
+  bool shiga = false;
+  bool kyoto = false;
+  bool osaka = false;
+  bool hyogo = false;
+  bool nara = false;
+  bool wakayama = false;
+  bool tottori = false;
+  bool shimane = false;
+  bool okayama = false;
+  bool hiroshima = false;
+  bool yamaguchi = false;
+  bool tokushima = false;
+  bool kagawa = false;
+  bool ehime = false;
+  bool kouchi = false;
+  bool hukuoka = false;
+  bool saga = false;
+  bool nagasaki = false;
+  bool kumamoto = false;
+  bool oita = false;
+  bool miyazaki = false;
+  bool kagoshima = false;
+  bool okinawa = false;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -77,20 +77,21 @@ class _MapPage extends State {
               Center(
                   child:
                       Container(child: Image.asset('assets/images/2525.png'))),
+
               // 北海道
-              hokkaido != false
-                  ? Positioned(
-                      // right: SizeConfig.blockSizeHorizontal,
-                      left: SizeConfig.blockSizeHorizontal * 57.5,
-                      child: Container(
-                        width: SizeConfig.blockSizeHorizontal * 42,
-                        child: ColorFiltered(
-                            colorFilter:
-                                ColorFilter.mode(primaryColor, BlendMode.srcIn),
-                            child: Image.asset('assets/images/hokkaido.png')),
-                      ),
-                    )
-                  : Container(),
+              // hokkaido != false
+              //     ? Positioned(
+              //         // right: SizeConfig.blockSizeHorizontal,
+              //         left: SizeConfig.blockSizeHorizontal * 57.5,
+              //         child: Container(
+              //           width: SizeConfig.blockSizeHorizontal * 42,
+              //           child: ColorFiltered(
+              //               colorFilter:
+              //                   ColorFilter.mode(primaryColor, BlendMode.srcIn),
+              //               child: Image.asset('assets/images/hokkaido.png')),
+              //         ),
+              //       )
+              //     : Container(),
               // 青森
               // hokkaido != false
               //     ? Positioned(
@@ -148,19 +149,19 @@ class _MapPage extends State {
               //       )
               //     : Container(),
               // 山形
-              hokkaido != false
-                  ? Positioned(
-                      top: SizeConfig.blockSizeVertical * 20.5,
-                      left: SizeConfig.blockSizeHorizontal * 57,
-                      child: Container(
-                        width: SizeConfig.blockSizeHorizontal * 8.8,
-                        child: ColorFiltered(
-                            colorFilter:
-                                ColorFilter.mode(primaryColor, BlendMode.srcIn),
-                            child: Image.asset('assets/images/yamagata.png')),
-                      ),
-                    )
-                  : Container(),
+              // hokkaido != false
+              //     ? Positioned(
+              //         top: SizeConfig.blockSizeVertical * 20.5,
+              //         left: SizeConfig.blockSizeHorizontal * 57,
+              //         child: Container(
+              //           width: SizeConfig.blockSizeHorizontal * 8.8,
+              //           child: ColorFiltered(
+              //               colorFilter:
+              //                   ColorFilter.mode(primaryColor, BlendMode.srcIn),
+              //               child: Image.asset('assets/images/yamagata.png')),
+              //         ),
+              //       )
+              //     : Container(),
             ],
           ),
           Container(

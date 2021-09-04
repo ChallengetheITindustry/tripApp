@@ -36,6 +36,8 @@ users:
 planテーブルに含めるもの
 ・concept
 
+  9/3
+・main.dartのリファクタリング
 
 
 ToDo
