@@ -1,13 +1,14 @@
-// Providerを使用してmain_model.dartを参照すると動かない
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:tripapp/config/config.dart';
 import 'package:tripapp/view_model/main_model.dart';
 
 // ignore: must_be_immutable
 class FormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ChangeNotifierProvider<MainModel>(
       create: (context) => MainModel(),
       child: Consumer<MainModel>(builder: (context, model, child) {
@@ -47,7 +48,7 @@ class FormWidget extends StatelessWidget {
                     children: [
                       model.pages[index],
                       SizedBox(
-                        height: 150,
+                        height: SizeConfig.blockSizeVertical * 15,
                       )
                     ],
                   );

@@ -1,14 +1,8 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/formwidget.dart';
-import 'package:tripapp/ui/login_page.dart';
-import 'package:tripapp/ui/login_signup_background.dart';
-import 'package:tripapp/ui/signup_page.dart';
-import 'package:tripapp/view_model/main_model.dart';
+import 'package:tripapp/ui/form_widget.dart';
+import 'package:tripapp/ui/background_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
