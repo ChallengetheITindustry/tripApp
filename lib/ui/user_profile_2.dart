@@ -75,6 +75,16 @@ class UserProfilePage12 extends State {
     });
   }
 
+  // ページビューの定数
+  // ページコントローラ
+  final PageController controller = PageController(initialPage: 0);
+
+  // ページインデックス
+  int currentPage = 0;
+
+  // データ
+  List<String> _imageList = ['テスト1', 'テスト2'];
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -85,70 +95,88 @@ class UserProfilePage12 extends State {
         UserBackGround(),
         Container(
           height: SizeConfig.screenHeight * 0.4,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Stack(
             children: [
-              Container(
-                child: Text(
-                  'プロフィール',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: SizeConfig.blockSizeVertical * 1,
-              ),
-              Center(
-                child: Stack(
-                  children: [
-                    Container(
-                      child: CircleAvatar(
-                        radius: SizeConfig.blockSizeHorizontal * 15,
-                        backgroundColor: Colors.brown.shade800,
-                        // ignore: unnecessary_null_comparison
-                        backgroundImage: NetworkImage(
-                            'https://images.unsplash.com/photo-1536825211030-094de935f680?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'),
+              // Container(
+              //     width: SizeConfig.screenWidth * 0.5,
+              //     decoration: BoxDecoration(
+              //       color: Colors.blue,
+              //       shape: BoxShape.circle,
+              //     )),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Text(
+                      'プロフィール',
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: SizeConfig.blockSizeVertical * 1,
-              ),
-              Container(
-                width: SizeConfig.screenWidth * 0.6,
-                child: Column(
-                  children: [
-                    Column(
+                  ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 1,
+                  ),
+                  Center(
+                    child: Stack(
                       children: [
                         Container(
-                            child: Text(
-                          // ログインユーザーの名前を表示
-                          currentUserName,
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                          child: CircleAvatar(
+                            radius: SizeConfig.blockSizeHorizontal * 15,
+                            backgroundColor: Colors.brown.shade800,
+                            // ignore: unnecessary_null_comparison
+                            backgroundImage: NetworkImage(
+                                'https://images.unsplash.com/photo-1536825211030-094de935f680?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'),
                           ),
-                        )),
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical * 1,
                         ),
-                        Container(
-                          child: Text(
-                            // ログインユーザーのメールアドレスを表示
-                            currentUserMail,
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 1,
+                  ),
+                  Container(
+                    width: SizeConfig.screenWidth * 0.6,
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black12,
+                                        spreadRadius: 0,
+                                        offset: Offset(15, 15))
+                                  ],
+                                ),
+                                child: Text(
+                                  // ログインユーザーの名前を表示
+                                  currentUserName,
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                )),
+                            SizedBox(
+                              height: SizeConfig.blockSizeVertical * 3,
+                            ),
+                            Container(
+                              child: Text(
+                                // ログインユーザーのメールアドレスを表示
+                                currentUserMail,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -347,40 +375,8 @@ class UserProfilePage12 extends State {
 class UserBackGround extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Container(
-              width: SizeConfig.screenWidth * 0.5,
-              color: timelineBackground,
-            ),
-          ],
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: SizeConfig.screenWidth * 0.5,
-              height: SizeConfig.screenHeight * 0.35,
-              color: Colors.white,
-            ),
-            Container(
-              width: SizeConfig.screenWidth,
-              height: SizeConfig.blockSizeVertical * 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.transparent),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(100),
-                ),
-              ),
-            ),
-          ],
-        ),
-        // 左上のContainer
         Container(
           width: SizeConfig.screenWidth,
           height: SizeConfig.blockSizeVertical * 40,
@@ -388,10 +384,10 @@ class UserBackGround extends StatelessWidget {
             border: Border.all(color: Colors.transparent),
             color: timelineBackground,
             borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(100),
+              bottomLeft: Radius.circular(150),
             ),
           ),
-        )
+        ),
       ],
     );
   }
