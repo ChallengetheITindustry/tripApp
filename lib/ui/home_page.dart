@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/timeline.dart';
 import 'package:tripapp/ui/user_profile.dart';
+import 'package:tripapp/ui/user_profile_2.dart';
 
 import 'create_trip_plan.dart';
 
@@ -26,7 +27,7 @@ class _HomePage extends State<HomePage> {
       label: 'ユーザー',
     ),
   ];
-  final tabs = <Widget>[CreateTripPlan(), TimeLinePage(), UserProfilePage()];
+  final tabs = <Widget>[CreateTripPlan(), TimeLinePage(), UserProfilePage2()];
   // UserHomePage()
 
   @override
