@@ -38,6 +38,20 @@ class UserProfilePage12 extends State {
     });
   }
 
+  // ページコントローラ
+  final PageController controller = PageController(viewportFraction: 0.8);
+
+  // ページインデックス
+  int currentPage = 0;
+
+  // データ
+  List<String> _imageList = [
+    "images/card_back.png",
+    "images/card_j.png",
+    "images/card_q.png",
+    "images/card_k.png",
+  ];
+
   @override
   Widget build(BuildContext context) {
     getFirestore();
@@ -158,6 +172,15 @@ class UserProfilePage12 extends State {
                 ],
               ),
             ),
+            PageView.builder(
+              controller: controller,
+              itemCount: _imageList.length,
+              itemBuilder: (context, int currentIndex) {
+                // カードの生成して返す
+                return Center(
+                    child: Container(child: Text(_imageList[currentIndex])));
+              },
+            ),
             Positioned(
               top: SizeConfig.blockSizeVertical * 8,
               left: SizeConfig.blockSizeHorizontal * 80,
@@ -268,6 +291,8 @@ class UserProfilePage12 extends State {
                                       contentPadding: EdgeInsets.all(10.0),
                                       onTap: () {
                                         Navigator.pop(context);
+                                        launch(
+                                            'https://polyester-clave-a16.notion.site/10b6e2bb52af49e1a051e0f44b5c2408');
                                       },
                                     ),
                                   ),
@@ -293,6 +318,8 @@ class UserProfilePage12 extends State {
                                       contentPadding: EdgeInsets.all(10.0),
                                       onTap: () {
                                         Navigator.pop(context);
+                                        launch(
+                                            'https://polyester-clave-a16.notion.site/6664b852b1c34ecb98774711566e4c29');
                                       },
                                     ),
                                   ),
@@ -346,14 +373,15 @@ class UserProfilePage12 extends State {
                 ),
               ),
             ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('ここにPageViewを表示させます'),
-                ],
-              ),
-            )
+
+            // Center(
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       Text('ここにPageViewを表示させます'),
+            //     ],
+            //   ),
+            // )
           ],
         );
       })),

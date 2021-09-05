@@ -64,11 +64,7 @@ class _MapPage extends State {
     // コレクションIDとドキュメントIDを指定して取得
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        elevation: 2.0,
-        title: Text('地図'),
-      ),
+      backgroundColor: Colors.transparent,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -76,15 +72,7 @@ class _MapPage extends State {
             children: [
               Center(
                   child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 10.0,
-                              spreadRadius: 1.0,
-                              offset: Offset(10, 10))
-                        ],
-                      ),
+                      decoration: BoxDecoration(),
                       child: Image.asset('assets/images/2525.png'))),
 
               // 北海道
@@ -281,7 +269,13 @@ class _MapPage extends State {
                 )
               ],
             ),
-          )
+          ),
+          FloatingActionButton(
+              backgroundColor: timelineBackground,
+              child: Icon(Icons.backspace),
+              onPressed: () {
+                Navigator.pop(context);
+              })
         ],
       ),
     );
