@@ -24,7 +24,7 @@ class _TimeLinePage extends State {
   AudioCache _player = AudioCache();
   bool sounds = false;
 
-  late AudioPlayer change;
+  late AudioPlayer changeTakibi;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +65,8 @@ class _TimeLinePage extends State {
                 child: sounds != false
                     ? IconButton(
                         onPressed: () async {
-                          await change.stop();
+                          await changeTakibi.stop();
+
                           setState(() {
                             sounds = !sounds;
                           });
@@ -78,11 +79,12 @@ class _TimeLinePage extends State {
                       )
                     : IconButton(
                         onPressed: () async {
-                          AudioPlayer audioSource =
+                          AudioPlayer audioSourceTakibi =
                               await _player.loop('fire.mp3');
+
                           setState(() {
                             sounds = !sounds;
-                            change = audioSource;
+                            changeTakibi = audioSourceTakibi;
                           });
                         },
                         icon: Icon(

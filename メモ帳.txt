@@ -50,6 +50,8 @@ ToDo
 ・タイムラインにfirestoreから取得した情報を一覧で表示できるようにする
 ・焚き火の音楽は著作権を明記しなければいけない↓
 https://pocket-se.info/rules/compensation-plan/
+・ギターの音楽は著作権を明記しなければならない
+https://dova-s.jp/bgm/download8623.html
 
 
 使いたいパッケージ
