@@ -19,15 +19,11 @@ class _HomePage extends State<HomePage> {
       label: 'ホーム',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.timeline),
-      label: 'タイムライン',
-    ),
-    BottomNavigationBarItem(
       icon: Icon(Icons.manage_accounts),
       label: 'ユーザー',
     ),
   ];
-  final tabs = <Widget>[CreateTripPlan(), TimeLinePage(), UserProfilePage2()];
+  final tabs = <Widget>[TimeLinePage(), UserProfilePage2()];
   // UserHomePage()
 
   @override

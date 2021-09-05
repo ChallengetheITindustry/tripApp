@@ -75,8 +75,17 @@ class _MapPage extends State {
           Stack(
             children: [
               Center(
-                  child:
-                      Container(child: Image.asset('assets/images/2525.png'))),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10.0,
+                              spreadRadius: 1.0,
+                              offset: Offset(10, 10))
+                        ],
+                      ),
+                      child: Image.asset('assets/images/2525.png'))),
 
               // 北海道
               // hokkaido != false

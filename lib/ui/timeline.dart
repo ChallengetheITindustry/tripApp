@@ -21,12 +21,12 @@ class _TimeLinePage extends State {
     });
   }
 
-  bool sounds = true;
+  AudioCache _player = AudioCache();
+  bool sounds = false;
+
+  late AudioPlayer change;
   @override
   Widget build(BuildContext context) {
-    AudioCache _player = AudioCache();
-    _player.loop('fire.mp3');
-    SizeConfig().init(context);
     return Scaffold(
         backgroundColor: timelineBackground,
         body: Stack(
@@ -58,54 +58,18 @@ class _TimeLinePage extends State {
                 ],
               ),
             ),
-            // Positioned(
-            //   top: SizeConfig.blockSizeVertical * 30,
-            //   left: SizeConfig.blockSizeHorizontal * 45,
-            //   child: Container(
-            //       width: SizeConfig.blockSizeHorizontal * 20,
-            //       child: Image.asset('assets/images/hukidashimaruleft.png')),
-            // ),
-            // Positioned(
-            //   top: SizeConfig.blockSizeVertical * 39,
-            //   left: SizeConfig.blockSizeHorizontal * 25,
-            //   child: Container(
-            //       width: SizeConfig.blockSizeHorizontal * 20,
-            //       child: Image.asset('assets/images/hukidashimaruleft.png')),
-            // ),
-
-            Positioned(
-              top: SizeConfig.blockSizeVertical * 42,
-              left: SizeConfig.blockSizeHorizontal * 55,
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                    width: SizeConfig.blockSizeHorizontal * 20,
-                    child: Image.asset('assets/images/hukidashimaruleft.png')),
-              ),
-            ),
-            // Positioned(
-            //   top: SizeConfig.blockSizeVertical * 27,
-            //   left: SizeConfig.blockSizeHorizontal * 12,
-            //   child: Container(
-            //       width: SizeConfig.blockSizeHorizontal * 20,
-            //       child: Image.asset('assets/images/hukidashimaruleft.png')),
-            // ),
-            // ListView.builder(
-            //   itemCount: list.length,
-            //   itemBuilder: (BuildContext context, int index) {
-            //     return Container(
-            //       height: SizeConfig.blockSizeVertical * 8,
-            //       child: Card(child: ListTile(leading: Text(list[index]))),
-            //     );
-            //   },
-            // ),
             Positioned(
               top: SizeConfig.blockSizeVertical * 8,
               right: SizeConfig.blockSizeHorizontal * 80,
               child: Container(
                 child: sounds != false
                     ? IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await change.stop();
+                          setState(() {
+                            sounds = !sounds;
+                          });
+                        },
                         icon: Icon(
                           Icons.volume_up_outlined,
                           size: 40,
@@ -113,7 +77,14 @@ class _TimeLinePage extends State {
                         ),
                       )
                     : IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          AudioPlayer audioSource =
+                              await _player.loop('fire.mp3');
+                          setState(() {
+                            sounds = !sounds;
+                            change = audioSource;
+                          });
+                        },
                         icon: Icon(
                           Icons.volume_off_outlined,
                           size: 40,
@@ -122,7 +93,6 @@ class _TimeLinePage extends State {
                       ),
               ),
             ),
-
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -155,7 +125,7 @@ class _TimeLinePage extends State {
                                     return AlertDialog(
                                       backgroundColor: Colors.transparent,
                                       title: Text(
-                                        "タイトル",
+                                        "コンセプト",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold),

@@ -94,3 +94,7 @@ https://pocket-se.info/rules/compensation-plan/
 ↓
 
 投稿したコメントは
+
+
+制限
+・ユーザー名の登録は8文字以下
