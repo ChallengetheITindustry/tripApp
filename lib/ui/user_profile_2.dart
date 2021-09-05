@@ -75,14 +75,26 @@ class UserProfilePage12 extends State {
     SizeConfig().init(context);
     _getFirestore();
     return Scaffold(
+        backgroundColor: timelineBackground,
         body: Stack(
-      children: [
-        UserBackGround(),
-        Column(
           children: [
+            UserBackGround(),
             Container(
+              height: SizeConfig.screenHeight * 0.4,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Container(
+                    child: Text(
+                      'プロフィール',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 1,
+                  ),
                   Center(
                     child: Stack(
                       children: [
@@ -90,23 +102,17 @@ class UserProfilePage12 extends State {
                           radius: 80,
                           backgroundColor: Colors.brown.shade800,
                           // ignore: unnecessary_null_comparison
-                          backgroundImage: NetworkImage(''),
+                          backgroundImage: NetworkImage(
+                              'https://images.unsplash.com/photo-1536825211030-094de935f680?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'),
                         ),
-                        // // StackでRawMaterialButtonを重ねることによりCircleAvatarをタップできるような表現に変更
-                        // RawMaterialButton(
-                        //   onPressed: () async {},
-                        //   child: Container(
-                        //     width: 200.0, // CircleAvatarのradiusの2倍
-                        //     height: 200.0,
-                        //   ),
-                        //   shape: CircleBorder(),
-                        //   elevation: 2.0,
-                        // ),
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: SizeConfig.blockSizeVertical * 1,
+                  ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.6,
+                    width: SizeConfig.screenWidth * 0.6,
                     child: Column(
                       children: [
                         Column(
@@ -118,14 +124,18 @@ class UserProfilePage12 extends State {
                               style: TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                             )),
+                            SizedBox(
+                              height: SizeConfig.blockSizeVertical * 1,
+                            ),
                             Container(
                               child: Text(
                                 // ログインユーザーのメールアドレスを表示
                                 currentUserMail,
                                 style: TextStyle(
-                                  color: formBorderColor,
+                                  color: Colors.white,
                                 ),
                               ),
                             )
@@ -136,11 +146,9 @@ class UserProfilePage12 extends State {
                   ),
                 ],
               ),
-            ),
+            )
           ],
-        )
-      ],
-    ));
+        ));
   }
 }
 
@@ -149,45 +157,39 @@ class UserBackGround extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // Container(
+        //   width: SizeConfig.screenWidth,
+        //   height: SizeConfig.screenHeight,
+        //   color: timelineBackground,
+        // ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(100),
-                ),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height,
+              width: SizeConfig.screenWidth * 0.5,
+              height: SizeConfig.screenHeight * 0.4,
               color: Colors.white,
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.6,
+              width: SizeConfig.screenWidth,
+              height: SizeConfig.screenHeight * 0.6,
               decoration: BoxDecoration(
                 color: Colors.white,
+                border: Border.all(color: Colors.transparent),
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(100),
                 ),
               ),
-            )
+            ),
           ],
         ),
         Container(
-          width: MediaQuery.of(context).size.width * 0.5,
-          height: MediaQuery.of(context).size.height * 0.4,
+          width: SizeConfig.screenWidth,
+          height: SizeConfig.screenHeight * 0.4,
           decoration: BoxDecoration(
-            color: Colors.red,
+            border: Border.all(color: Colors.transparent),
+            color: timelineBackground,
             borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(100),
             ),
