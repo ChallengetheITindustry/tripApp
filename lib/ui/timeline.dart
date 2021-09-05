@@ -21,7 +21,7 @@ class _TimeLinePage extends State {
     });
   }
 
-  bool sounds = false;
+  bool sounds = true;
   @override
   Widget build(BuildContext context) {
     AudioCache _player = AudioCache();
@@ -105,11 +105,7 @@ class _TimeLinePage extends State {
               child: Container(
                 child: sounds != false
                     ? IconButton(
-                        onPressed: () {
-                          setState(() async {
-                            sounds = false;
-                          });
-                        },
+                        onPressed: () {},
                         icon: Icon(
                           Icons.volume_up_outlined,
                           size: 40,
@@ -117,11 +113,7 @@ class _TimeLinePage extends State {
                         ),
                       )
                     : IconButton(
-                        onPressed: () {
-                          setState(() async {
-                            sounds = true;
-                          });
-                        },
+                        onPressed: () {},
                         icon: Icon(
                           Icons.volume_off_outlined,
                           size: 40,
