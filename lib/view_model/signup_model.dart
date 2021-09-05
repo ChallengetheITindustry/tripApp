@@ -32,6 +32,10 @@ class SignUpModel extends ChangeNotifier {
       throw 'パスワードを入力してください';
     }
 
+    if (newUserName.length > 8) {
+      throw 'ユーザー名は8文字以下で入力してください';
+    }
+
     try {
       // バリデーション後のメールアドレスとパスワードでアカウント登録
       _result = await _auth.createUserWithEmailAndPassword(
