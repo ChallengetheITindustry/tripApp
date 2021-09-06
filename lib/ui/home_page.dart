@@ -25,33 +25,34 @@ class HomePage extends StatefulWidget {
 
 // ignore: must_be_immutable
 class _TimeLinePage extends State {
-  DateTime _date = new DateTime.now();
+  DateTime _dateStart = new DateTime.now();
+  DateTime _dateEnd = new DateTime.now();
 
   Future<Null> _selectDateStart(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+    final DateTime? pickedStart = await showDatePicker(
       context: context,
       helpText: '旅の始まりを指定',
       cancelText: 'キャンセル',
       confirmText: '次へ',
-      initialDate: _date,
+      initialDate: _dateStart,
       firstDate: DateTime(2016),
       lastDate: DateTime.now().add(new Duration(days: 360 * 5)),
     );
-    // if (picked != null) setState(() => _date = picked);
+    if (pickedStart != null) setState(() => _dateStart = pickedStart);
     _selectDateEnd(context);
   }
 
   Future<Null> _selectDateEnd(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
+    final DateTime? pickedEnd = await showDatePicker(
       context: context,
       helpText: '旅の終わりを指定',
       cancelText: 'キャンセル',
       confirmText: '旅を始める',
-      initialDate: _date,
+      initialDate: _dateEnd,
       firstDate: DateTime(2016),
       lastDate: DateTime.now().add(new Duration(days: 360 * 5)),
     );
-    // if (picked != null) setState(() => _date = picked);
+    if (pickedEnd != null) setState(() => _dateEnd = pickedEnd);
   }
 
   String currentUserName = '';
@@ -90,19 +91,6 @@ class _TimeLinePage extends State {
     });
   }
 
-  Future<Null> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      helpText: '旅の始まりを指定',
-      cancelText: 'キャンセル',
-      confirmText: '旅を始める',
-      initialDate: _date,
-      firstDate: DateTime(2016),
-      lastDate: DateTime.now().add(new Duration(days: 360 * 5)),
-    );
-    if (picked != null) setState(() => _date = picked);
-  }
-
   AudioCache _player = AudioCache();
   bool sounds = false;
 
@@ -125,6 +113,33 @@ class _TimeLinePage extends State {
       currentUserName = snapshot['name'];
       currentUserMail = snapshot['mail'];
       this.uid = uid;
+    });
+  }
+
+  String concept = '';
+  String contents = '';
+
+  Future setTrip() async {
+    final User user = await FirebaseAuth.instance.currentUser!;
+    final String uid = user.uid.toString();
+
+    final snapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('trip')
+        .add({
+      'concept': concept,
+      'data': '$_dateStart ~ $_dateEnd',
+      'imageURL': 'ng;adoshg;osdg;o',
+      'contents': contents,
+    });
+
+    await FirebaseFirestore.instance.collection('timeline').add({
+      'userID': uid,
+      'concept': concept,
+      'data': '$_dateStart ~ $_dateEnd',
+      'imageURL': 'ng;adoshg;osdg;o',
+      'contents': contents,
     });
   }
 
@@ -264,6 +279,9 @@ class _TimeLinePage extends State {
                                               width:
                                                   SizeConfig.screenWidth * 0.8,
                                               child: TextFormField(
+                                                onChanged: (value) {
+                                                  concept = value;
+                                                },
                                                 autofocus: true,
                                                 decoration: InputDecoration(
                                                   labelText:
@@ -298,14 +316,14 @@ class _TimeLinePage extends State {
                                                     children: <Widget>[
                                                       // ignore: unnecessary_brace_in_string_interps
                                                       Text(
-                                                        "開始日：${_date.year}-${_date.month}-${_date.day} ~ ",
+                                                        "開始日：${_dateStart!.year}-${_dateStart!.month}-${_dateStart!.day} ~ ",
                                                         style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 25,
                                                         ),
                                                       ),
                                                       Text(
-                                                        "終了日：${_date.year}-${_date.month}-${_date.day} ~ ",
+                                                        "終了日：${_dateEnd!.year}-${_dateEnd!.month}-${_dateEnd!.day} ~ ",
                                                         style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 25,
@@ -315,7 +333,7 @@ class _TimeLinePage extends State {
                                                   ),
                                                   Spacer(),
                                                   IconButton(
-                                                    onPressed: () {
+                                                    onPressed: () async {
                                                       _selectDateStart(context);
                                                     },
                                                     icon: Icon(
@@ -365,6 +383,9 @@ class _TimeLinePage extends State {
                                                       SizeConfig.screenWidth *
                                                           0.8,
                                                   child: TextField(
+                                                    onChanged: (value) {
+                                                      contents = value;
+                                                    },
                                                     decoration: InputDecoration(
                                                       enabledBorder:
                                                           OutlineInputBorder(
@@ -411,7 +432,10 @@ class _TimeLinePage extends State {
                                                         primary:
                                                             Colors.transparent,
                                                       ),
-                                                      onPressed: () {},
+                                                      onPressed: () async {
+                                                        await setTrip();
+                                                        Navigator.pop(context);
+                                                      },
                                                       child: Text(
                                                         '共有する',
                                                         style: TextStyle(
