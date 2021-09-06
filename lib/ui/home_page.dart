@@ -176,6 +176,20 @@ class _TimeLinePage extends State {
     });
   }
 
+  String documentNum = '';
+
+  Future documentLength() async {
+    final QuerySnapshot documentLength = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('trip')
+        .get();
+    final documents = documentLength.docs.length;
+    setState(() {
+      documentNum = documents.toString();
+    });
+  }
+
   // ページコントローラ
   final PageController controller = PageController(viewportFraction: 0.8);
 
@@ -193,6 +207,7 @@ class _TimeLinePage extends State {
   @override
   Widget build(BuildContext context) {
     getFirestore();
+    documentLength();
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: timelineBackground,
@@ -791,21 +806,16 @@ class _TimeLinePage extends State {
                                             top: SizeConfig.screenHeight * 0.7,
                                             left: SizeConfig.screenWidth * 0.3,
                                             child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Container(
                                                   child: Text(
-                                                    '投稿回数：8回',
+                                                    '投稿回数：$documentNum回',
                                                     style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 30,
                                                     ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  child: Text(
-                                                    'テスト',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
                                                   ),
                                                 ),
                                               ],
