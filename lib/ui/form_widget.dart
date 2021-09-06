@@ -14,27 +14,26 @@ class FormWidget extends StatelessWidget {
       child: Consumer<MainModel>(builder: (context, model, child) {
         return Stack(
           children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 50.0),
-                    child: Container(
-                      child: DotsIndicator(
-                        dotsCount: model.pageLength,
-                        position: model.currentPage,
-                        decorator: DotsDecorator(
-                          activeColor: Colors.white,
-                          activeSize: const Size(15.0, 15.0),
-                          activeShape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0)),
-                        ),
-                      ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  child: DotsIndicator(
+                    dotsCount: model.pageLength,
+                    position: model.currentPage,
+                    decorator: DotsDecorator(
+                      activeColor: Colors.white,
+                      activeSize: const Size(15.0, 15.0),
+                      activeShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0)),
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: SizeConfig.screenHeight * 0.2,
+                )
+              ],
             ),
             PageView.builder(
                 itemCount: model.pages.length,
@@ -43,15 +42,7 @@ class FormWidget extends StatelessWidget {
                   model.ChangePage(index);
                 },
                 itemBuilder: (context, index) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      model.pages[index],
-                      SizedBox(
-                        height: SizeConfig.blockSizeVertical * 15,
-                      )
-                    ],
-                  );
+                  return model.pages[index];
                 }),
           ],
         );

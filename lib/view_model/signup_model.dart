@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class SignUpModel extends ChangeNotifier {
+  DateTime _date = new DateTime.now();
   final _auth = FirebaseAuth.instance;
 
   // 新規会員登録
@@ -72,6 +73,18 @@ class SignUpModel extends ChangeNotifier {
       'mail': newEmail,
       'password': newPassword,
       'createdAt': createdAt,
+    });
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('trip')
+        .doc()
+        .set({
+      'concept': 'さぁ旅を共有しましょう！！',
+      'data': 'あなたの登録日は$_date',
+      'imageURL': 'ng;adoshg;osdg;o',
+      'contents': '今日はキャンプに行きました！！',
     });
   }
 }
