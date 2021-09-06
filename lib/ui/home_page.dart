@@ -61,6 +61,7 @@ class _TimeLinePage extends State {
   // nullable
   // ignore: unused_field
   Image? _img;
+  File? _image;
   String userProfile = '';
   // firestorageに画像を保存する関数
   void upload() async {
@@ -76,6 +77,27 @@ class _TimeLinePage extends State {
     } catch (e) {
       print(e);
     }
+  }
+
+  void tripImageUpload() async {
+// firestorageをインスタンス化
+    FirebaseStorage storage = FirebaseStorage.instance;
+    try {
+      await storage.ref("$uid/$tripDocumentId/$concept").putFile(_image!);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void addTripImage() async {
+    // ImagePickerで写真フォルダを開き、選択した画像をpickerFileに格納
+    final pickerFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    File file = File(pickerFile!.path);
+    setState(() {
+      _image = file;
+    });
   }
 
   Future download() async {
@@ -118,6 +140,7 @@ class _TimeLinePage extends State {
 
   String concept = '';
   String contents = '';
+  String tripDocumentId = '';
 
   Future setTrip() async {
     final User user = await FirebaseAuth.instance.currentUser!;
@@ -140,6 +163,16 @@ class _TimeLinePage extends State {
       'data': '$_dateStart ~ $_dateEnd',
       'imageURL': 'ng;adoshg;osdg;o',
       'contents': contents,
+    });
+    final tripDocument = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('trip')
+        .doc()
+        .id;
+
+    setState(() {
+      tripDocumentId = tripDocumentId.toString();
     });
   }
 
@@ -316,14 +349,14 @@ class _TimeLinePage extends State {
                                                     children: <Widget>[
                                                       // ignore: unnecessary_brace_in_string_interps
                                                       Text(
-                                                        "開始日：${_dateStart!.year}-${_dateStart!.month}-${_dateStart!.day} ~ ",
+                                                        "開始日：${_dateStart.year}-${_dateStart.month}-${_dateStart.day} ~ ",
                                                         style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 25,
                                                         ),
                                                       ),
                                                       Text(
-                                                        "終了日：${_dateEnd!.year}-${_dateEnd!.month}-${_dateEnd!.day} ~ ",
+                                                        "終了日：${_dateEnd.year}-${_dateEnd.month}-${_dateEnd.day} ~ ",
                                                         style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 25,
@@ -364,14 +397,24 @@ class _TimeLinePage extends State {
                                                     border: Border.all(
                                                         color: Colors.white),
                                                   ),
-                                                  child: IconButton(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                      Icons.add,
-                                                      color: Colors.white,
-                                                      size: 30,
-                                                    ),
-                                                  ),
+                                                  child: _image != null
+                                                      ? InkWell(
+                                                          onTap: () {
+                                                            addTripImage();
+                                                          },
+                                                          child: Image.file(
+                                                              _image!),
+                                                        )
+                                                      : IconButton(
+                                                          onPressed: () {
+                                                            addTripImage();
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.add,
+                                                            color: Colors.white,
+                                                            size: 30,
+                                                          ),
+                                                        ),
                                                 ),
                                                 SizedBox(
                                                   height: SizeConfig
@@ -434,6 +477,7 @@ class _TimeLinePage extends State {
                                                       ),
                                                       onPressed: () async {
                                                         await setTrip();
+                                                        tripImageUpload();
                                                         Navigator.pop(context);
                                                       },
                                                       child: Text(
