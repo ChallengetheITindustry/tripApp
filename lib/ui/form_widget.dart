@@ -31,7 +31,7 @@ class FormWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: SizeConfig.screenHeight * 0.2,
+                  height: SizeConfig.screenHeight * 0.15,
                 )
               ],
             ),

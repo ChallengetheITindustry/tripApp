@@ -36,11 +36,11 @@ class Background extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 50,
+          top: 40,
           child: Column(
             children: [
               Container(
-                width: SizeConfig.blockSizeHorizontal * 80,
+                width: SizeConfig.blockSizeHorizontal * 70,
                 child: Image.asset('assets/images/top_image2.png'),
               ),
             ],

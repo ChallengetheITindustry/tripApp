@@ -1,9 +1,12 @@
 // ignore: unused_import
+import 'dart:io';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:tripapp/res/const.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:tripapp/config/config.dart';
 
 class UserEditInfo extends StatefulWidget {
   @override
@@ -30,124 +33,73 @@ class _UserEditInfo extends State {
     });
   }
 
+  File? _image;
+  String userProfile = '';
+  // firestorageに画像を保存する関数
+  void selectProfileImage() async {
+    final User user = await FirebaseAuth.instance.currentUser!;
+    final String uid = user.uid.toString();
+    // ImagePickerで写真フォルダを開き、選択した画像をpickerFileに格納
+    final pickerFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    // pickerFileのpathをFile()に変換し、fileに格納
+    File file = File(pickerFile!.path);
+    setState(() {
+      _image = file;
+    });
+  }
+
+  // firestorageに画像を保存する関数
+  void uploadProfileImage() async {
+    final User user = await FirebaseAuth.instance.currentUser!;
+    final String uid = user.uid.toString();
+
+// firestorageをインスタンス化
+    FirebaseStorage storage = FirebaseStorage.instance;
+    try {
+      await storage.ref("UserProfile/$uid").putFile(_image!);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // _getFirestore();
-    // 幅
-    double width = MediaQuery.of(context).size.width;
-    // 高さ
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          elevation: 2.0,
-          title: Text('ユーザー情報編集'),
-          leading: IconButton(
-            icon: Icon(Icons.backspace),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Stack(
+          children: <Widget>[
+            Center(
+              child: CircleAvatar(
+                // child: _image != null
+                //     ? Image.file(_image!)
+                //     : Icon(Icons.account_circle_rounded),
+                radius: 60.0,
+              ),
+            ),
+            Center(
+              child: RawMaterialButton(
+                onPressed: () async {
+                  selectProfileImage();
+                },
+                child: Container(
+                  width: 120.0, // CircleAvatarのradiusの2倍
+                  height: 120.0,
+                ),
+                shape: new CircleBorder(),
+                elevation: 3.0,
+              ),
+            ),
+          ],
         ),
-        body: Align(
-          //Containerを真ん中に配置する場合、Alignウィジットで囲い、aligment: Aligment.centerと記述する
-          alignment: Alignment.center,
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 10.0,
-                    spreadRadius: 1.0,
-                    offset: Offset(10, 10))
-              ],
-            ),
-            width: width * 0.8,
-            height: height * 0.5,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  width: width * 0.6,
-                  height: height * 0.1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("ユーザー名"),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                              color: formBorderColor,
-                            ),
-                          ),
-                        ),
-                        onChanged: (String value) {
-                          setState(() {
-                            currentUserName = value;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: width * 0.6,
-                  height: height * 0.1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("メールアドレス"),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                              color: formBorderColor,
-                            ),
-                          ),
-                        ),
-                        onChanged: (String value) {
-                          setState(() {});
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                    width: width * 0.6,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 10.0,
-                            spreadRadius: 1.0,
-                            offset: Offset(10, 10))
-                      ],
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        '更新',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(30),
-                            ),
-                          )),
-                    ))
-              ],
-            ),
-          ),
-        ));
+        ElevatedButton(
+            onPressed: () async {
+              uploadProfileImage();
+            },
+            child: Text('更新'))
+      ],
+    ));
   }
 }
