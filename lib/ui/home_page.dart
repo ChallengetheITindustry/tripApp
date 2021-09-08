@@ -1,6 +1,5 @@
 import 'dart:async' show Future;
 import 'dart:io';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,7 +27,7 @@ class _TimeLinePage extends State {
   Future<Null> _selectDateStart(BuildContext context) async {
     final DateTime? pickedStart = await showDatePicker(
       context: context,
-      helpText: '旅の始まりを指定',
+      helpText: '旅の始まり',
       cancelText: 'キャンセル',
       confirmText: '次へ',
       initialDate: _dateStart,
@@ -44,7 +43,7 @@ class _TimeLinePage extends State {
       context: context,
       helpText: '旅の終わりを指定',
       cancelText: 'キャンセル',
-      confirmText: '旅を始める',
+      confirmText: '決定',
       initialDate: _dateEnd,
       firstDate: DateTime(2016),
       lastDate: DateTime.now().add(new Duration(days: 360 * 5)),
@@ -206,12 +205,61 @@ class _TimeLinePage extends State {
   Widget build(BuildContext context) {
     getFirestore();
     documentLength();
+    download();
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: timelineBackground,
         body: Stack(
           children: [
             Container(child: Image.asset('assets/images/moon.png')),
+            Center(
+              child: InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                      //モーダルの背景の色、透過
+                      backgroundColor: Colors.transparent,
+                      //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return Center(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: SizeConfig.blockSizeHorizontal * 20,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black12,
+                                        spreadRadius: 1.0,
+                                        offset: Offset(15, 15))
+                                  ],
+                                ),
+                                child: Text(
+                                  '投稿内容',
+                                  style: GoogleFonts.lobster(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      textStyle: Theme.of(context)
+                                          .textTheme
+                                          .headline4),
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.favorite_border))
+                            ],
+                          ),
+                        );
+                      });
+                },
+                child: Container(
+                    width: SizeConfig.screenWidth * 0.2,
+                    child: Image.asset('assets/images/hukidashimaruleft.png')),
+              ),
+            ),
             Positioned(
               top: SizeConfig.blockSizeVertical * 20,
               left: 50,
@@ -278,266 +326,276 @@ class _TimeLinePage extends State {
                                                       .blockSizeHorizontal *
                                                   20,
                                             ),
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 20.0),
+                                                  child: IconButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                      icon: Icon(
+                                                          Icons.backspace)),
+                                                ),
+                                                Container(
+                                                  width:
+                                                      SizeConfig.screenWidth *
+                                                          0.8,
+                                                  decoration: BoxDecoration(
+                                                    border: const Border(
+                                                      bottom: const BorderSide(
+                                                        color: Colors.white,
+                                                        width: 1,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 20.0),
+                                                    child: Text('旅の日記を書く',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        )),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                             Container(
                                               width:
                                                   SizeConfig.screenWidth * 0.8,
-                                              decoration: BoxDecoration(
-                                                border: const Border(
-                                                  bottom: const BorderSide(
-                                                    color: Colors.white,
-                                                    width: 1,
+                                              child: ListView(
+                                                shrinkWrap: true,
+                                                children: [
+                                                  SizedBox(
+                                                    height: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        10,
                                                   ),
-                                                ),
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    bottom: 20.0),
-                                                child: Text('旅の日記を書く',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    )),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: SizeConfig
-                                                      .blockSizeHorizontal *
-                                                  10,
-                                            ),
-                                            ListView(
-                                              shrinkWrap: true,
-                                              children: [
-                                                Container(
-                                                  child: Text(
-                                                    'どんな旅だった？',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: SizeConfig
-                                                          .blockSizeHorizontal *
-                                                      10,
-                                                ),
-                                                Container(
-                                                  width:
-                                                      SizeConfig.screenWidth *
-                                                          0.8,
-                                                  child: TextFormField(
-                                                    onChanged: (value) {
-                                                      concept = value;
-                                                    },
-                                                    autofocus: true,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          'ex：過酷？青春18きっぷで日本一周の旅！',
-                                                      labelStyle: TextStyle(
-                                                          color:
-                                                              formBorderColor),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: Colors.white,
-                                                        ),
+                                                  Center(
+                                                    child: Text(
+                                                      'どんな旅だった？',
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                    ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: SizeConfig
-                                                          .blockSizeHorizontal *
-                                                      10,
-                                                ),
-                                                Container(
-                                                  width:
-                                                      SizeConfig.screenWidth *
-                                                          0.8,
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Column(
-                                                        children: <Widget>[
-                                                          // ignore: unnecessary_brace_in_string_interps
-                                                          Text(
-                                                            "開始日：${_dateStart.year}-${_dateStart.month}-${_dateStart.day} ~ ",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 25,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            "終了日：${_dateEnd.year}-${_dateEnd.month}-${_dateEnd.day} ~ ",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 25,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Spacer(),
-                                                      IconButton(
-                                                        onPressed: () async {
-                                                          _selectDateStart(
-                                                              context);
-                                                        },
-                                                        icon: Icon(
-                                                          Icons.timer,
-                                                          color: Colors.white,
-                                                          size: 40,
-                                                        ),
-                                                      )
-                                                    ],
+                                                  SizedBox(
+                                                    height: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        10,
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: SizeConfig
-                                                          .blockSizeHorizontal *
-                                                      10,
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Container(
-                                                      width: SizeConfig
-                                                              .screenWidth *
-                                                          0.5,
-                                                      height: SizeConfig
-                                                              .screenHeight *
-                                                          0.15,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Colors.transparent,
-                                                        border: Border.all(
+                                                  Container(
+                                                    child: TextFormField(
+                                                      onChanged: (value) {
+                                                        concept = value;
+                                                      },
+                                                      autofocus: true,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        labelText:
+                                                            'ex：過酷？青春18きっぷで日本一周の旅！',
+                                                        labelStyle: TextStyle(
                                                             color:
-                                                                Colors.white),
+                                                                formBorderColor),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
                                                       ),
-                                                      child: _image != null
-                                                          ? InkWell(
-                                                              onTap: () {
-                                                                addTripImage();
-                                                              },
-                                                              child: Image.file(
-                                                                  _image!),
-                                                            )
-                                                          : IconButton(
-                                                              onPressed: () {
-                                                                addTripImage();
-                                                              },
-                                                              icon: Icon(
-                                                                Icons.add,
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        10,
+                                                  ),
+                                                  Container(
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Column(
+                                                          children: <Widget>[
+                                                            // ignore: unnecessary_brace_in_string_interps
+                                                            Text(
+                                                              "始まり：${_dateStart.year}-${_dateStart.month}-${_dateStart.day} ~ ",
+                                                              style: TextStyle(
                                                                 color: Colors
                                                                     .white,
-                                                                size: 30,
+                                                                fontSize: 20,
                                                               ),
                                                             ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: SizeConfig
-                                                              .blockSizeHorizontal *
-                                                          10,
-                                                    ),
-                                                    Container(
-                                                      width: SizeConfig
-                                                              .screenWidth *
-                                                          0.8,
-                                                      child: TextField(
-                                                        onChanged: (value) {
-                                                          contents = value;
-                                                        },
-                                                        decoration:
-                                                            InputDecoration(
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color:
-                                                                  Colors.white,
+                                                            Text(
+                                                              "終わり：${_dateEnd.year}-${_dateEnd.month}-${_dateEnd.day} ~ ",
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 20,
+                                                              ),
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: SizeConfig
-                                                              .blockSizeHorizontal *
-                                                          10,
-                                                    ),
-                                                    IconButton(
-                                                        onPressed: () {},
-                                                        icon: Icon(
-                                                          Icons.add,
-                                                          color: Colors.white,
-                                                        )),
-                                                    SizedBox(
-                                                      height: SizeConfig
-                                                              .blockSizeHorizontal *
-                                                          10,
-                                                    ),
-                                                    Container(
-                                                      width: SizeConfig
-                                                              .screenWidth *
-                                                          0.6,
-                                                      height: SizeConfig
-                                                              .screenHeight *
-                                                          0.05,
-                                                      child: ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            side: BorderSide(
-                                                              color: Colors
-                                                                  .white, //枠線!
-                                                              width: 1, //枠線！
-                                                            ),
-                                                            primary: Colors
-                                                                .transparent,
-                                                          ),
+                                                        IconButton(
                                                           onPressed: () async {
-                                                            await setTrip();
-                                                            tripImageUpload();
-                                                            Navigator.pop(
+                                                            _selectDateStart(
                                                                 context);
                                                           },
-                                                          child: Text(
-                                                            '共有する',
-                                                            style: TextStyle(
+                                                          icon: Icon(
+                                                            Icons.timer,
+                                                            color: Colors.white,
+                                                            size: 50,
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        10,
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                        width: SizeConfig
+                                                                .screenWidth *
+                                                            0.5,
+                                                        height: SizeConfig
+                                                                .screenHeight *
+                                                            0.15,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors
+                                                              .transparent,
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        child: _image != null
+                                                            ? InkWell(
+                                                                onTap: () {
+                                                                  addTripImage();
+                                                                },
+                                                                child:
+                                                                    Image.file(
+                                                                        _image!),
+                                                              )
+                                                            : IconButton(
+                                                                onPressed: () {
+                                                                  addTripImage();
+                                                                },
+                                                                icon: Icon(
+                                                                  Icons.add,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  size: 30,
+                                                                ),
+                                                              ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: SizeConfig
+                                                                .blockSizeHorizontal *
+                                                            10,
+                                                      ),
+                                                      Container(
+                                                        width: SizeConfig
+                                                                .screenWidth *
+                                                            0.8,
+                                                        child: TextField(
+                                                          onChanged: (value) {
+                                                            contents = value;
+                                                          },
+                                                          decoration:
+                                                              InputDecoration(
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
                                                                 color: Colors
-                                                                    .white),
-                                                          )),
-                                                    ),
-                                                    TextButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: Text(
-                                                          '戻る',
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          ),
                                                           style: TextStyle(
-                                                              color: Colors
-                                                                  .grey[400]),
-                                                        )),
-                                                    SizedBox(
-                                                      height: SizeConfig
-                                                              .blockSizeHorizontal *
-                                                          50,
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: SizeConfig
+                                                                .blockSizeHorizontal *
+                                                            10,
+                                                      ),
+                                                      IconButton(
+                                                          onPressed: () {},
+                                                          icon: Icon(
+                                                            Icons.add,
+                                                            color: Colors.white,
+                                                          )),
+                                                      SizedBox(
+                                                        height: SizeConfig
+                                                                .blockSizeHorizontal *
+                                                            10,
+                                                      ),
+                                                      Container(
+                                                        width: SizeConfig
+                                                                .screenWidth *
+                                                            0.6,
+                                                        height: SizeConfig
+                                                                .screenHeight *
+                                                            0.05,
+                                                        child: ElevatedButton(
+                                                            style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                              side: BorderSide(
+                                                                color: Colors
+                                                                    .white, //枠線!
+                                                                width: 1, //枠線！
+                                                              ),
+                                                              primary: Colors
+                                                                  .transparent,
+                                                            ),
+                                                            onPressed:
+                                                                () async {
+                                                              await setTrip();
+                                                              tripImageUpload();
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child: Text(
+                                                              '投稿',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            )),
+                                                      ),
+                                                      SizedBox(
+                                                        height: SizeConfig
+                                                                .blockSizeHorizontal *
+                                                            50,
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
                                             )
                                           ],
                                         ),
@@ -968,6 +1026,24 @@ class _TimeLinePage extends State {
                                                       launch(
                                                           'https://polyester-clave-a16.notion.site/6664b852b1c34ecb98774711566e4c29');
                                                     },
+                                                  ),
+                                                ),
+                                                Container(
+                                                  height: 80,
+                                                  child: ListTile(
+                                                    leading: Icon(
+                                                      Icons.rule,
+                                                      color: Colors.white,
+                                                    ),
+                                                    title: Text(
+                                                      "このアプリについて",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 17),
+                                                    ),
+                                                    contentPadding:
+                                                        EdgeInsets.all(10.0),
+                                                    onTap: () {},
                                                   ),
                                                 ),
                                                 Container(

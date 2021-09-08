@@ -85,6 +85,16 @@ class SignUpModel extends ChangeNotifier {
       'data': 'あなたの登録日は$_date',
       'imageURL': 'ng;adoshg;osdg;o',
       'contents': '今日はキャンプに行きました！！',
+      'ID': 'f;agnof;saf',
+    });
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('favorite')
+        .doc()
+        .set({
+      'like': 'さぁ旅を共有しましょう！！',
     });
   }
 }
