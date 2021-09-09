@@ -138,10 +138,13 @@ class _TimeLinePage extends State {
   String concept = '';
   String contents = '';
   String tripDocumentId = '';
+  String ID = '';
 
   Future setTrip() async {
     final User user = await FirebaseAuth.instance.currentUser!;
     final String uid = user.uid.toString();
+
+    // 自動で生成するIDを設定する
 
     final snapshot = await FirebaseFirestore.instance
         .collection('users')
@@ -152,6 +155,7 @@ class _TimeLinePage extends State {
       'data': '$_dateStart ~ $_dateEnd',
       'imageURL': 'ng;adoshg;osdg;o',
       'contents': contents,
+      'ID': ID,
     });
 
     await FirebaseFirestore.instance.collection('timeline').add({
@@ -186,20 +190,6 @@ class _TimeLinePage extends State {
       documentNum = documents.toString();
     });
   }
-
-  // ページコントローラ
-  final PageController controller = PageController(viewportFraction: 0.8);
-
-  // ページインデックス
-  int currentPage = 0;
-
-  // データ
-  List<String> _imageList = [
-    "images/card_back.png",
-    "images/card_j.png",
-    "images/card_q.png",
-    "images/card_k.png",
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -326,47 +316,29 @@ class _TimeLinePage extends State {
                                                       .blockSizeHorizontal *
                                                   20,
                                             ),
-                                            Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 20.0),
-                                                  child: IconButton(
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      icon: Icon(
-                                                          Icons.backspace)),
-                                                ),
-                                                Container(
-                                                  width:
-                                                      SizeConfig.screenWidth *
-                                                          0.8,
-                                                  decoration: BoxDecoration(
-                                                    border: const Border(
-                                                      bottom: const BorderSide(
-                                                        color: Colors.white,
-                                                        width: 1,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            bottom: 20.0),
-                                                    child: Text('旅の日記を書く',
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        )),
+                                            Container(
+                                              width:
+                                                  SizeConfig.screenWidth * 0.8,
+                                              decoration: BoxDecoration(
+                                                border: const Border(
+                                                  bottom: const BorderSide(
+                                                    color: Colors.white,
+                                                    width: 1,
                                                   ),
                                                 ),
-                                              ],
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    bottom: 20.0),
+                                                child: Text('旅の日記を書く',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    )),
+                                              ),
                                             ),
                                             Container(
                                               width:
@@ -432,6 +404,9 @@ class _TimeLinePage extends State {
                                                               .center,
                                                       children: [
                                                         Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: <Widget>[
                                                             // ignore: unnecessary_brace_in_string_interps
                                                             Text(
@@ -460,7 +435,7 @@ class _TimeLinePage extends State {
                                                           icon: Icon(
                                                             Icons.timer,
                                                             color: Colors.white,
-                                                            size: 50,
+                                                            size: 40,
                                                           ),
                                                         )
                                                       ],
@@ -471,128 +446,70 @@ class _TimeLinePage extends State {
                                                             .blockSizeHorizontal *
                                                         10,
                                                   ),
-                                                  Column(
-                                                    children: [
-                                                      Container(
-                                                        width: SizeConfig
-                                                                .screenWidth *
-                                                            0.5,
-                                                        height: SizeConfig
-                                                                .screenHeight *
-                                                            0.15,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors
-                                                              .transparent,
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.white),
-                                                        ),
-                                                        child: _image != null
-                                                            ? InkWell(
-                                                                onTap: () {
-                                                                  addTripImage();
-                                                                },
-                                                                child:
-                                                                    Image.file(
-                                                                        _image!),
-                                                              )
-                                                            : IconButton(
-                                                                onPressed: () {
-                                                                  addTripImage();
-                                                                },
-                                                                icon: Icon(
-                                                                  Icons.add,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  size: 30,
-                                                                ),
-                                                              ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: SizeConfig
-                                                                .blockSizeHorizontal *
-                                                            10,
-                                                      ),
-                                                      Container(
-                                                        width: SizeConfig
-                                                                .screenWidth *
-                                                            0.8,
-                                                        child: TextField(
-                                                          onChanged: (value) {
-                                                            contents = value;
-                                                          },
-                                                          decoration:
-                                                              InputDecoration(
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                            ),
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: Colors.white),
+                                                    ),
+                                                    child: ConstrainedBox(
+                                                      constraints:
+                                                          BoxConstraints(
+                                                              maxHeight: 500),
+                                                      child: Scrollbar(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 8.0,
+                                                                  right: 8.0),
+                                                          child: TextField(
+                                                            maxLines: 100,
+                                                            minLines: 10,
                                                           ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        10,
+                                                  ),
+                                                  Container(
+                                                    width:
+                                                        SizeConfig.screenWidth *
+                                                            0.6,
+                                                    height: SizeConfig
+                                                            .screenHeight *
+                                                        0.05,
+                                                    child: ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          side: BorderSide(
+                                                            color: Colors
+                                                                .white, //枠線!
+                                                            width: 1, //枠線！
+                                                          ),
+                                                          primary: Colors
+                                                              .transparent,
+                                                        ),
+                                                        onPressed: () async {
+                                                          // await setTrip();
+                                                          // tripImageUpload();
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Text(
+                                                          '投稿',
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.white),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: SizeConfig
-                                                                .blockSizeHorizontal *
-                                                            10,
-                                                      ),
-                                                      IconButton(
-                                                          onPressed: () {},
-                                                          icon: Icon(
-                                                            Icons.add,
-                                                            color: Colors.white,
-                                                          )),
-                                                      SizedBox(
-                                                        height: SizeConfig
-                                                                .blockSizeHorizontal *
-                                                            10,
-                                                      ),
-                                                      Container(
-                                                        width: SizeConfig
-                                                                .screenWidth *
-                                                            0.6,
-                                                        height: SizeConfig
-                                                                .screenHeight *
-                                                            0.05,
-                                                        child: ElevatedButton(
-                                                            style:
-                                                                ElevatedButton
-                                                                    .styleFrom(
-                                                              side: BorderSide(
-                                                                color: Colors
-                                                                    .white, //枠線!
-                                                                width: 1, //枠線！
-                                                              ),
-                                                              primary: Colors
-                                                                  .transparent,
-                                                            ),
-                                                            onPressed:
-                                                                () async {
-                                                              await setTrip();
-                                                              tripImageUpload();
-                                                              Navigator.pop(
-                                                                  context);
-                                                            },
-                                                            child: Text(
-                                                              '投稿',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white),
-                                                            )),
-                                                      ),
-                                                      SizedBox(
-                                                        height: SizeConfig
-                                                                .blockSizeHorizontal *
-                                                            50,
-                                                      ),
-                                                    ],
+                                                        )),
+                                                  ),
+                                                  SizedBox(
+                                                    height: SizeConfig
+                                                            .blockSizeHorizontal *
+                                                        50,
                                                   )
                                                 ],
                                               ),
@@ -663,6 +580,7 @@ class _TimeLinePage extends State {
                                 size: 30,
                               )),
                           IconButton(
+                              // ユーザー情報画面
                               onPressed: () {
                                 showModalBottomSheet(
                                     //モーダルの背景の色、透過
@@ -671,189 +589,115 @@ class _TimeLinePage extends State {
                                     isScrollControlled: true,
                                     context: context,
                                     builder: (BuildContext context) {
-                                      return Stack(
+                                      return Column(
                                         children: [
-                                          // Column(
-                                          //   children: [
-                                          //     Container(
-                                          //       width: SizeConfig.screenWidth,
-                                          //       height: SizeConfig
-                                          //               .blockSizeVertical *
-                                          //           35,
-                                          //       decoration: BoxDecoration(
-                                          //         border: Border.all(
-                                          //             color:
-                                          //                 Colors.transparent),
-                                          //         color: timelineBackground,
-                                          //         borderRadius:
-                                          //             const BorderRadius.only(
-                                          //           bottomLeft:
-                                          //               Radius.circular(150),
-                                          //         ),
-                                          //         boxShadow: [
-                                          //           BoxShadow(
-                                          //               color: Colors.black12,
-                                          //               blurRadius: 15.0,
-                                          //               spreadRadius: 1.0,
-                                          //               offset: Offset(10, 10))
-                                          //         ],
-                                          //       ),
-                                          //     ),
-                                          //   ],
-                                          // ),
-                                          Container(
+                                          SizedBox(
                                             height:
-                                                SizeConfig.screenHeight * 0.4,
-                                            child: Stack(
-                                              children: [
-                                                // Container(
-                                                //     width: SizeConfig.screenWidth * 0.5,
-                                                //     decoration: BoxDecoration(
-                                                //       color: Colors.blue,
-                                                //       shape: BoxShape.circle,
-                                                //     )),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: SizeConfig
-                                                              .blockSizeVertical *
-                                                          5,
-                                                    ),
-                                                    Stack(
-                                                      children: <Widget>[
-                                                        Center(
-                                                          child: CircleAvatar(
-                                                            backgroundImage:
-                                                                NetworkImage(
-                                                                    userProfile),
-                                                            radius: 60.0,
-                                                          ),
-                                                        ),
-                                                        Center(
-                                                          child:
-                                                              RawMaterialButton(
-                                                            onPressed:
-                                                                () async {
-                                                              upload();
-                                                            },
-                                                            child: Container(
-                                                              width:
-                                                                  120.0, // CircleAvatarのradiusの2倍
-                                                              height: 120.0,
-                                                            ),
-                                                            shape:
-                                                                new CircleBorder(),
-                                                            elevation: 3.0,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: SizeConfig
-                                                              .blockSizeVertical *
-                                                          2,
-                                                    ),
-                                                    Container(
-                                                      width: SizeConfig
-                                                              .screenWidth *
-                                                          0.6,
-                                                      child: Column(
-                                                        children: [
-                                                          Column(
-                                                            children: [
-                                                              Container(
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    boxShadow: [
-                                                                      BoxShadow(
-                                                                          color: Colors
-                                                                              .black12,
-                                                                          spreadRadius:
-                                                                              0,
-                                                                          offset: Offset(
-                                                                              15,
-                                                                              15))
-                                                                    ],
-                                                                  ),
-                                                                  child: Text(
-                                                                    // ログインユーザーの名前を表示
-                                                                    currentUserName,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontSize:
-                                                                          30,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      color: Colors
-                                                                          .white,
-                                                                    ),
-                                                                  )),
-                                                              SizedBox(
-                                                                height: SizeConfig
-                                                                        .blockSizeVertical *
-                                                                    2,
-                                                              ),
-                                                              Container(
-                                                                child: Text(
-                                                                  // ログインユーザーのメールアドレスを表示
-                                                                  currentUserMail,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
-                                                                ),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
+                                                SizeConfig.screenHeight * 0.1,
+                                          ),
+                                          Stack(
+                                            children: <Widget>[
+                                              Center(
+                                                child: CircleAvatar(
+                                                  backgroundImage:
+                                                      NetworkImage(userProfile),
+                                                  radius: 60.0,
                                                 ),
-                                              ],
+                                              ),
+                                              Center(
+                                                child: RawMaterialButton(
+                                                  onPressed: () async {
+                                                    upload();
+                                                  },
+                                                  child: Container(
+                                                    width:
+                                                        120.0, // CircleAvatarのradiusの2倍
+                                                    height: 120.0,
+                                                  ),
+                                                  shape: new CircleBorder(),
+                                                  elevation: 3.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    2,
+                                          ),
+                                          Container(
+                                              decoration: BoxDecoration(
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                      color: Colors.black12,
+                                                      spreadRadius: 0,
+                                                      offset: Offset(15, 15))
+                                                ],
+                                              ),
+                                              child: Text(
+                                                // ログインユーザーの名前を表示
+                                                currentUserName,
+                                                style: TextStyle(
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.white,
+                                                ),
+                                              )),
+                                          SizedBox(
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    2,
+                                          ),
+                                          Container(
+                                            child: Text(
+                                              // ログインユーザーのメールアドレスを表示
+                                              currentUserMail,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
-                                          PageView.builder(
-                                            controller: controller,
-                                            itemCount: _imageList.length,
-                                            itemBuilder:
-                                                (context, int currentIndex) {
-                                              // カードの生成して返す
-                                              return Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Container(
-                                                    width:
-                                                        SizeConfig.screenWidth *
-                                                            0.7,
-                                                    decoration: BoxDecoration(
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                            color:
-                                                                Colors.black12,
-                                                            blurRadius: 15.0,
-                                                            spreadRadius: 1.0,
-                                                            offset:
-                                                                Offset(10, 10))
-                                                      ],
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                      child: Image.network(
-                                                          'https://images.unsplash.com/photo-1472740378865-80aab8e73251?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'),
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            },
+                                          SizedBox(
+                                            height:
+                                                SizeConfig.screenHeight * 0.1,
                                           ),
+                                          // PageView.builder(
+                                          //   controller: controller,
+                                          //   itemCount: _imageList.length,
+                                          //   itemBuilder:
+                                          //       (context, int currentIndex) {
+                                          //     // カードの生成して返す
+                                          //     return Column(
+                                          //       mainAxisAlignment:
+                                          //           MainAxisAlignment.center,
+                                          //       children: [
+                                          //         Container(
+                                          //           width:
+                                          //               SizeConfig.screenWidth *
+                                          //                   0.7,
+                                          //           decoration: BoxDecoration(
+                                          //             boxShadow: [
+                                          //               BoxShadow(
+                                          //                   color:
+                                          //                       Colors.black12,
+                                          //                   blurRadius: 15.0,
+                                          //                   spreadRadius: 1.0,
+                                          //                   offset:
+                                          //                       Offset(10, 10))
+                                          //             ],
+                                          //           ),
+                                          //           child: ClipRRect(
+                                          //             borderRadius:
+                                          //                 BorderRadius.circular(
+                                          //                     20.0),
+                                          //             child: Image.network(
+                                          //                 'https://images.unsplash.com/photo-1472740378865-80aab8e73251?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80'),
+                                          //           ),
+                                          //         ),
+                                          //       ],
+                                          //     );
+                                          //   },
+                                          // ),
                                           Positioned(
                                             top: SizeConfig.screenHeight * 0.7,
                                             left: SizeConfig.screenWidth * 0.3,
