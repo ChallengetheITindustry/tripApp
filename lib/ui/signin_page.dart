@@ -118,7 +118,7 @@ class LoginPageForm extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      'メール・パスワードを忘れた場合',
+                      'パスワードを忘れた場合はこちら',
                       style: TextStyle(fontSize: 13),
                     )),
                 Container(

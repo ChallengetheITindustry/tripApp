@@ -51,7 +51,7 @@ class MailPasswordResetPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: SizeConfig.screenHeight * 0.1,
+                        height: SizeConfig.screenHeight * 0.07,
                       ),
                       Container(
                         width: SizeConfig.screenWidth * 0.8,
@@ -64,8 +64,12 @@ class MailPasswordResetPage extends StatelessWidget {
                       Container(
                           width: SizeConfig.screenWidth * 0.8,
                           child: TextFormField(
+                            onChanged: (value) {
+                              model.mail = value;
+                            },
                             decoration: InputDecoration(
                               hintText: "test@sample.com",
+                              hintStyle: TextStyle(color: Colors.white),
                             ),
                           )),
                       SizedBox(
@@ -83,7 +87,58 @@ class MailPasswordResetPage extends StatelessWidget {
                               horizontal: 100,
                             ),
                           ),
-                          onPressed: () async {},
+                          onPressed: () async {
+                            try {
+                              await model.auth
+                                  .sendPasswordResetEmail(email: model.mail);
+
+                              return showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return AlertDialog(
+                                    title: Text("メールを送信しました。"),
+                                    actions: <Widget>[
+                                      // ボタン領域
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: timelineBackground,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                        ),
+                                        child: Text("閉じる"),
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            } catch (e) {
+                              return showDialog(
+                                context: context,
+                                builder: (_) {
+                                  return AlertDialog(
+                                    title: Text(e.toString()),
+                                    actions: <Widget>[
+                                      // ボタン領域
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: timelineBackground,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                        ),
+                                        child: Text("閉じる"),
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
+                          },
                           child: Text(
                             'パスワードを確認',
                             style: TextStyle(
