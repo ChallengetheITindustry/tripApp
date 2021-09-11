@@ -133,6 +133,25 @@ class createTripDiary extends StatelessWidget {
                                   height: SizeConfig.blockSizeHorizontal * 10,
                                 ),
                                 Container(
+                                  width: SizeConfig.screenWidth * 0.3,
+                                  height: SizeConfig.screenHeight * 0.12,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.white),
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: SizeConfig.blockSizeHorizontal * 10,
+                                ),
+                                Container(
                                   decoration: BoxDecoration(
                                     border: Border.all(color: Colors.white),
                                   ),

@@ -108,6 +108,12 @@ class LoginPageForm extends StatelessWidget {
                     ],
                   ),
                 ),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'メール・パスワードを忘れた場合',
+                      style: TextStyle(fontSize: 13),
+                    )),
                 Container(
                     width: SizeConfig.screenWidth * 0.6,
                     height: SizeConfig.blockSizeVertical * 6,

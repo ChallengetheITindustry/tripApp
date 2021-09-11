@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tripapp/config/config.dart';
 import 'package:tripapp/ui/form_widget.dart';
 import 'package:tripapp/ui/background_widget.dart';
+import 'package:tripapp/config/config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

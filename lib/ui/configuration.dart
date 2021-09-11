@@ -118,7 +118,6 @@ class ConfigPage extends StatelessWidget {
                                   ),
                                   contentPadding: EdgeInsets.all(10.0),
                                   onTap: () {
-                                    Navigator.pop(context);
                                     showModalBottomSheet(
                                         //モーダルの背景の色、透過
                                         backgroundColor: Colors.transparent,
