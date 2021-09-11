@@ -1,17 +1,11 @@
 // リファクタリングする
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/config/config.dart';
-import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/test.dart';
-import 'package:tripapp/ui/user_edit_info.dart';
 import 'package:tripapp/view_model/user_profile_model.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../main.dart';
 
 class UserProfilePage2 extends StatefulWidget {
   @override
@@ -46,12 +40,6 @@ class UserProfilePage12 extends State {
   int currentPage = 0;
 
   // データ
-  List<String> _imageList = [
-    "images/card_back.png",
-    "images/card_j.png",
-    "images/card_q.png",
-    "images/card_k.png",
-  ];
 
   @override
   Widget build(BuildContext context) {

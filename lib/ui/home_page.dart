@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
+import 'package:tripapp/ui/user_profile.dart';
 import 'package:tripapp/view_model/home_model.dart';
 import 'dart:core';
 import 'configuration.dart';
@@ -21,7 +22,9 @@ class HomePage extends StatelessWidget {
             backgroundColor: timelineBackground,
             body: Stack(
               children: [
+                // 月の画像
                 Container(child: Image.asset('assets/images/moon.png')),
+                // 中央の文言
                 Positioned(
                   top: SizeConfig.blockSizeVertical * 20,
                   left: 50,
@@ -48,6 +51,7 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
+                // 中央の画像
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -68,12 +72,13 @@ class HomePage extends StatelessWidget {
                                   offset: Offset(10, 10))
                             ],
                           ),
+                          // 中央下のボタン一覧
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               createTripDiary(),
                               FavoriteDiary(),
-                              // UserProfilePage(),
+                              UserProfilePage(),
                               ConfigPage(),
                             ],
                           )),

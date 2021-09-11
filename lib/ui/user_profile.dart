@@ -7,12 +7,16 @@ import 'package:tripapp/view_model/user_profile_model.dart';
 class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final UserProfileModel data = Provider.of<UserProfileModel>(context);
-    data.getFirestore();
-    data.documentLength();
-    data.download();
+    // final UserProfileModel data = Provider.of<UserProfileModel>(context);
+    // data.getFirestore();
+    // data.documentLength();
+    // data.download();
+
     return ChangeNotifierProvider<UserProfileModel>(
-      create: (_) => UserProfileModel(),
+      create: (_) => UserProfileModel()
+        ..documentLength()
+        ..download()
+        ..getFirestore(),
       child: Consumer<UserProfileModel>(builder: (context, model, child) {
         return IconButton(
             // ユーザー情報画面
@@ -147,11 +151,6 @@ class UserProfilePage extends StatelessWidget {
                       ],
                     );
                   });
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => UserProfilePage2()),
-              // );
             },
             icon: Icon(
               Icons.account_circle,

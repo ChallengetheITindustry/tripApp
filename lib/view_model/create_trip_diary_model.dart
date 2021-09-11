@@ -1,17 +1,12 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class CreateTripDiaryModel extends ChangeNotifier {
   String concept = '';
   String contents = '';
   String tripDocumentId = '';
   String ID = '';
-  Image? _image;
 
   DateTime dateStart = new DateTime.now();
   DateTime dateEnd = new DateTime.now();

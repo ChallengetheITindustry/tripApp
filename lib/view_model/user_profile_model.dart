@@ -39,10 +39,10 @@ class UserProfileModel extends ChangeNotifier {
       String imageUrl = await imageRef.getDownloadURL();
 
       userProfile = imageUrl.toString();
-      notifyListeners();
     } else {
       return;
     }
+    notifyListeners();
   }
 
   // ignore: unused_element
