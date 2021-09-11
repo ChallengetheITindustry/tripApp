@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/ui/user_edit_info.dart';
+import 'package:tripapp/ui/user_info_edit.dart';
 import 'package:tripapp/view_model/config_page_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -78,7 +79,8 @@ class ConfigPage extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => UserEditInfo()),
+                                          builder: (context) =>
+                                              UserInfoEditPage()),
                                     );
                                   },
                                 ),

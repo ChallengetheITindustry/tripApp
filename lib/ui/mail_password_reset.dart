@@ -44,7 +44,7 @@ class MailPasswordResetPage extends StatelessWidget {
                         height: SizeConfig.screenHeight * 0.1,
                       ),
                       Text(
-                        'パスワード再設定メールを送信',
+                        'パスワード再設定',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -140,7 +140,7 @@ class MailPasswordResetPage extends StatelessWidget {
                             }
                           },
                           child: Text(
-                            'パスワードを確認',
+                            'メールを送信',
                             style: TextStyle(
                                 color: timelineBackground, fontSize: 15),
                           ))
