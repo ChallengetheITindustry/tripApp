@@ -29,6 +29,7 @@ dependencies:
   video_player: ^2.1.14
   audioplayers: ^0.19.1
   flutter_markdown: ^0.6.6
+  flushbar: ^1.10.4
 
 dev_dependencies:
   flutter_test:
