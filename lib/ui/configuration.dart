@@ -7,6 +7,7 @@ import 'package:tripapp/ui/user_edit_info.dart';
 import 'package:tripapp/ui/user_info_edit.dart';
 import 'package:tripapp/view_model/config_page_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
 import '../main.dart';
 
@@ -110,7 +111,49 @@ class ConfigPage extends StatelessWidget {
                                 height: 80,
                                 child: ListTile(
                                   leading: Icon(
-                                    Icons.rule,
+                                    EvaIcons.twitter,
+                                    color: Colors.white,
+                                  ),
+                                  title: Text(
+                                    "運営公式Twitter",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17),
+                                  ),
+                                  contentPadding: EdgeInsets.all(10.0),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    launch(
+                                        'https://twitter.com/taisei59119317');
+                                    // https://forms.gle/bJndj6BKZbKiFSgi9
+                                  },
+                                ),
+                              ),
+                              Container(
+                                height: 80,
+                                child: ListTile(
+                                  leading: Icon(
+                                    Icons.share,
+                                    color: Colors.white,
+                                  ),
+                                  title: Text(
+                                    "アプリをシェアする",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17),
+                                  ),
+                                  contentPadding: EdgeInsets.all(10.0),
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    launch(
+                                        'https://twitter.com/taisei59119317');
+                                    // https://forms.gle/bJndj6BKZbKiFSgi9
+                                  },
+                                ),
+                              ),
+                              Container(
+                                height: 80,
+                                child: ListTile(
+                                  leading: Icon(
+                                    Icons.ad_units,
                                     color: Colors.white,
                                   ),
                                   title: Text(
@@ -120,6 +163,7 @@ class ConfigPage extends StatelessWidget {
                                   ),
                                   contentPadding: EdgeInsets.all(10.0),
                                   onTap: () {
+                                    Navigator.pop(context);
                                     showModalBottomSheet(
                                         //モーダルの背景の色、透過
                                         backgroundColor: Colors.transparent,
@@ -175,7 +219,34 @@ class ConfigPage extends StatelessWidget {
                                                       height: 80,
                                                       child: ListTile(
                                                         leading: Icon(
-                                                          Icons.book,
+                                                          Icons
+                                                              .add_alert_outlined,
+                                                          color: Colors.white,
+                                                        ),
+                                                        title: Text(
+                                                          "お知らせ",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 17),
+                                                        ),
+                                                        contentPadding:
+                                                            EdgeInsets.all(
+                                                                10.0),
+                                                        onTap: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                          launch(
+                                                              'https://polyester-clave-a16.notion.site/10b6e2bb52af49e1a051e0f44b5c2408');
+                                                        },
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height: 80,
+                                                      child: ListTile(
+                                                        leading: Icon(
+                                                          Icons
+                                                              .rule_folder_outlined,
                                                           color: Colors.white,
                                                         ),
                                                         title: Text(
@@ -200,7 +271,7 @@ class ConfigPage extends StatelessWidget {
                                                       height: 80,
                                                       child: ListTile(
                                                         leading: Icon(
-                                                          Icons.rule,
+                                                          Icons.group_rounded,
                                                           color: Colors.white,
                                                         ),
                                                         title: Text(
