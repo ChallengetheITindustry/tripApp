@@ -101,14 +101,14 @@ class createTripDiary extends StatelessWidget {
                                         children: <Widget>[
                                           // ignore: unnecessary_brace_in_string_interps
                                           Text(
-                                            "始まり：${model.dateStart.year}-${model.dateStart.month}-${model.dateStart.day} ~ ",
+                                            "From：${model.dateStart.year}-${model.dateStart.month}-${model.dateStart.day} ~ ",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 20,
                                             ),
                                           ),
                                           Text(
-                                            "終わり：${model.dateEnd.year}-${model.dateEnd.month}-${model.dateEnd.day} ~ ",
+                                            "To：${model.dateEnd.year}-${model.dateEnd.month}-${model.dateEnd.day} ~ ",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 20,
@@ -142,10 +142,11 @@ class createTripDiary extends StatelessWidget {
                                       child: Padding(
                                         padding: const EdgeInsets.only(
                                             left: 8.0, right: 8.0),
-                                        child: TextField(
+                                        child: TextFormField(
+                                          style: TextStyle(color: Colors.white),
                                           decoration: InputDecoration(
-                                            labelStyle:
-                                                TextStyle(color: Colors.white),
+                                            labelStyle: TextStyle(
+                                                color: formBorderColor),
                                           ),
                                           maxLines: 100,
                                           minLines: 10,
