@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -11,6 +10,40 @@ class UserProfileModel extends ChangeNotifier {
   String currentUserMail = '';
   String uid = '';
   // nullable
+  // ignore: unused_field
+  Image? _img;
+  String userProfile = '';
+
+  // firestorageに画像を保存する関数
+  void upload() async {
+    // ImagePickerで写真フォルダを開き、選択した画像をpickerFileに格納
+    final pickerFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    // pickerFileのpathをFile()に変換し、fileに格納
+    File file = File(pickerFile!.path);
+// firestorageをインスタンス化
+    FirebaseStorage storage = FirebaseStorage.instance;
+    try {
+      await storage.ref("UserProfile/$uid").putFile(file);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future download() async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+
+    // 画像
+    Reference imageRef = storage.ref().child("UserProfile").child("$uid");
+    if (imageRef != null) {
+      String imageUrl = await imageRef.getDownloadURL();
+
+      userProfile = imageUrl.toString();
+      notifyListeners();
+    } else {
+      return;
+    }
+  }
 
   // ignore: unused_element
   Future getFirestore() async {
@@ -28,10 +61,17 @@ class UserProfileModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  String title = '';
+  String documentNum = '';
 
-  void handleText(String e) {
-    title = e;
+  Future documentLength() async {
+    final QuerySnapshot documentLength = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('trip')
+        .get();
+    final documents = documentLength.docs.length;
+
+    documentNum = documents.toString();
     notifyListeners();
   }
 }
