@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/home_page.dart';
+import 'package:tripapp/ui/mail_password_reset.dart';
 import 'package:tripapp/view_model/signin_model.dart';
 
 class LoginPageForm extends StatelessWidget {
@@ -109,7 +110,13 @@ class LoginPageForm extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MailPasswordResetPage()),
+                      );
+                    },
                     child: Text(
                       'メール・パスワードを忘れた場合',
                       style: TextStyle(fontSize: 13),

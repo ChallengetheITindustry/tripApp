@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:status_change/status_change.dart';
-import 'package:tripapp/ui/test.dart';
+import 'package:tripapp/ui/mail_password_reset.dart';
 
 class SelectDestionationPage extends StatefulWidget {
   @override
@@ -130,10 +130,7 @@ class _SelectDestionationPage extends State {
               pages = Pages.AddAddress;
             } else if (_processIndex == 2) {
               pages = Pages.Summary;
-            } else if (_processIndex == 3) {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => TestPage()));
-            }
+            } else if (_processIndex == 3) {}
           });
         },
         backgroundColor: inProgressColor,
