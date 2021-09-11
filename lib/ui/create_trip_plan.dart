@@ -97,11 +97,11 @@ class createTripDiary extends StatelessWidget {
                                     children: [
                                       Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                            CrossAxisAlignment.end,
                                         children: <Widget>[
                                           // ignore: unnecessary_brace_in_string_interps
                                           Text(
-                                            "From：${model.dateStart.year}-${model.dateStart.month}-${model.dateStart.day} ~ ",
+                                            "From：${model.dateStart.year}-${model.dateStart.month}-${model.dateStart.day < 10 ? '0' + model.dateStart.day.toString() : model.dateStart.day} ~ ",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 20,
