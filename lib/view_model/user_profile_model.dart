@@ -11,36 +11,27 @@ class UserProfileModel extends ChangeNotifier {
   String currentUserMail = '';
   String uid = '';
   // nullable
-  // ignore: unused_field
-  Image? _img;
-  String userProfile = '';
-  // firestorageに画像を保存する関数
-  void upload() async {
-    // ImagePickerで写真フォルダを開き、選択した画像をpickerFileに格納
-    final pickerFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    // pickerFileのpathをFile()に変換し、fileに格納
-    File file = File(pickerFile!.path);
-// firestorageをインスタンス化
-    FirebaseStorage storage = FirebaseStorage.instance;
-    try {
-      await storage.ref("UserProfile/$uid").putFile(file);
-    } catch (e) {
-      print(e);
-    }
+
+  // ignore: unused_element
+  Future getFirestore() async {
+    // ignore: await_only_futures
+    final User user = await FirebaseAuth.instance.currentUser!;
+    // ignore: unused_local_variable
+    final String uid = user.uid.toString();
+    // 指定コレクションのドキュメント一覧を取得
+    final snapshot =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+    currentUserName = snapshot['name'];
+    currentUserMail = snapshot['mail'];
+    this.uid = uid;
+    notifyListeners();
   }
 
-  Future download() async {
-    FirebaseStorage storage = FirebaseStorage.instance;
+  String title = '';
 
-    // 画像
-    Reference imageRef = storage.ref().child("UserProfile").child("$uid");
-    String imageUrl = await imageRef.getDownloadURL();
-
-    // 画面に反映
-
-    userProfile = imageUrl.toString();
-    // _img = Image.network(imageUrl);
+  void handleText(String e) {
+    title = e;
     notifyListeners();
   }
 }
