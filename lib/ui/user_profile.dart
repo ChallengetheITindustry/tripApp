@@ -11,16 +11,14 @@ import 'package:provider/provider.dart';
 import 'package:tripapp/config/config.dart';
 import 'package:tripapp/main.dart';
 import 'package:tripapp/res/const.dart';
-import 'package:tripapp/ui/privacy.dart';
+import 'package:tripapp/ui/favorite_diary.dart';
 import 'package:tripapp/ui/rule.dart';
 import 'package:tripapp/ui/test.dart';
-<<<<<<< HEAD
+
 import 'package:tripapp/ui/user_edit_info.dart';
 import 'package:tripapp/ui/user_profile_2.dart';
-=======
-import 'package:tripapp/ui/user_info_edit.dart';
 import 'package:tripapp/view_model/user_profile_model.dart';
->>>>>>> 9fdbf172423a80c6ba09bd69986d65464f1b3905
+
 import 'package:url_launcher/url_launcher.dart';
 
 class UserProfilePage extends StatefulWidget {
@@ -42,79 +40,7 @@ class UserProfilePage1 extends State {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-<<<<<<< HEAD
-    _getFirestore();
-    _download();
-    return Scaffold(
-        appBar: AppBar(
-            leading: IconButton(
-              color: primaryColor,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => UserProfilePage2()),
-                );
-                // showDialog(
-                //   context: context,
-                //   barrierDismissible: false,
-                //   builder: (_) {
-                //     return AlertDialog(
-                //       title: Text("メモ帳を追加"),
-                //       content: TextFormField(
-                //         onChanged: _handleText,
-                //       ),
-                //       actions: [
-                //         ElevatedButton(
-                //           child: Text("戻る"),
-                //           onPressed: () => Navigator.pop(context),
-                //         ),
-                //         ElevatedButton(
-                //           child: Text("追加"),
-                //           onPressed: () async {
-                //             await FirebaseFirestore.instance
-                //                 .collection('timeline') // コレクションID/ ドキュメントID
-                //                 .add({'title': _title}); //
-                //             Navigator.pop(context);
-                //           },
-                //         ),
-                //       ],
-                //     );
-                //   },
-                // );
-              },
-              icon: Icon(Icons.add),
-            ),
-            backgroundColor: Colors.white,
-            elevation: 0.0,
-            actions: <Widget>[
-              Container(
-                  child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TestPage()),
-                  );
-                  // showDialog(
-                  //     context: context,
-                  //     builder: (_) => CupertinoAlertDialog(
-                  //           title: Text("ここに通知欄を表示します。"),
-                  //           actions: [
-                  //             CupertinoDialogAction(
-                  //                 child: Text('実装したらgithubに挙げる'),
-                  //                 isDestructiveAction: true,
-                  //                 onPressed: () {
-                  //                   Navigator.of(context).pop();
-                  //                 }),
-                  //           ],
-                  //         ));
-                },
-                icon: Icon(Icons.add_alert_outlined,
-                    color: primaryColor, size: 35.0),
-              )),
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: IconButton(
-=======
+
     return ChangeNotifierProvider<UserProfileModel>(
       create: (_) => UserProfileModel(),
       child: Consumer<UserProfileModel>(builder: (context, model, child) {
@@ -122,7 +48,6 @@ class UserProfilePage1 extends State {
             appBar: AppBar(
                 leading: IconButton(
                   color: primaryColor,
->>>>>>> 9fdbf172423a80c6ba09bd69986d65464f1b3905
                   onPressed: () {
                     showDialog(
                       context: context,
@@ -308,12 +233,6 @@ class UserProfilePage1 extends State {
                                           contentPadding: EdgeInsets.all(10.0),
                                           onTap: () {
                                             Navigator.pop(context);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PribacyPage()),
-                                            );
                                           },
                                         ),
                                       ),
