@@ -132,7 +132,8 @@ class SignupPageForm extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MailVerifyPage1()),
+                                builder: (context) =>
+                                    MailVerifyPage1(model.newEmail)),
                           );
                         } catch (e) {
                           showDialog(

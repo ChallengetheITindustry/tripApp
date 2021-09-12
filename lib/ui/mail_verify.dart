@@ -7,32 +7,26 @@ class MailVerifyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          elevation: 2.0,
-          title: Text('メール認証'),
-          leading: IconButton(
-            icon: Icon(Icons.backspace),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
+        backgroundColor: timelineBackground,
         body: Container(
           child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
                     'メールアドレス認証\n\n',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
-                      'お客様のメールアドレス【reeksge@gmail.com】は\nメール認証が完了していません。ログインするためにはメール認証する必要があるため、お送りしましたメールをご確認ください。\n\n'),
+                    'お客様のメールアドレス【reeksge@gmail.com】は\nメール認証が完了していません。ログインするためにはメール認証する必要があるため、お送りしましたメールをご確認ください。\n\n',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -47,11 +41,11 @@ class MailVerifyPage extends StatelessWidget {
                       context: context,
                       builder: (_) {
                         return AlertDialog(
-                          title: Text('メール送ったよ🤗'),
+                          title: Text('メールを送信しました'),
                           actions: [
                             // ボタン領域
                             ElevatedButton(
-                              child: Text("さんきゅ✌️😇✌️"),
+                              child: Text("閉じる"),
                               onPressed: () {
                                 Navigator.pop(context);
                               },
@@ -64,8 +58,14 @@ class MailVerifyPage extends StatelessWidget {
                       },
                     );
                   },
-                  child: Text('認証用のメールを送信する'),
-                )
+                  child: Text('メールを再送する'),
+                ),
+                FloatingActionButton(
+                    backgroundColor: timelineBackground,
+                    child: Icon(Icons.backspace),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    })
               ],
             ),
           ),
@@ -75,39 +75,39 @@ class MailVerifyPage extends StatelessWidget {
 
 // ignore: camel_case_types
 class MailVerifyPage1 extends StatelessWidget {
+  MailVerifyPage1(this.userMail);
+  String userMail;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          elevation: 2.0,
-          title: Text('メール認証'),
-          leading: IconButton(
-            icon: Icon(Icons.backspace),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
+        backgroundColor: timelineBackground,
         body: Container(
           child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
                     'メールアドレス認証\n\n',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
-                      'お客様のメールアドレス【reeksge@gmail.com】にメールを送信いたしました！\nメールに記載のURLをタップしてメールアドレスの認証を完了させてください\n（メールアドレス認証が完了しないと本アプリを利用することはできません。）\n\n'),
+                    'お客様のメールアドレス【$userMail】にメールを送信いたしました\nメールに記載のURLをタップしてメールアドレスの認証を完了させてください\n（メールアドレス認証が完了しないと本アプリを利用することはできません。）\n\n',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  child: Text('▼メールが届いていない場合は下記からメールを送信することができます'),
+                  child: Text(
+                    '▼メールが届いていない場合は下記からメールを送信することができます',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 TextButton(
                   onPressed: () {
@@ -118,11 +118,11 @@ class MailVerifyPage1 extends StatelessWidget {
                       context: context,
                       builder: (_) {
                         return AlertDialog(
-                          title: Text('メール送ったよ🤗'),
+                          title: Text('メールを送信しました。'),
                           actions: [
                             // ボタン領域
                             ElevatedButton(
-                              child: Text("さんきゅ✌️😇✌️"),
+                              child: Text("閉じる"),
                               onPressed: () {
                                 Navigator.pop(context);
                               },
@@ -135,8 +135,14 @@ class MailVerifyPage1 extends StatelessWidget {
                       },
                     );
                   },
-                  child: Text('認証用のメールを送信する'),
-                )
+                  child: Text('メールを再送する'),
+                ),
+                FloatingActionButton(
+                    backgroundColor: timelineBackground,
+                    child: Icon(Icons.backspace),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    })
               ],
             ),
           ),

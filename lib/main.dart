@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'tripApp',
         darkTheme: ThemeData.dark(),
-        home: LoginCheck(),
+        home: SignInUpPage(),
       ),
     );
   }
