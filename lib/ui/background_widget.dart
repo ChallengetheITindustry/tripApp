@@ -20,7 +20,7 @@ class Background extends StatelessWidget {
             width: SizeConfig.screenWidth,
             height: SizeConfig.screenHeight * 0.55,
             decoration: BoxDecoration(
-              color: primaryColor,
+              color: timelineBackground,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(50),
                 topRight: Radius.circular(50),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tripapp/config/config.dart';
 import 'package:tripapp/res/const.dart';
 
 // ignore: camel_case_types
@@ -98,7 +99,7 @@ class MailVerifyPage1 extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: Text(
-                    'お客様のメールアドレス【$userMail】にメールを送信いたしました\nメールに記載のURLをタップしてメールアドレスの認証を完了させてください\n（メールアドレス認証が完了しないと本アプリを利用することはできません。）\n\n',
+                    'お客様のメールアドレス【$userMail】に認証用のメールを送信いたしました\n\nメールに記載のURLをタップしてメールの認証を完了させてください\n（メール認証が完了しないと本アプリを利用することはできません。）\n\n',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -122,13 +123,17 @@ class MailVerifyPage1 extends StatelessWidget {
                           actions: [
                             // ボタン領域
                             ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: timelineBackground,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                              ),
                               child: Text("閉じる"),
                               onPressed: () {
                                 Navigator.pop(context);
+                                Navigator.pop(context);
                               },
-                              style: ElevatedButton.styleFrom(
-                                primary: primaryColor, //ボタンの背景色
-                              ),
                             ),
                           ],
                         );
@@ -136,6 +141,9 @@ class MailVerifyPage1 extends StatelessWidget {
                     );
                   },
                   child: Text('メールを再送する'),
+                ),
+                SizedBox(
+                  height: SizeConfig.blockSizeVertical * 5,
                 ),
                 FloatingActionButton(
                     backgroundColor: timelineBackground,
