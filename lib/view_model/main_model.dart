@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tripapp/ui/signin_page.dart';
 import 'package:tripapp/ui/signup_page.dart';
 
@@ -18,3 +20,24 @@ class MainModel extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+// class UserState extends ChangeNotifier {
+//   late User user;
+
+//   void setUser(User currentUser) {
+//     user = currentUser;
+//     notifyListeners();
+//   }
+
+//   //ログイン状態のチェック(非同期で行う)
+//   void checkUser() async {
+//     final currentUser = await FirebaseAuth.instance.currentUser!;
+//     if (currentUser == null) {
+//     } else {
+//       user.setUser(currentUser);
+//       // Navigator.pushReplacementNamed(context, "/home");
+//     }
+//   }
+// }
+
+
