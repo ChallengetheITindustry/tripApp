@@ -3,15 +3,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/config/config.dart';
-import 'package:tripapp/ui/user_edit_info.dart';
 import 'package:tripapp/ui/user_info_edit.dart';
 import 'package:tripapp/view_model/config_page_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:share/share.dart';
 
 import '../main.dart';
 
 class ConfigPage extends StatelessWidget {
+  Future share() async {
+    // ここにアプリのURLを組み込む
+    await Share.share("https://twitter.com/taisei59119317");
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ConfigPageModel>(
@@ -141,11 +146,8 @@ class ConfigPage extends StatelessWidget {
                                         color: Colors.white, fontSize: 17),
                                   ),
                                   contentPadding: EdgeInsets.all(10.0),
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    launch(
-                                        'https://twitter.com/taisei59119317');
-                                    // https://forms.gle/bJndj6BKZbKiFSgi9
+                                  onTap: () async {
+                                    await share();
                                   },
                                 ),
                               ),
@@ -236,8 +238,61 @@ class ConfigPage extends StatelessWidget {
                                                         onTap: () {
                                                           Navigator.pop(
                                                               context);
-                                                          launch(
-                                                              'https://polyester-clave-a16.notion.site/10b6e2bb52af49e1a051e0f44b5c2408');
+                                                          showModalBottomSheet(
+                                                              //モーダルの背景の色、透過
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                                                              isScrollControlled:
+                                                                  true,
+                                                              context: context,
+                                                              builder:
+                                                                  (BuildContext
+                                                                      context) {
+                                                                return Column(
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height:
+                                                                          SizeConfig.blockSizeVertical *
+                                                                              7,
+                                                                    ),
+                                                                    Container(
+                                                                      width: SizeConfig
+                                                                              .screenWidth *
+                                                                          0.8,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        border:
+                                                                            const Border(
+                                                                          bottom:
+                                                                              const BorderSide(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.only(bottom: 8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'お知らせ',
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontSize: 15,
+                                                                              fontWeight: FontWeight.bold),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              });
                                                         },
                                                       ),
                                                     ),
@@ -312,8 +367,95 @@ class ConfigPage extends StatelessWidget {
                                                         onTap: () {
                                                           Navigator.pop(
                                                               context);
-                                                          launch(
-                                                              'https://polyester-clave-a16.notion.site/6664b852b1c34ecb98774711566e4c29');
+                                                          showModalBottomSheet(
+                                                              //モーダルの背景の色、透過
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                                                              isScrollControlled:
+                                                                  true,
+                                                              context: context,
+                                                              builder:
+                                                                  (BuildContext
+                                                                      context) {
+                                                                return Column(
+                                                                  children: [
+                                                                    SizedBox(
+                                                                      height:
+                                                                          SizeConfig.blockSizeVertical *
+                                                                              7,
+                                                                    ),
+                                                                    Container(
+                                                                      width: SizeConfig
+                                                                              .screenWidth *
+                                                                          0.8,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        border:
+                                                                            const Border(
+                                                                          bottom:
+                                                                              const BorderSide(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            width:
+                                                                                1,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.only(bottom: 8.0),
+                                                                        child:
+                                                                            Text(
+                                                                          'One Trip',
+                                                                          textAlign:
+                                                                              TextAlign.center,
+                                                                          style: TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontSize: 15,
+                                                                              fontWeight: FontWeight.bold),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height:
+                                                                          SizeConfig.blockSizeVertical *
+                                                                              7,
+                                                                    ),
+                                                                    Container(
+                                                                      width: SizeConfig
+                                                                              .screenWidth *
+                                                                          0.8,
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          CircleAvatar(
+                                                                            backgroundImage:
+                                                                                NetworkImage('https://images.unsplash.com/photo-1595864735053-6cc67e8b53eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=668&q=80'),
+                                                                            radius:
+                                                                                60.0,
+                                                                          ),
+                                                                          Spacer(),
+                                                                          Column(
+                                                                            children: [
+                                                                              Text(
+                                                                                'Taisei',
+                                                                                style: TextStyle(color: Colors.white, fontSize: 30),
+                                                                              ),
+                                                                              Text(
+                                                                                'reeksge@gmail.com',
+                                                                                style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                              ),
+                                                                            ],
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                );
+                                                              });
                                                         },
                                                       ),
                                                     ),
@@ -341,11 +483,7 @@ class ConfigPage extends StatelessWidget {
                                   contentPadding: EdgeInsets.all(10.0),
                                   onTap: () async {
                                     Navigator.pop(context);
-                                    // ログアウト処理
-                                    // 内部で保持しているログイン情報等が初期化される
-                                    // （現時点ではログアウト時はこの処理を呼び出せばOKと、思うぐらいで大丈夫です）
-                                    await FirebaseAuth.instance.signOut();
-                                    // ログイン画面に遷移＋チャット画面を破棄
+                                    model.signOut();
                                     await Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(builder: (context) {
                                         return MyApp();
@@ -360,56 +498,6 @@ class ConfigPage extends StatelessWidget {
                       ],
                     );
                   });
-              // showModalBottomSheet(
-              //     //モーダルの背景の色、透過
-              //     backgroundColor: Colors.transparent,
-              //     //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
-              //     isScrollControlled: true,
-              //     context: context,
-              //     builder: (BuildContext context) {
-              //       return Stack(
-              //         children: [
-              //           Column(
-              //             mainAxisAlignment:
-              //                 MainAxisAlignment.center,
-              //             children: [
-              //               Center(
-              //                 child: Container(
-              //                   child: Text(
-              //                     'たくさん日記を投稿して地図を埋めよう🚀',
-              //                     style: TextStyle(
-              //                         color: Colors.white),
-              //                   ),
-              //                 ),
-              //               ),
-              //               SizedBox(
-              //                 height:
-              //                     SizeConfig.screenHeight *
-              //                         0.05,
-              //               ),
-              //               Center(
-              //                   child: Container(
-              //                       decoration:
-              //                           BoxDecoration(),
-              //                       child: Image.asset(
-              //                           'assets/images/2525.png'))),
-              //             ],
-              //           ),
-              //           // 北海道
-              //           Positioned(
-              //             top: SizeConfig.screenHeight * 0.3,
-              //             right: 1.5,
-              //             child: Container(
-              //               width: SizeConfig
-              //                       .blockSizeHorizontal *
-              //                   42,
-              //               child: Image.asset(
-              //                   'assets/images/hokkaido.png'),
-              //             ),
-              //           )
-              //         ],
-              //       );
-              //     });
             },
             icon: Icon(
               Icons.settings_sharp,
