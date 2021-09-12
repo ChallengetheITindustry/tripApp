@@ -291,6 +291,11 @@ class ConfigPage extends StatelessWidget {
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    SizedBox(
+                                                                      height:
+                                                                          SizeConfig.blockSizeVertical *
+                                                                              2,
+                                                                    ),
                                                                     StreamBuilder<
                                                                         QuerySnapshot<
                                                                             Map<String,
@@ -310,7 +315,7 @@ class ConfigPage extends StatelessWidget {
                                                                                 Card(child: ListTile(leading: Text('お知らせはありません'))),
                                                                           );
                                                                         }
-                                                                        // final List<DocumentSnapshot> documents= .documents;
+
                                                                         return Expanded(
                                                                           child:
                                                                               Container(
@@ -319,9 +324,15 @@ class ConfigPage extends StatelessWidget {
                                                                             child: ListView(
                                                                                 children: snapshot.data!.docs.map((DocumentSnapshot document) {
                                                                               return Card(
+                                                                                color: Colors.transparent,
                                                                                 child: ListTile(
-                                                                                  title: Text('▼ ${document['contents']}'),
-                                                                                  onTap: () {},
+                                                                                  title: Text(
+                                                                                    '▼ ${document['contents']}',
+                                                                                    style: TextStyle(color: Colors.white),
+                                                                                  ),
+                                                                                  onTap: () {
+                                                                                    launch(document['url']);
+                                                                                  },
                                                                                 ),
                                                                               );
                                                                             }).toList()),
