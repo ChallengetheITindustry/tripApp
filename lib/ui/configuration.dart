@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -290,6 +291,44 @@ class ConfigPage extends StatelessWidget {
                                                                         ),
                                                                       ),
                                                                     ),
+                                                                    StreamBuilder<
+                                                                        QuerySnapshot<
+                                                                            Map<String,
+                                                                                dynamic>>>(
+                                                                      stream: FirebaseFirestore
+                                                                          .instance
+                                                                          .collection(
+                                                                              'notification')
+                                                                          .snapshots(),
+                                                                      builder:
+                                                                          (context,
+                                                                              snapshot) {
+                                                                        if (!snapshot
+                                                                            .hasData) {
+                                                                          return const Center(
+                                                                            child:
+                                                                                Card(child: ListTile(leading: Text('お知らせはありません'))),
+                                                                          );
+                                                                        }
+                                                                        // final List<DocumentSnapshot> documents= .documents;
+                                                                        return Expanded(
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                SizeConfig.screenWidth * 0.8,
+                                                                            child: ListView(
+                                                                                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                                                                              return Card(
+                                                                                child: ListTile(
+                                                                                  title: Text('▼ ${document['contents']}'),
+                                                                                  onTap: () {},
+                                                                                ),
+                                                                              );
+                                                                            }).toList()),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    )
                                                                   ],
                                                                 );
                                                               });

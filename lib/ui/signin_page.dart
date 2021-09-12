@@ -48,7 +48,7 @@ class LoginPageForm extends StatelessWidget {
                           textStyle: Theme.of(context).textTheme.headline4,
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: primaryColor,
+                          color: timelineBackground,
                         ),
                       ),
                     ],
@@ -169,7 +169,7 @@ class LoginPageForm extends StatelessWidget {
                         style: TextStyle(fontSize: 20),
                       ),
                       style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
+                          primary: timelineBackground,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(30),

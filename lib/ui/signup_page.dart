@@ -161,7 +161,7 @@ class SignupPageForm extends StatelessWidget {
                         style: TextStyle(fontSize: 20),
                       ),
                       style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
+                          primary: timelineBackground,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(30),
