@@ -432,118 +432,110 @@ class ConfigPage extends StatelessWidget {
                                                               builder:
                                                                   (BuildContext
                                                                       context) {
-                                                                return Column(
-                                                                  children: [
-                                                                    SizedBox(
-                                                                      height:
-                                                                          SizeConfig.blockSizeVertical *
-                                                                              7,
-                                                                    ),
-                                                                    Container(
-                                                                      width: SizeConfig
-                                                                              .screenWidth *
-                                                                          0.8,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        border:
-                                                                            const Border(
-                                                                          bottom:
-                                                                              const BorderSide(
-                                                                            color:
-                                                                                Colors.white,
-                                                                            width:
-                                                                                1,
+                                                                return SingleChildScrollView(
+                                                                  child: Column(
+                                                                    children: [
+                                                                      SizedBox(
+                                                                        height:
+                                                                            SizeConfig.blockSizeVertical *
+                                                                                7,
+                                                                      ),
+                                                                      Container(
+                                                                        width: SizeConfig.screenWidth *
+                                                                            0.8,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          border:
+                                                                              const Border(
+                                                                            bottom:
+                                                                                const BorderSide(
+                                                                              color: Colors.white,
+                                                                              width: 1,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(bottom: 8.0),
+                                                                          child:
+                                                                              Text(
+                                                                            'One Trip',
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: TextStyle(
+                                                                                color: Colors.white,
+                                                                                fontSize: 15,
+                                                                                fontWeight: FontWeight.bold),
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(bottom: 8.0),
+                                                                      SizedBox(
+                                                                        height:
+                                                                            SizeConfig.blockSizeVertical *
+                                                                                7,
+                                                                      ),
+                                                                      Container(
+                                                                        width: SizeConfig.screenWidth *
+                                                                            0.8,
+                                                                        alignment:
+                                                                            Alignment.centerLeft,
                                                                         child:
                                                                             Text(
-                                                                          'One Trip',
-                                                                          textAlign:
-                                                                              TextAlign.center,
+                                                                          '一人旅は孤独を感じるもの?',
                                                                           style: TextStyle(
                                                                               color: Colors.white,
-                                                                              fontSize: 15,
+                                                                              fontSize: 20,
                                                                               fontWeight: FontWeight.bold),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height:
-                                                                          SizeConfig.blockSizeVertical *
-                                                                              7,
-                                                                    ),
-                                                                    Container(
-                                                                      width: SizeConfig
-                                                                              .screenWidth *
-                                                                          0.8,
-                                                                      alignment:
-                                                                          Alignment
-                                                                              .centerLeft,
-                                                                      child:
-                                                                          Text(
-                                                                        '一人旅は孤独を感じるもの?',
-                                                                        style: TextStyle(
-                                                                            color: Colors
-                                                                                .white,
-                                                                            fontSize:
-                                                                                20,
-                                                                            fontWeight:
-                                                                                FontWeight.bold),
+                                                                      SizedBox(
+                                                                        height:
+                                                                            SizeConfig.blockSizeVertical *
+                                                                                3,
                                                                       ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      height:
-                                                                          SizeConfig.blockSizeVertical *
-                                                                              3,
-                                                                    ),
 
-                                                                    Container(
-                                                                      width: SizeConfig
-                                                                              .screenWidth *
-                                                                          0.8,
-                                                                      child:
-                                                                          Text(
-                                                                        '『一人旅は孤独を感じるもの』\n\n旅先の伝統料理や文化を誰かと共有した方が絶対に楽しい。\n\n勿論、全く孤独を感じない人もいるし、旅先で好きなことに熱中している時間だけ孤独を忘れることができるなど人それぞれ。運営者の私自身も誰かと旅先で楽しみたいと感じているし、誰かに旅の思い出を話している時に楽しさを感じます。\n\nしかし、一人旅は沢山のメリットがあります。\n\n行きたいところ、食べたいもの、全てを自分で決めることが出来るし、今まで気づくことができなかった自分の一面に気づくことができます。\n\nそんな経験を誰もが味わって欲しい。「孤独だから...」という理由で一人旅を諦めないでほしい。\n\nその思いから旅の思い出を共有することができる本アプリを開発しました。\n\n使い方は簡単で、旅の楽しかったことを沢山書き、写真と一緒に投稿してください。\n\nそして他の人の投稿を見て次の一人旅の計画を立ててみるのはいかがでしょうか？',
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                Colors.white),
-                                                                      ),
-                                                                    )
-                                                                    // Container(
-                                                                    //   width: SizeConfig
-                                                                    //           .screenWidth *
-                                                                    //       0.8,
-                                                                    //   child:
-                                                                    //       Row(
-                                                                    //     children: [
-                                                                    //       CircleAvatar(
-                                                                    //         backgroundImage:
-                                                                    //             NetworkImage('https://images.unsplash.com/photo-1595864735053-6cc67e8b53eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=668&q=80'),
-                                                                    //         radius:
-                                                                    //             60.0,
-                                                                    //       ),
-                                                                    //       Spacer(),
-                                                                    //       Column(
-                                                                    //         children: [
-                                                                    //           Text(
-                                                                    //             'Taisei',
-                                                                    //             style: TextStyle(color: Colors.white, fontSize: 30),
-                                                                    //           ),
-                                                                    //           Text(
-                                                                    //             'reeksge@gmail.com',
-                                                                    //             style: TextStyle(color: Colors.white, fontSize: 20),
-                                                                    //           ),
-                                                                    //         ],
-                                                                    //       )
-                                                                    //     ],
-                                                                    //   ),
-                                                                    // )
-                                                                  ],
+                                                                      Container(
+                                                                        width: SizeConfig.screenWidth *
+                                                                            0.8,
+                                                                        child:
+                                                                            Text(
+                                                                          '『一人旅は孤独を感じるもの』\n\n旅先の伝統料理や文化を誰かと共有した方が絶対に楽しい。\n\n勿論、全く孤独を感じない人もいるし、旅先で好きなことに熱中している時間だけ孤独を忘れることができるなど人それぞれ。運営者の私自身も誰かと旅先で楽しみたいと感じているし、誰かに旅の思い出を話している時に楽しさを感じます。\n\nしかし、一人旅は沢山のメリットがあります。\n\n行きたいところ、食べたいもの、全てを自分で決めることが出来るし、今まで気づくことができなかった自分の一面に気づくことができます。\n\nそんな経験を誰もが味わって欲しい。「孤独だから...」という理由で一人旅を諦めないでほしい。\n\nその思いから旅の思い出を共有することができる本アプリを開発しました。\n\n使い方は簡単で、旅の楽しかったことを沢山書き、写真と一緒に投稿してください。\n\nそして他の人の投稿を見て次の一人旅の計画を立ててみるのはいかがでしょうか？\n\n\n\n\n\n\n\n',
+                                                                          style:
+                                                                              TextStyle(color: Colors.white),
+                                                                        ),
+                                                                      )
+                                                                      // Container(
+                                                                      //   width: SizeConfig
+                                                                      //           .screenWidth *
+                                                                      //       0.8,
+                                                                      //   child:
+                                                                      //       Row(
+                                                                      //     children: [
+                                                                      //       CircleAvatar(
+                                                                      //         backgroundImage:
+                                                                      //             NetworkImage('https://images.unsplash.com/photo-1595864735053-6cc67e8b53eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=668&q=80'),
+                                                                      //         radius:
+                                                                      //             60.0,
+                                                                      //       ),
+                                                                      //       Spacer(),
+                                                                      //       Column(
+                                                                      //         children: [
+                                                                      //           Text(
+                                                                      //             'Taisei',
+                                                                      //             style: TextStyle(color: Colors.white, fontSize: 30),
+                                                                      //           ),
+                                                                      //           Text(
+                                                                      //             'reeksge@gmail.com',
+                                                                      //             style: TextStyle(color: Colors.white, fontSize: 20),
+                                                                      //           ),
+                                                                      //         ],
+                                                                      //       )
+                                                                      //     ],
+                                                                      //   ),
+                                                                      // )
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               });
                                                         },
