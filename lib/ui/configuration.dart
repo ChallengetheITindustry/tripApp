@@ -304,6 +304,9 @@ class ConfigPage extends StatelessWidget {
                                                                           .instance
                                                                           .collection(
                                                                               'notification')
+                                                                          .orderBy(
+                                                                            "createdAt",
+                                                                          )
                                                                           .snapshots(),
                                                                       builder:
                                                                           (context,
