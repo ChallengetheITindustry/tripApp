@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +55,14 @@ class CreateTripDiaryModel extends ChangeNotifier {
     final String uid = user.uid.toString();
 
     // 自動で生成するIDを設定する
+    var rand = new Random();
+    var next = rand.nextDouble() * 100000000;
+
+    while (next < 10000000) {
+      next *= 10;
+    }
+
+    var numbers = next.toInt();
 
     final snapshot = await FirebaseFirestore.instance
         .collection('users')
@@ -61,17 +71,18 @@ class CreateTripDiaryModel extends ChangeNotifier {
         .add({
       'concept': concept,
       'data': '$dateStart ~ $dateEnd',
-      'imageURL': 'ng;adoshg;osdg;o',
+      // 'imageURL': 'ng;adoshg;osdg;o',
       'contents': contents,
-      'ID': ID,
+      'ID': numbers,
     });
 
     await FirebaseFirestore.instance.collection('timeline').add({
       'userID': uid,
       'concept': concept,
       'data': '$dateStart ~ $dateEnd',
-      'imageURL': 'ng;adoshg;osdg;o',
+      // 'imageURL': 'ng;adoshg;osdg;o',
       'contents': contents,
+      'ID': numbers,
     });
     final tripDocument = await FirebaseFirestore.instance
         .collection('users')

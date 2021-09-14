@@ -91,6 +91,18 @@ class createTripDiary extends StatelessWidget {
                                   SizedBox(
                                     height: SizeConfig.blockSizeHorizontal * 10,
                                   ),
+                                  Center(
+                                    child: Text(
+                                      '日付',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: SizeConfig.blockSizeHorizontal * 5,
+                                  ),
                                   Container(
                                     child: Row(
                                       mainAxisAlignment:
@@ -133,26 +145,6 @@ class createTripDiary extends StatelessWidget {
                                   SizedBox(
                                     height: SizeConfig.blockSizeHorizontal * 10,
                                   ),
-                                  Expanded(
-                                    child: ListView(
-                                      scrollDirection: Axis.horizontal,
-                                      children: [
-                                        Container(
-                                          width: SizeConfig.screenWidth * 0.5,
-                                          child: Image.asset(
-                                              'assets/images/toyama.jpeg'),
-                                        ),
-                                        Container(
-                                          width: SizeConfig.screenWidth * 0.5,
-                                          child: Image.asset(
-                                              'assets/images/toyama.jpeg'),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: SizeConfig.blockSizeHorizontal * 10,
-                                  ),
                                   Container(
                                     decoration: BoxDecoration(
                                       border: Border.all(color: Colors.white),
@@ -165,6 +157,9 @@ class createTripDiary extends StatelessWidget {
                                           padding: const EdgeInsets.only(
                                               left: 8.0, right: 8.0),
                                           child: TextFormField(
+                                            onChanged: (value) {
+                                              model.contents = value;
+                                            },
                                             style:
                                                 TextStyle(color: Colors.white),
                                             decoration: InputDecoration(
@@ -181,26 +176,52 @@ class createTripDiary extends StatelessWidget {
                                   SizedBox(
                                     height: SizeConfig.blockSizeHorizontal * 10,
                                   ),
-                                  Container(
-                                    width: SizeConfig.screenWidth * 0.6,
-                                    height: SizeConfig.screenHeight * 0.05,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          side: BorderSide(
-                                            color: Colors.white, //枠線!
-                                            width: 1, //枠線！
-                                          ),
-                                          primary: Colors.transparent,
-                                        ),
-                                        onPressed: () async {
-                                          // await setTrip();
-                                          // tripImageUpload();
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          '投稿',
-                                          style: TextStyle(color: Colors.white),
-                                        )),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: SizeConfig.screenWidth * 0.35,
+                                        height: SizeConfig.screenHeight * 0.05,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors.white, //枠線!
+                                                width: 1, //枠線！
+                                              ),
+                                              primary: Colors.transparent,
+                                            ),
+                                            onPressed: () async {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              '戻る',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )),
+                                      ),
+                                      Spacer(),
+                                      Container(
+                                        width: SizeConfig.screenWidth * 0.35,
+                                        height: SizeConfig.screenHeight * 0.05,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors.white, //枠線!
+                                                width: 1, //枠線！
+                                              ),
+                                              primary: Colors.transparent,
+                                            ),
+                                            onPressed: () async {
+                                              await model.setTrip();
+                                              // tripImageUpload();
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              '投稿',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )),
+                                      ),
+                                    ],
                                   ),
                                   SizedBox(
                                     height: SizeConfig.blockSizeHorizontal * 50,
