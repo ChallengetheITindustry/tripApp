@@ -29,6 +29,7 @@ dependencies:
   video_player: ^2.1.14
   audioplayers: ^0.19.1
   share: ^2.0.4
+  speech_balloon: ^0.0.4
 
 dev_dependencies:
   flutter_test:

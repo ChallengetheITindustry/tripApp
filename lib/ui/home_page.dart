@@ -12,6 +12,7 @@ import 'favorite_diary.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
+  var _opaque = true;
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeModel>(
@@ -51,7 +52,13 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                // 中央の画像
+
+                AnimatedOpacity(
+                  opacity: _opaque ? 1 : 0,
+                  duration: const Duration(milliseconds: 5000),
+                  child: Image.asset(('assets/images/hukidashimaruright.png')),
+                ),
+                // 溜まり場画像
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
