@@ -11,7 +11,7 @@ class UserProfileModel extends ChangeNotifier {
   String uid = '';
   // nullable
   // ignore: unused_field
-  Image? _img;
+
   String userProfile = '';
 
   // firestorageに画像を保存する関数
@@ -40,7 +40,7 @@ class UserProfileModel extends ChangeNotifier {
 
       userProfile = imageUrl.toString();
     } else {
-      return;
+      return Icon(Icons.account_circle_outlined);
     }
     notifyListeners();
   }

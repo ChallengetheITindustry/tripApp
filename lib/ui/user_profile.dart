@@ -3,18 +3,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tripapp/config/config.dart';
+import 'package:tripapp/res/const.dart';
 import 'package:tripapp/view_model/user_profile_model.dart';
 
 class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<UserProfileModel>(
-      create: (_) => UserProfileModel()..getFirestore(),
+      create: (_) => UserProfileModel()
+        ..getFirestore()
+        ..download(),
       child: Consumer<UserProfileModel>(builder: (context, model, child) {
         return IconButton(
             // ユーザー情報画面
             onPressed: () {
               model.documentLength();
+
               print(model.documentNum);
               // model.download();
               showModalBottomSheet(
@@ -31,30 +35,68 @@ class UserProfilePage extends StatelessWidget {
                         ),
                         Stack(
                           children: <Widget>[
-                            Center(
-                              child: model.userProfile != null
-                                  ? CircleAvatar(
-                                      backgroundImage:
-                                          NetworkImage(model.userProfile),
-                                      radius: 60.0,
-                                    )
-                                  : Icon(Icons.account_circle_outlined),
-                            ),
-                            Center(
-                              child: RawMaterialButton(
-                                onPressed: () async {
-                                  // model.upload();
-                                },
-                                child: model.userProfile != null
-                                    ? Container(
-                                        width: 120.0, // CircleAvatarのradiusの2倍
-                                        height: 120.0,
-                                      )
-                                    : Icon(Icons.account_circle_outlined),
-                                shape: new CircleBorder(),
-                                elevation: 3.0,
-                              ),
-                            ),
+                            model.userProfile != null
+                                ? Container(
+                                    height: SizeConfig.screenHeight * 0.2,
+                                    child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(200.0),
+                                        child:
+                                            Image.network(model.userProfile)),
+                                  )
+                                : Container(
+                                    height: SizeConfig.screenHeight * 0.2,
+                                    child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(200.0),
+                                        child: Image.asset(
+                                            'assets/images/twitter-profile-image.png')),
+                                  ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: FloatingActionButton(
+                                  backgroundColor: timelineBackground,
+                                  child: Icon(Icons.add),
+                                  onPressed: () {
+                                    model.upload();
+                                  }),
+                            )
+                            // Container(
+                            //   decoration: BoxDecoration(
+                            //     shape: BoxShape.circle,
+                            //   ),
+                            //   child: ClipRRect(
+                            //     borderRadius: BorderRadius.circular(20),
+                            //     child: Image.network(
+                            //       model.userProfile,
+                            //     ),
+                            //   ),
+                            // )
+                            // Center(
+                            //     // ignore: unnecessary_null_comparison
+                            //     child: model.userProfile != null
+                            //         ? CircleAvatar(
+                            //             backgroundImage:
+                            //                 NetworkImage(model.userProfile),
+                            //             radius: 60.0,
+                            //           )
+                            //         : Icon(Icons.account_circle_outlined)),
+                            // Center(
+                            //   child: RawMaterialButton(
+                            //     onPressed: () async {
+                            //       // model.upload();
+                            //     },
+                            //     child: model.userProfile != null
+                            //         ? Container(
+                            //             width: 120.0, // CircleAvatarのradiusの2倍
+                            //             height: 120.0,
+                            //           )
+                            //         : Icon(Icons.account_circle_outlined),
+                            //     shape: new CircleBorder(),
+                            //     elevation: 3.0,
+                            //   ),
+                            // ),
                           ],
                         ),
                         SizedBox(

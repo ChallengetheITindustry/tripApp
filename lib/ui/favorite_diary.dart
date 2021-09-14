@@ -22,8 +22,10 @@ class FavoriteDiary extends StatelessWidget {
                     return Stack(
                       children: [
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            SizedBox(
+                              height: SizeConfig.screenHeight * 0.1,
+                            ),
                             Center(
                               child: Container(
                                 width: SizeConfig.screenWidth * 0.8,

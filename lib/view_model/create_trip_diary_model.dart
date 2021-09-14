@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CreateTripDiaryModel extends ChangeNotifier {
+  final controller = PageController(initialPage: 0);
   String concept = '';
   String contents = '';
   String tripDocumentId = '';
