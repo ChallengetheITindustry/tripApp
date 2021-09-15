@@ -9,10 +9,35 @@ import 'dart:core';
 import 'configuration.dart';
 import 'create_trip_plan.dart';
 import 'favorite_diary.dart';
+import 'package:speech_balloon/speech_balloon.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePage createState() => _HomePage();
+}
 
 // ignore: must_be_immutable
-class HomePage extends StatelessWidget {
-  var _opaque = true;
+class _HomePage extends State with SingleTickerProviderStateMixin {
+  bool opaque = false;
+
+  AnimationController? _animationController;
+  Animation<Alignment>? _alignment;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _alignment = _animationController!.drive(
+      AlignmentTween(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeModel>(
@@ -52,12 +77,93 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ),
+                // AlignTransition(
+                //   alignment: _alignment!,
+                //   child: Container(
+                //     width: 100,
+                //     height: 100,
+                //     color: Colors.blue,
+                //   ),
+                // ),
+                // Positioned(
+                //   top: SizeConfig.blockSizeVertical * 45,
+                //   right: SizeConfig.blockSizeHorizontal * 10,
+                //   child: AnimatedOpacity(
+                //     opacity: opaque != false ? 1 : 0,
+                //     duration: const Duration(milliseconds: 5000),
+                //     child: SpeechBalloon(
+                //       nipLocation: NipLocation.bottom,
+                //       color: Colors.red,
+                //       child: InkWell(
+                //         onTap: () {
+                //           showModalBottomSheet(
+                //               //モーダルの背景の色、透過
+                //               backgroundColor: Colors.transparent,
+                //               //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                //               isScrollControlled: true,
+                //               context: context,
+                //               builder: (BuildContext context) {
+                //                 return Column(
+                //                   children: [
+                //                     SizedBox(
+                //                       height: SizeConfig.screenHeight * 0.15,
+                //                     ),
+                //                     SizedBox(
+                //                       height: SizeConfig.screenHeight * 0.03,
+                //                     ),
+                //                     Container(
+                //                         decoration: BoxDecoration(
+                //                           boxShadow: [
+                //                             BoxShadow(
+                //                                 color: Colors.black12,
+                //                                 spreadRadius: 0,
+                //                                 offset: Offset(15, 15))
+                //                           ],
+                //                         ),
+                //                         child: Text(
+                //                           // ログインユーザーの名前を表示
+                //                           '',
+                //                           style: TextStyle(
+                //                             fontSize: 30,
+                //                             fontWeight: FontWeight.bold,
+                //                             color: Colors.white,
+                //                           ),
+                //                         )),
+                //                     SizedBox(
+                //                       height: SizeConfig.screenHeight * 0.02,
+                //                     ),
+                //                     Container(
+                //                       child: Text(
+                //                         '',
+                //                         // ログインユーザーのメールアドレスを表示
 
-                AnimatedOpacity(
-                  opacity: _opaque ? 1 : 0,
-                  duration: const Duration(milliseconds: 5000),
-                  child: Image.asset(('assets/images/hukidashimaruright.png')),
-                ),
+                //                         style: TextStyle(
+                //                           color: Colors.white,
+                //                         ),
+                //                       ),
+                //                     ),
+                //                     SizedBox(
+                //                       height: SizeConfig.screenHeight * 0.02,
+                //                     ),
+                //                     Container(
+                //                         child: Text(
+                //                       '投稿数',
+                //                       style: TextStyle(
+                //                           color: Colors.white, fontSize: 20),
+                //                     )),
+                //                   ],
+                //                 );
+                //               });
+                //         },
+                //         child: Icon(
+                //           Icons.favorite,
+                //           color: Colors.white,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+
                 // 溜まり場画像
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -127,5 +233,11 @@ class HomePage extends StatelessWidget {
             ));
       }),
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController!.dispose();
+    super.dispose();
   }
 }

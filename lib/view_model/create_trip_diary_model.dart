@@ -64,6 +64,14 @@ class CreateTripDiaryModel extends ChangeNotifier {
 
     var numbers = next.toInt();
 
+    if (concept.isEmpty) {
+      throw 'どんな旅だったかを記入してください！';
+    }
+
+    if (contents.isEmpty) {
+      throw '旅の内容を記入してください';
+    }
+
     final snapshot = await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)

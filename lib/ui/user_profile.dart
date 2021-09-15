@@ -10,17 +10,13 @@ class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<UserProfileModel>(
-      create: (_) => UserProfileModel()
-        ..getFirestore()
-        ..download(),
+      create: (_) => UserProfileModel()..getFirestore(),
       child: Consumer<UserProfileModel>(builder: (context, model, child) {
+        model.download();
         return IconButton(
             // ユーザー情報画面
-            onPressed: () {
-              model.documentLength();
-
-              print(model.documentNum);
-              // model.download();
+            onPressed: () async {
+              await model.documentLength();
               showModalBottomSheet(
                   //モーダルの背景の色、透過
                   backgroundColor: Colors.transparent,
@@ -35,68 +31,27 @@ class UserProfilePage extends StatelessWidget {
                         ),
                         Stack(
                           children: <Widget>[
-                            model.userProfile != null
-                                ? Container(
-                                    height: SizeConfig.screenHeight * 0.2,
-                                    child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(200.0),
-                                        child:
-                                            Image.network(model.userProfile)),
-                                  )
-                                : Container(
-                                    height: SizeConfig.screenHeight * 0.2,
-                                    child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(200.0),
-                                        child: Image.asset(
-                                            'assets/images/twitter-profile-image.png')),
-                                  ),
+                            Center(
+                                // ignore: unnecessary_null_comparison
+                                child: model.userProfile != null
+                                    ? CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        backgroundImage:
+                                            NetworkImage(model.userProfile),
+                                        radius: 60.0,
+                                      )
+                                    : Icon(Icons.account_circle_outlined)),
                             Positioned(
                               bottom: 0,
-                              right: 0,
+                              right: SizeConfig.screenWidth * 0.3,
                               child: FloatingActionButton(
                                   backgroundColor: timelineBackground,
                                   child: Icon(Icons.add),
                                   onPressed: () {
                                     model.upload();
+                                    model.download();
                                   }),
                             )
-                            // Container(
-                            //   decoration: BoxDecoration(
-                            //     shape: BoxShape.circle,
-                            //   ),
-                            //   child: ClipRRect(
-                            //     borderRadius: BorderRadius.circular(20),
-                            //     child: Image.network(
-                            //       model.userProfile,
-                            //     ),
-                            //   ),
-                            // )
-                            // Center(
-                            //     // ignore: unnecessary_null_comparison
-                            //     child: model.userProfile != null
-                            //         ? CircleAvatar(
-                            //             backgroundImage:
-                            //                 NetworkImage(model.userProfile),
-                            //             radius: 60.0,
-                            //           )
-                            //         : Icon(Icons.account_circle_outlined)),
-                            // Center(
-                            //   child: RawMaterialButton(
-                            //     onPressed: () async {
-                            //       // model.upload();
-                            //     },
-                            //     child: model.userProfile != null
-                            //         ? Container(
-                            //             width: 120.0, // CircleAvatarのradiusの2倍
-                            //             height: 120.0,
-                            //           )
-                            //         : Icon(Icons.account_circle_outlined),
-                            //     shape: new CircleBorder(),
-                            //     elevation: 3.0,
-                            //   ),
-                            // ),
                           ],
                         ),
                         SizedBox(
@@ -140,6 +95,8 @@ class UserProfilePage extends StatelessWidget {
                           '投稿数：${model.documentNum}回',
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         )),
+                        // StreamBuilder(
+                        //     stream: Firebase.Firestore, builder: builder)
                       ],
                     );
                   });

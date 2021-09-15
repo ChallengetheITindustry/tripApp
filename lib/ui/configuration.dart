@@ -15,7 +15,7 @@ import '../main.dart';
 class ConfigPage extends StatelessWidget {
   Future share() async {
     // ここにアプリのURLを組み込む
-    await Share.share("https://twitter.com/taisei59119317");
+    await Share.share("https://sharetrip.studio.site");
   }
 
   @override

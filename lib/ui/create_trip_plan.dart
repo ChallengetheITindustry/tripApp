@@ -211,9 +211,29 @@ class createTripDiary extends StatelessWidget {
                                               primary: Colors.transparent,
                                             ),
                                             onPressed: () async {
-                                              await model.setTrip();
-                                              // tripImageUpload();
-                                              Navigator.pop(context);
+                                              try {
+                                                await model.setTrip();
+                                                // tripImageUpload();
+                                                Navigator.pop(context);
+                                              } catch (e) {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return AlertDialog(
+                                                      title: Text(e.toString()),
+                                                      actions: <Widget>[
+                                                        // ボタン領域
+                                                        ElevatedButton(
+                                                          child: Text("Cancel"),
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  context),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
                                             },
                                             child: Text(
                                               '投稿',
