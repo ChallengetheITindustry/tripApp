@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -18,24 +21,43 @@ class HomePage extends StatefulWidget {
 
 // ignore: must_be_immutable
 class _HomePage extends State with SingleTickerProviderStateMixin {
-  bool opaque = false;
-
   AnimationController? _animationController;
   Animation<Alignment>? _alignment;
+
+  bool opa = true;
+  bool opa1 = true;
+
+  void startTimer() {
+    Timer.periodic(
+      Duration(seconds: 3), //９:1秒ごとに処理
+      (Timer timer) => setState(
+        () {
+          if (opa == true) {
+            opa = false;
+          } else {
+            opa = true;
+          }
+        },
+      ),
+    );
+    Timer.periodic(
+      Duration(seconds: 1), //９:1秒ごとに処理
+      (Timer timer) => setState(
+        () {
+          if (opa1 == true) {
+            opa1 = false;
+          } else {
+            opa1 = true;
+          }
+        },
+      ),
+    );
+  }
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _alignment = _animationController!.drive(
-      AlignmentTween(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-    );
+    startTimer();
   }
 
   @override
@@ -77,92 +99,56 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                // AlignTransition(
-                //   alignment: _alignment!,
-                //   child: Container(
-                //     width: 100,
-                //     height: 100,
-                //     color: Colors.blue,
-                //   ),
-                // ),
                 // Positioned(
-                //   top: SizeConfig.blockSizeVertical * 45,
-                //   right: SizeConfig.blockSizeHorizontal * 10,
-                //   child: AnimatedOpacity(
-                //     opacity: opaque != false ? 1 : 0,
-                //     duration: const Duration(milliseconds: 5000),
-                //     child: SpeechBalloon(
-                //       nipLocation: NipLocation.bottom,
-                //       color: Colors.red,
-                //       child: InkWell(
-                //         onTap: () {
-                //           showModalBottomSheet(
-                //               //モーダルの背景の色、透過
-                //               backgroundColor: Colors.transparent,
-                //               //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
-                //               isScrollControlled: true,
-                //               context: context,
-                //               builder: (BuildContext context) {
-                //                 return Column(
-                //                   children: [
-                //                     SizedBox(
-                //                       height: SizeConfig.screenHeight * 0.15,
-                //                     ),
-                //                     SizedBox(
-                //                       height: SizeConfig.screenHeight * 0.03,
-                //                     ),
-                //                     Container(
-                //                         decoration: BoxDecoration(
-                //                           boxShadow: [
-                //                             BoxShadow(
-                //                                 color: Colors.black12,
-                //                                 spreadRadius: 0,
-                //                                 offset: Offset(15, 15))
-                //                           ],
-                //                         ),
-                //                         child: Text(
-                //                           // ログインユーザーの名前を表示
-                //                           '',
-                //                           style: TextStyle(
-                //                             fontSize: 30,
-                //                             fontWeight: FontWeight.bold,
-                //                             color: Colors.white,
-                //                           ),
-                //                         )),
-                //                     SizedBox(
-                //                       height: SizeConfig.screenHeight * 0.02,
-                //                     ),
-                //                     Container(
-                //                       child: Text(
-                //                         '',
-                //                         // ログインユーザーのメールアドレスを表示
-
-                //                         style: TextStyle(
-                //                           color: Colors.white,
-                //                         ),
-                //                       ),
-                //                     ),
-                //                     SizedBox(
-                //                       height: SizeConfig.screenHeight * 0.02,
-                //                     ),
-                //                     Container(
-                //                         child: Text(
-                //                       '投稿数',
-                //                       style: TextStyle(
-                //                           color: Colors.white, fontSize: 20),
-                //                     )),
-                //                   ],
-                //                 );
+                //     top: SizeConfig.blockSizeVertical * 40,
+                //     left: SizeConfig.blockSizeHorizontal * 40,
+                //     child: Container(
+                //         width: SizeConfig.screenWidth * 0.2,
+                //         child: StreamBuilder(
+                //           stream: FirebaseFirestore.instance
+                //               .collection('timeline')
+                //               .snapshots(),
+                //           builder: (BuildContext context,
+                //               AsyncSnapshot<dynamic> snapshot) {
+                //             WidgetsBinding.instance!.addPostFrameCallback((_) {
+                //               setState(() {
+                //                 opa = !opa;
+                //                 Timer(const Duration(seconds: 10), _onTimer);
                 //               });
-                //         },
-                //         child: Icon(
-                //           Icons.favorite,
-                //           color: Colors.white,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                //             });
+                //             if (!snapshot.hasData) {
+                //               return const Center(
+                //                 child: Text(''),
+                //               );
+                //             }
+                //             final data = snapshot.data!.docs.first.data();
+                //             return AnimatedOpacity(
+                //               opacity: opa == false ? 0 : 1,
+                //               duration: const Duration(milliseconds: 500),
+                //               child: Image.asset('assets/images/hukidashi.png'),
+                //             );
+                //           },
+                //         ))),
+                Positioned(
+                    top: SizeConfig.blockSizeVertical * 40,
+                    left: SizeConfig.blockSizeHorizontal * 40,
+                    child: Container(
+                        width: SizeConfig.screenWidth * 0.2,
+                        child: AnimatedOpacity(
+                          opacity: opa == false ? 0 : 1,
+                          duration: const Duration(milliseconds: 3000),
+                          child: Image.asset('assets/images/hukidashi.png'),
+                        ))),
+                Positioned(
+                    top: SizeConfig.blockSizeVertical * 40,
+                    left: SizeConfig.blockSizeHorizontal * 20,
+                    child: Container(
+                        width: SizeConfig.screenWidth * 0.2,
+                        child: AnimatedOpacity(
+                          opacity: opa == false ? 0 : 1,
+                          duration: const Duration(milliseconds: 1000),
+                          child: Image.asset('assets/images/hukidashi.png'),
+                        ))),
 
                 // 溜まり場画像
                 Column(
