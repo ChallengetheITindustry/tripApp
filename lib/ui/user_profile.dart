@@ -95,8 +95,38 @@ class UserProfilePage extends StatelessWidget {
                           '投稿数：${model.documentNum}回',
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         )),
-                        // StreamBuilder(
-                        //     stream: Firebase.Firestore, builder: builder)
+                        SizedBox(
+                          height: SizeConfig.screenHeight * 0.02,
+                        ),
+                        Container(
+                          child: StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(model.uid)
+                                .collection('trip')
+                                .snapshots(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<
+                                        QuerySnapshot<Map<String, dynamic>>>
+                                    snapshot) {
+                              return Expanded(
+                                child: ListView(
+                                    children: snapshot.data!.docs
+                                        .map((DocumentSnapshot document) {
+                                  return Card(
+                                    color: Colors.transparent,
+                                    child: ListTile(
+                                      title: Text(
+                                        '▼ ${document['contents']}',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  );
+                                }).toList()),
+                              );
+                            },
+                          ),
+                        )
                       ],
                     );
                   });

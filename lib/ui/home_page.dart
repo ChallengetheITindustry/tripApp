@@ -29,7 +29,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
 
   void startTimer() {
     Timer.periodic(
-      Duration(seconds: 3), //９:1秒ごとに処理
+      Duration(seconds: 5), //９:1秒ごとに処理
       (Timer timer) => setState(
         () {
           if (opa == true) {
@@ -99,36 +99,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                // Positioned(
-                //     top: SizeConfig.blockSizeVertical * 40,
-                //     left: SizeConfig.blockSizeHorizontal * 40,
-                //     child: Container(
-                //         width: SizeConfig.screenWidth * 0.2,
-                //         child: StreamBuilder(
-                //           stream: FirebaseFirestore.instance
-                //               .collection('timeline')
-                //               .snapshots(),
-                //           builder: (BuildContext context,
-                //               AsyncSnapshot<dynamic> snapshot) {
-                //             WidgetsBinding.instance!.addPostFrameCallback((_) {
-                //               setState(() {
-                //                 opa = !opa;
-                //                 Timer(const Duration(seconds: 10), _onTimer);
-                //               });
-                //             });
-                //             if (!snapshot.hasData) {
-                //               return const Center(
-                //                 child: Text(''),
-                //               );
-                //             }
-                //             final data = snapshot.data!.docs.first.data();
-                //             return AnimatedOpacity(
-                //               opacity: opa == false ? 0 : 1,
-                //               duration: const Duration(milliseconds: 500),
-                //               child: Image.asset('assets/images/hukidashi.png'),
-                //             );
-                //           },
-                //         ))),
+
                 Positioned(
                     top: SizeConfig.blockSizeVertical * 40,
                     left: SizeConfig.blockSizeHorizontal * 40,
@@ -136,18 +107,290 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                         width: SizeConfig.screenWidth * 0.2,
                         child: AnimatedOpacity(
                           opacity: opa == false ? 0 : 1,
-                          duration: const Duration(milliseconds: 3000),
-                          child: Image.asset('assets/images/hukidashi.png'),
+                          duration: const Duration(milliseconds: 5000),
+                          child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    //モーダルの背景の色、透過
+                                    backgroundColor: Colors.transparent,
+                                    //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Column(
+                                        children: [
+                                          SizedBox(
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    7,
+                                          ),
+                                          Container(
+                                            width: SizeConfig.screenWidth * 0.8,
+                                            decoration: BoxDecoration(
+                                              border: const Border(
+                                                bottom: const BorderSide(
+                                                  color: Colors.white,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Text(
+                                                'One Trip',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                          // Container(
+                                          //   child: StreamBuilder(
+                                          //     stream: FirebaseFirestore.instance
+                                          //         .collection('timeline')
+                                          //         .snapshots(),
+                                          //     builder: (BuildContext context,
+                                          //         AsyncSnapshot<
+                                          //                 QuerySnapshot<
+                                          //                     Map<String,
+                                          //                         dynamic>>>
+                                          //             snapshot) {
+                                          //       if (!snapshot.hasData) {
+                                          //         return Text('データがありません');
+                                          //       }
+                                          //     },
+                                          //   ),
+                                          // )
+                                        ],
+                                      );
+                                    });
+                              },
+                              child:
+                                  Image.asset('assets/images/hukidashi.png')),
                         ))),
                 Positioned(
-                    top: SizeConfig.blockSizeVertical * 40,
+                    top: SizeConfig.blockSizeVertical * 50,
                     left: SizeConfig.blockSizeHorizontal * 20,
                     child: Container(
                         width: SizeConfig.screenWidth * 0.2,
                         child: AnimatedOpacity(
                           opacity: opa == false ? 0 : 1,
                           duration: const Duration(milliseconds: 1000),
-                          child: Image.asset('assets/images/hukidashi.png'),
+                          child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    //モーダルの背景の色、透過
+                                    backgroundColor: Colors.transparent,
+                                    //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Column(
+                                        children: [
+                                          SizedBox(
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    7,
+                                          ),
+                                          Container(
+                                            width: SizeConfig.screenWidth * 0.8,
+                                            decoration: BoxDecoration(
+                                              border: const Border(
+                                                bottom: const BorderSide(
+                                                  color: Colors.white,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Text(
+                                                'One Trip',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              child:
+                                  Image.asset('assets/images/hukidashi.png')),
+                        ))),
+                Positioned(
+                    top: SizeConfig.blockSizeVertical * 50,
+                    right: SizeConfig.blockSizeHorizontal * 20,
+                    child: Container(
+                        width: SizeConfig.screenWidth * 0.2,
+                        child: AnimatedOpacity(
+                          opacity: opa == false ? 0 : 1,
+                          duration: const Duration(milliseconds: 7000),
+                          child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    //モーダルの背景の色、透過
+                                    backgroundColor: Colors.transparent,
+                                    //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Column(
+                                        children: [
+                                          SizedBox(
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    7,
+                                          ),
+                                          Container(
+                                            width: SizeConfig.screenWidth * 0.8,
+                                            decoration: BoxDecoration(
+                                              border: const Border(
+                                                bottom: const BorderSide(
+                                                  color: Colors.white,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Text(
+                                                'One Trip',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              child:
+                                  Image.asset('assets/images/hukidashi.png')),
+                        ))),
+                Positioned(
+                    top: SizeConfig.blockSizeVertical * 30,
+                    left: SizeConfig.blockSizeHorizontal * 20,
+                    child: Container(
+                        width: SizeConfig.screenWidth * 0.2,
+                        child: AnimatedOpacity(
+                          opacity: opa == false ? 0 : 1,
+                          duration: const Duration(milliseconds: 10000),
+                          child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    //モーダルの背景の色、透過
+                                    backgroundColor: Colors.transparent,
+                                    //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Column(
+                                        children: [
+                                          SizedBox(
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    7,
+                                          ),
+                                          Container(
+                                            width: SizeConfig.screenWidth * 0.8,
+                                            decoration: BoxDecoration(
+                                              border: const Border(
+                                                bottom: const BorderSide(
+                                                  color: Colors.white,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Text(
+                                                'One Trip',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              child:
+                                  Image.asset('assets/images/hukidashi.png')),
+                        ))),
+                Positioned(
+                    top: SizeConfig.blockSizeVertical * 30,
+                    right: SizeConfig.blockSizeHorizontal * 20,
+                    child: Container(
+                        width: SizeConfig.screenWidth * 0.2,
+                        child: AnimatedOpacity(
+                          opacity: opa == false ? 0 : 1,
+                          duration: const Duration(milliseconds: 1000),
+                          child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    //モーダルの背景の色、透過
+                                    backgroundColor: Colors.transparent,
+                                    //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
+                                    isScrollControlled: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return Column(
+                                        children: [
+                                          SizedBox(
+                                            height:
+                                                SizeConfig.blockSizeVertical *
+                                                    7,
+                                          ),
+                                          Container(
+                                            width: SizeConfig.screenWidth * 0.8,
+                                            decoration: BoxDecoration(
+                                              border: const Border(
+                                                bottom: const BorderSide(
+                                                  color: Colors.white,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Text(
+                                                'One Trip',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              child:
+                                  Image.asset('assets/images/hukidashi.png')),
                         ))),
 
                 // 溜まり場画像
