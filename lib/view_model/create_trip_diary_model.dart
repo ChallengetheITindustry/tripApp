@@ -82,15 +82,19 @@ class CreateTripDiaryModel extends ChangeNotifier {
       // 'imageURL': 'ng;adoshg;osdg;o',
       'contents': contents,
       'ID': numbers,
+      'createTime': FieldValue.serverTimestamp(),
+      'userID': uid,
+      'favorite': 0,
     });
 
     await FirebaseFirestore.instance.collection('timeline').add({
-      'userID': uid,
       'concept': concept,
       'data': '$dateStart ~ $dateEnd',
       // 'imageURL': 'ng;adoshg;osdg;o',
       'contents': contents,
       'ID': numbers,
+      'createTime': FieldValue.serverTimestamp(),
+      'userID': uid,
     });
     final tripDocument = await FirebaseFirestore.instance
         .collection('users')

@@ -7,6 +7,7 @@ import 'package:tripapp/res/const.dart';
 import 'package:tripapp/view_model/user_profile_model.dart';
 
 class UserProfilePage extends StatelessWidget {
+  List docList = [];
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<UserProfileModel>(
@@ -115,13 +116,14 @@ class UserProfilePage extends StatelessWidget {
                                         .map((DocumentSnapshot document) {
                                   return Card(
                                     color: Colors.transparent,
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: ListTile(
-                                        title: Text(
-                                          '${document['concept']}',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
+                                    child: ListTile(
+                                      title: Text(
+                                        '【${document['concept']}】',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      subtitle: Text(
+                                        document['contents'],
+                                        style: TextStyle(color: Colors.white),
                                       ),
                                     ),
                                   );

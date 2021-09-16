@@ -94,7 +94,7 @@ class SignUpModel extends ChangeNotifier {
         .collection('favorite')
         .doc()
         .set({
-      'like': 'さぁ旅を共有しましょう！！',
+      'favorite': 'さぁ旅を共有しましょう！！',
     });
   }
 }
