@@ -115,10 +115,13 @@ class UserProfilePage extends StatelessWidget {
                                         .map((DocumentSnapshot document) {
                                   return Card(
                                     color: Colors.transparent,
-                                    child: ListTile(
-                                      title: Text(
-                                        '▼ ${document['contents']}',
-                                        style: TextStyle(color: Colors.white),
+                                    child: InkWell(
+                                      onTap: () {},
+                                      child: ListTile(
+                                        title: Text(
+                                          '${document['concept']}',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                     ),
                                   );
