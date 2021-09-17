@@ -105,3 +105,7 @@ flutter:
     - assets/images/twitter-profile-image.png
     - assets/images/hukidashi.png
     
+flutter_icons:
+  android: true 
+  ios: true
+  image_path: "lib/assets/images/twitter-profile-image.png"
