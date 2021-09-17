@@ -29,25 +29,13 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
 
   void startTimer() {
     Timer.periodic(
-      Duration(seconds: 7), //９:1秒ごとに処理
+      Duration(seconds: 1), //９:1秒ごとに処理
       (Timer timer) => setState(
         () {
           if (opa == true) {
             opa = false;
           } else {
             opa = true;
-          }
-        },
-      ),
-    );
-    Timer.periodic(
-      Duration(seconds: 1), //９:1秒ごとに処理
-      (Timer timer) => setState(
-        () {
-          if (opa1 == true) {
-            opa1 = false;
-          } else {
-            opa1 = true;
           }
         },
       ),
@@ -74,7 +62,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                 Container(child: Image.asset('assets/images/moon.png')),
                 // 中央の文言
                 Positioned(
-                  top: SizeConfig.blockSizeVertical * 20,
+                  top: SizeConfig.blockSizeVertical * 23,
                   left: 50,
                   right: 50,
                   child: Column(
@@ -385,7 +373,6 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                           ),
                   ),
                 ),
-
                 Center(
                   child: Container(
                       width: SizeConfig.screenWidth * 0.6,
@@ -424,7 +411,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                                                 padding: const EdgeInsets.only(
                                                     bottom: 8.0),
                                                 child: Text(
-                                                  'One Trip',
+                                                  '投稿',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       color: Colors.white,
