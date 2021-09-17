@@ -30,9 +30,14 @@ dependencies:
   audioplayers: ^0.19.1
   share: ^2.0.4
   speech_balloon: ^0.0.4
-  flutter_launcher_icons: ^0.9.2
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.9.2
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/twitter-profile-image.png"
   flutter_test:
     sdk: flutter
 flutter:
@@ -104,8 +109,3 @@ flutter:
     - assets/images/moon.png
     - assets/images/twitter-profile-image.png
     - assets/images/hukidashi.png
-    
-flutter_icons:
-  android: true 
-  ios: true
-  image_path: "lib/assets/images/twitter-profile-image.png"
