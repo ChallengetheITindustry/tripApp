@@ -37,7 +37,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/twitter-profile-image.png"
+  image_path: "assets/images/app_icon.jpg"
   flutter_test:
     sdk: flutter
 flutter:

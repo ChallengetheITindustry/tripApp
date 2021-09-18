@@ -45,10 +45,17 @@ planテーブルに含めるもの
 ・ホーム画面を削除してタブを二つに変更する
 
  9/17
-・アプリのアイコンを作成して実装
+・アプリのアイコンを作成して実装　←完了
 ・スプレッシュスクリーンのデザイン作成と実装
 ・ユーザーが投稿こうした内容をStremeBuilderで取得して表示
 ・使い方マニュアルを実装する
+
+ 9/17 やったこと
+・アプリのアイコンを作成して実装
+・クラウドワークスで動画編集の副業を応募
+・次のアプリの構想を練る
+・Flutterについての理解を深める
+
 
 ToDo
 ・Firestoreについて学習する
@@ -58,6 +65,12 @@ ToDo
 https://pocket-se.info/rules/compensation-plan/
 ・ギターの音楽は著作権を明記しなければならない
 https://dova-s.jp/bgm/download8623.html
+
+新アプリの構想
+・来た道にラインを引いて道案内してくれるアプリ
+（旅とかしている時に道に迷うことが一番の不安である。それを解消するためのツールを開発する。）
+・使用ツール
+https://www.maptiler.com/mobile/?_gl=1*6btaqc*_ga*MTg3NjQxNzUyMC4xNjMxODk0OTIz*_ga_K4SXYBF4HT*MTYzMTg5NDkyMi4xLjEuMTYzMTg5NDk1NC4yOA..&_ga=2.154467775.663554958.1631894923-1876417520.1631894923
 
 
 使いたいパッケージ
