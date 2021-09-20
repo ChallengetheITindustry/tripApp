@@ -54,10 +54,9 @@ class UserProfileModel extends ChangeNotifier {
     // 指定コレクションのドキュメント一覧を取得
     final snapshot =
         await FirebaseFirestore.instance.collection('users').doc(uid).get();
-
     currentUserName = snapshot['name'];
     currentUserMail = snapshot['mail'];
-    this.uid = uid;
+    this.uid = uid.toString();
     notifyListeners();
   }
 
@@ -70,7 +69,6 @@ class UserProfileModel extends ChangeNotifier {
         .collection('trip')
         .get();
     final documents = documentLength.docs.length;
-
     documentNum = documents.toString();
     notifyListeners();
   }

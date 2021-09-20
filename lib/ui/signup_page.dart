@@ -38,7 +38,12 @@ class SignupPageForm extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("ユーザー名"),
+                      Text(
+                        "ユーザー名",
+                        style: TextStyle(
+                            color: timelineBackground,
+                            fontWeight: FontWeight.bold),
+                      ),
                       TextFormField(
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -61,7 +66,12 @@ class SignupPageForm extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("メールアドレス"),
+                      Text(
+                        "メールアドレス",
+                        style: TextStyle(
+                            color: timelineBackground,
+                            fontWeight: FontWeight.bold),
+                      ),
                       TextFormField(
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -83,7 +93,12 @@ class SignupPageForm extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("パスワード"),
+                      Text(
+                        "パスワード",
+                        style: TextStyle(
+                            color: timelineBackground,
+                            fontWeight: FontWeight.bold),
+                      ),
                       Text(
                         "＊6字以上",
                         style: TextStyle(
@@ -158,7 +173,8 @@ class SignupPageForm extends StatelessWidget {
                       },
                       child: Text(
                         '新規会員登録',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       style: ElevatedButton.styleFrom(
                           primary: timelineBackground,

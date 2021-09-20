@@ -29,6 +29,13 @@ class UserInfoEditModel extends ChangeNotifier {
   }
 
   Future fireStoreUpdate() async {
+    if (newUserName.isEmpty) {
+      throw 'ユーザー名を記入してください';
+    }
+
+    if (newUserMail.isEmpty) {
+      throw 'メールアドレスを記入してください';
+    }
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)

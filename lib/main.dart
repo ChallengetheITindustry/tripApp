@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:tripapp/res/const.dart';
 import 'package:tripapp/ui/form_widget.dart';
 import 'package:tripapp/ui/background_widget.dart';
 import 'package:tripapp/ui/home_page.dart';
@@ -90,9 +91,10 @@ class SignInUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: timelineBackground,
         body: Stack(children: [
-      Background(),
-      FormWidget(),
-    ]));
+          Background(),
+          FormWidget(),
+        ]));
   }
 }

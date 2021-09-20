@@ -29,7 +29,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
 
   void startTimer() {
     Timer.periodic(
-      Duration(seconds: 1), //９:1秒ごとに処理
+      // Duration(seconds: 1), //９:1秒ごとに処理
       (Timer timer) => setState(
         () {
           if (opa == true) {
@@ -87,258 +87,50 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                // Positioned(
-                //     top: SizeConfig.blockSizeVertical * 50,
-                //     left: SizeConfig.blockSizeHorizontal * 20,
-                //     child: Container(
-                //         width: SizeConfig.screenWidth * 0.2,
-                //         child: AnimatedOpacity(
-                //           opacity: opa == false ? 0 : 1,
-                //           duration: const Duration(milliseconds: 12000),
-                //           child: InkWell(
-                //               onTap: () {
-                //                 showModalBottomSheet(
-                //                     //モーダルの背景の色、透過
-                //                     backgroundColor: Colors.transparent,
-                //                     //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
-                //                     isScrollControlled: true,
-                //                     context: context,
-                //                     builder: (BuildContext context) {
-                //                       return Column(
-                //                         children: [
-                //                           SizedBox(
-                //                             height:
-                //                                 SizeConfig.blockSizeVertical *
-                //                                     7,
-                //                           ),
-                //                           Container(
-                //                             width: SizeConfig.screenWidth * 0.8,
-                //                             decoration: BoxDecoration(
-                //                               border: const Border(
-                //                                 bottom: const BorderSide(
-                //                                   color: Colors.white,
-                //                                   width: 1,
-                //                                 ),
-                //                               ),
-                //                             ),
-                //                             child: Padding(
-                //                               padding: const EdgeInsets.only(
-                //                                   bottom: 8.0),
-                //                               child: Text(
-                //                                 'One Trip',
-                //                                 textAlign: TextAlign.center,
-                //                                 style: TextStyle(
-                //                                     color: Colors.white,
-                //                                     fontSize: 15,
-                //                                     fontWeight:
-                //                                         FontWeight.bold),
-                //                               ),
-                //                             ),
-                //                           ),
-                //                         ],
-                //                       );
-                //                     });
-                //               },
-                //               child:
-                //                   Image.asset('assets/images/hukidashi.png')),
-                //         ))),
-                // Positioned(
-                //     top: SizeConfig.blockSizeVertical * 50,
-                //     right: SizeConfig.blockSizeHorizontal * 20,
-                //     child: Container(
-                //         width: SizeConfig.screenWidth * 0.2,
-                //         child: AnimatedOpacity(
-                //           opacity: opa == false ? 0 : 1,
-                //           duration: const Duration(milliseconds: 6000),
-                //           child: InkWell(
-                //               onTap: () {
-                //                 showModalBottomSheet(
-                //                     //モーダルの背景の色、透過
-                //                     backgroundColor: Colors.transparent,
-                //                     //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
-                //                     isScrollControlled: true,
-                //                     context: context,
-                //                     builder: (BuildContext context) {
-                //                       return Column(
-                //                         children: [
-                //                           SizedBox(
-                //                             height:
-                //                                 SizeConfig.blockSizeVertical *
-                //                                     7,
-                //                           ),
-                //                           Container(
-                //                             width: SizeConfig.screenWidth * 0.8,
-                //                             decoration: BoxDecoration(
-                //                               border: const Border(
-                //                                 bottom: const BorderSide(
-                //                                   color: Colors.white,
-                //                                   width: 1,
-                //                                 ),
-                //                               ),
-                //                             ),
-                //                             child: Padding(
-                //                               padding: const EdgeInsets.only(
-                //                                   bottom: 8.0),
-                //                               child: Text(
-                //                                 'One Trip',
-                //                                 textAlign: TextAlign.center,
-                //                                 style: TextStyle(
-                //                                     color: Colors.white,
-                //                                     fontSize: 15,
-                //                                     fontWeight:
-                //                                         FontWeight.bold),
-                //                               ),
-                //                             ),
-                //                           ),
-                //                         ],
-                //                       );
-                //                     });
-                //               },
-                //               child:
-                //                   Image.asset('assets/images/hukidashi.png')),
-                //         ))),
-                // Positioned(
-                //     top: SizeConfig.blockSizeVertical * 30,
-                //     left: SizeConfig.blockSizeHorizontal * 20,
-                //     child: Container(
-                //         width: SizeConfig.screenWidth * 0.2,
-                //         child: AnimatedOpacity(
-                //           opacity: opa == false ? 0 : 1,
-                //           duration: const Duration(milliseconds: 9000),
-                //           child: InkWell(
-                //               onTap: () {
-                //                 showModalBottomSheet(
-                //                     //モーダルの背景の色、透過
-                //                     backgroundColor: Colors.transparent,
-                //                     //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
-                //                     isScrollControlled: true,
-                //                     context: context,
-                //                     builder: (BuildContext context) {
-                //                       return Column(
-                //                         children: [
-                //                           SizedBox(
-                //                             height:
-                //                                 SizeConfig.blockSizeVertical *
-                //                                     7,
-                //                           ),
-                //                           Container(
-                //                             width: SizeConfig.screenWidth * 0.8,
-                //                             decoration: BoxDecoration(
-                //                               border: const Border(
-                //                                 bottom: const BorderSide(
-                //                                   color: Colors.white,
-                //                                   width: 1,
-                //                                 ),
-                //                               ),
-                //                             ),
-                //                             child: Padding(
-                //                               padding: const EdgeInsets.only(
-                //                                   bottom: 8.0),
-                //                               child: Text(
-                //                                 'One Trip',
-                //                                 textAlign: TextAlign.center,
-                //                                 style: TextStyle(
-                //                                     color: Colors.white,
-                //                                     fontSize: 15,
-                //                                     fontWeight:
-                //                                         FontWeight.bold),
-                //                               ),
-                //                             ),
-                //                           ),
-                //                         ],
-                //                       );
-                //                     });
-                //               },
-                //               child:
-                //                   Image.asset('assets/images/hukidashi.png')),
-                //         ))),
-                // Positioned(
-                //     top: SizeConfig.blockSizeVertical * 30,
-                //     right: SizeConfig.blockSizeHorizontal * 20,
-                //     child: Container(
-                //         width: SizeConfig.screenWidth * 0.2,
-                //         child: AnimatedOpacity(
-                //           opacity: opa == false ? 0 : 1,
-                //           duration: const Duration(milliseconds: 15000),
-                //           child: InkWell(
-                //               onTap: () {
-                //                 showModalBottomSheet(
-                //                     //モーダルの背景の色、透過
-                //                     backgroundColor: Colors.transparent,
-                //                     //ドラッグ可能にする（高さもハーフサイズからフルサイズになる様子）
-                //                     isScrollControlled: true,
-                //                     context: context,
-                //                     builder: (BuildContext context) {
-                //                       return Column(
-                //                         children: [
-                //                           SizedBox(
-                //                             height:
-                //                                 SizeConfig.blockSizeVertical *
-                //                                     7,
-                //                           ),
-                //                           Container(
-                //                             width: SizeConfig.screenWidth * 0.8,
-                //                             decoration: BoxDecoration(
-                //                               border: const Border(
-                //                                 bottom: const BorderSide(
-                //                                   color: Colors.white,
-                //                                   width: 1,
-                //                                 ),
-                //                               ),
-                //                             ),
-                //                             child: Padding(
-                //                               padding: const EdgeInsets.only(
-                //                                   bottom: 8.0),
-                //                               child: Text(
-                //                                 'One Trip',
-                //                                 textAlign: TextAlign.center,
-                //                                 style: TextStyle(
-                //                                     color: Colors.white,
-                //                                     fontSize: 15,
-                //                                     fontWeight:
-                //                                         FontWeight.bold),
-                //                               ),
-                //                             ),
-                //                           ),
-                //                         ],
-                //                       );
-                //                     });
-                //               },
-                //               child:
-                //                   Image.asset('assets/images/hukidashi.png')),
-                //         ))),
 
                 // 溜まり場画像
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Image.asset('assets/images/tamariba.png'),
-                    Opacity(
-                      opacity: 0.3,
-                      child: Container(
-                          width: SizeConfig.blockSizeHorizontal * 60,
-                          height: SizeConfig.blockSizeVertical * 8,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 10.0,
-                                  spreadRadius: 5.0,
-                                  offset: Offset(10, 10))
-                            ],
-                          ),
-                          // 中央下のボタン一覧
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              createTripDiary(),
-                              FavoriteDiary(),
-                              UserProfilePage(),
-                              ConfigPage(),
-                            ],
-                          )),
+                    // Opacity(
+                    //   opacity: 0.3,
+                    //   child: Container(
+                    //       width: SizeConfig.blockSizeHorizontal * 60,
+                    //       height: SizeConfig.blockSizeVertical * 8,
+                    //       decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.circular(15.0),
+                    //         color: Colors.white,
+                    //         boxShadow: [
+                    //           BoxShadow(
+                    //               color: Colors.black12,
+                    //               blurRadius: 10.0,
+                    //               spreadRadius: 5.0,
+                    //               offset: Offset(10, 10))
+                    //         ],
+                    //       ),
+                    //       // 中央下のボタン一覧
+                    //       child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //         children: [
+                    //           createTripDiary(),
+                    //           FavoriteDiary(),
+                    //           UserProfilePage(),
+                    //           ConfigPage(),
+                    //         ],
+                    //       )),
+                    // ),
+                    Container(
+                      width: SizeConfig.screenWidth * 0.8,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          createTripDiary(),
+                          FavoriteDiary(),
+                          UserProfilePage(),
+                          ConfigPage(),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: SizeConfig.blockSizeVertical * 7,

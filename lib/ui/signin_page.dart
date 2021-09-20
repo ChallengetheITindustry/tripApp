@@ -43,7 +43,7 @@ class LoginPageForm extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "One Trip",
+                        "",
                         style: GoogleFonts.miltonian(
                           textStyle: Theme.of(context).textTheme.headline4,
                           fontSize: 30,
@@ -60,7 +60,12 @@ class LoginPageForm extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("メールアドレス"),
+                      Text(
+                        "メールアドレス",
+                        style: TextStyle(
+                            color: timelineBackground,
+                            fontWeight: FontWeight.bold),
+                      ),
                       TextFormField(
                         initialValue: 'reeksge@gmail.com',
                         decoration: InputDecoration(
@@ -83,7 +88,12 @@ class LoginPageForm extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("パスワード"),
+                      Text(
+                        "パスワード",
+                        style: TextStyle(
+                            color: timelineBackground,
+                            fontWeight: FontWeight.bold),
+                      ),
                       TextFormField(
                         initialValue: '123456',
                         decoration: InputDecoration(
@@ -117,10 +127,7 @@ class LoginPageForm extends StatelessWidget {
                             builder: (context) => MailPasswordResetPage()),
                       );
                     },
-                    child: Text(
-                      'パスワードを忘れた場合はこちら',
-                      style: TextStyle(fontSize: 13),
-                    )),
+                    child: Text('パスワードを忘れた場合はこちら')),
                 Container(
                     width: SizeConfig.screenWidth * 0.6,
                     height: SizeConfig.blockSizeVertical * 6,
@@ -166,7 +173,8 @@ class LoginPageForm extends StatelessWidget {
                       // },
                       child: Text(
                         'ログイン',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       style: ElevatedButton.styleFrom(
                           primary: timelineBackground,
