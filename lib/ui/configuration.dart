@@ -142,7 +142,7 @@ class ConfigPage extends StatelessWidget {
                                     onTap: () {
                                       Navigator.pop(context);
                                       launch(
-                                          'https://twitter.com/taisei59119317');
+                                          'https://twitter.com/taisei_develop');
                                       // https://forms.gle/bJndj6BKZbKiFSgi9
                                     },
                                   ),

@@ -29,7 +29,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
 
   void startTimer() {
     Timer.periodic(
-      // Duration(seconds: 1), //９:1秒ごとに処理
+      Duration(seconds: 3), //９:1秒ごとに処理
       (Timer timer) => setState(
         () {
           if (opa == true) {
@@ -213,6 +213,32 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                                                 ),
                                               ),
                                             ),
+                                            StreamBuilder(
+                                                stream: FirebaseFirestore
+                                                    .instance
+                                                    .collection('timeline')
+                                                    .orderBy("createTime")
+                                                    .snapshots(),
+                                                builder: (BuildContext context,
+                                                    AsyncSnapshot<
+                                                            QuerySnapshot<
+                                                                Map<String,
+                                                                    dynamic>>>
+                                                        snapshot) {
+                                                  if (!snapshot.hasData) {
+                                                    return const Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    );
+                                                  }
+                                                  final data = snapshot
+                                                      .data!.docs.first
+                                                      .data();
+                                                  return Container(
+                                                    child:
+                                                        Text(data['concept']),
+                                                  );
+                                                })
                                           ],
                                         );
                                       });
