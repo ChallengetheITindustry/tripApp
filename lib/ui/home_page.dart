@@ -217,7 +217,8 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                                                 stream: FirebaseFirestore
                                                     .instance
                                                     .collection('timeline')
-                                                    .orderBy("createTime")
+                                                    .orderBy("createTime",
+                                                        descending: true)
                                                     .snapshots(),
                                                 builder: (BuildContext context,
                                                     AsyncSnapshot<
@@ -234,9 +235,17 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                                                   final data = snapshot
                                                       .data!.docs.first
                                                       .data();
-                                                  return Container(
-                                                    child:
-                                                        Text(data['concept']),
+                                                  return Column(
+                                                    children: [
+                                                      Container(
+                                                        child: Text(
+                                                            data['concept']),
+                                                      ),
+                                                      Container(
+                                                        child: Text(
+                                                            data['contents']),
+                                                      ),
+                                                    ],
                                                   );
                                                 })
                                           ],

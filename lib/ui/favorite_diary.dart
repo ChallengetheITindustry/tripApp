@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -64,6 +66,21 @@ class FavoriteDiary extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(model.uid)
+                                      .collection('trip')
+                                      .snapshots(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<
+                                              QuerySnapshot<
+                                                  Map<String, dynamic>>>
+                                          snapshot) {
+                                    return Container(
+                                      child: Text(''),
+                                    );
+                                  })
                             ],
                           ),
                         ],
