@@ -27,6 +27,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   bool opa = true;
   bool opa1 = true;
 
+  bool test = false;
   void startTimer() {
     Timer.periodic(
       Duration(seconds: 3), //９:1秒ごとに処理
@@ -235,19 +236,26 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                                                   final data = snapshot
                                                       .data!.docs.first
                                                       .data();
-                                                  return Column(
-                                                    children: [
-                                                      Container(
-                                                        child: Text(
-                                                            data['concept']),
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                            data['contents']),
-                                                      ),
-                                                    ],
+
+                                                  return Container(
+                                                    child:
+                                                        Text(data['concept']),
                                                   );
-                                                })
+                                                }),
+                                            Container(
+                                                child: test != false
+                                                    ? IconButton(
+                                                        onPressed: () {},
+                                                        icon: Icon(
+                                                            Icons.favorite))
+                                                    : IconButton(
+                                                        onPressed: () async {
+                                                          await model.add();
+                                                          await model
+                                                              .addFavorite();
+                                                        },
+                                                        icon: Icon(Icons
+                                                            .favorite_border)))
                                           ],
                                         );
                                       });
