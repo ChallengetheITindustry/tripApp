@@ -126,45 +126,45 @@ class UserProfilePage extends StatelessWidget {
                                   child: ListView(
                                       children: snapshot.data!.docs
                                           .map((DocumentSnapshot document) {
-                                    return InkWell(
-                                      onLongPress: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (_) {
-                                            return AlertDialog(
-                                              title: Text(
-                                                '【${document['concept']}】',
-                                              ),
-                                              content: Text(
-                                                document['contents'],
-                                              ),
-                                              actions: <Widget>[
-                                                // ボタン領域
-                                                ElevatedButton(
-                                                  child: Text("Cancel"),
-                                                  onPressed: () =>
-                                                      Navigator.pop(context),
+                                    return Card(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        onLongPress: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                title: Text(
+                                                  '削除してもよろしいですか？',
                                                 ),
-                                                ElevatedButton(
-                                                    child: Text("OK"),
-                                                    onPressed: () async {
-                                                      await FirebaseFirestore
-                                                          .instance
-                                                          .collection('users')
-                                                          .doc(model.uid)
-                                                          .collection('trip')
-                                                          .doc(document.id)
-                                                          .delete();
+                                                content: Text(
+                                                  document['concept'],
+                                                ),
+                                                actions: <Widget>[
+                                                  // ボタン領域
+                                                  ElevatedButton(
+                                                    child: Text("閉じる"),
+                                                    onPressed: () =>
+                                                        Navigator.pop(context),
+                                                  ),
+                                                  ElevatedButton(
+                                                      child: Text("削除"),
+                                                      onPressed: () async {
+                                                        await FirebaseFirestore
+                                                            .instance
+                                                            .collection('users')
+                                                            .doc(model.uid)
+                                                            .collection('trip')
+                                                            .doc(document.id)
+                                                            .delete();
 
-                                                      Navigator.pop(context);
-                                                    }),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      },
-                                      child: Card(
-                                        color: Colors.transparent,
+                                                        Navigator.pop(context);
+                                                      }),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        },
                                         child: ListTile(
                                           title: Text(
                                             '【${document['concept']}】',
