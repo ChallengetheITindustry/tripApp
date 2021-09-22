@@ -126,16 +126,56 @@ class UserProfilePage extends StatelessWidget {
                                   child: ListView(
                                       children: snapshot.data!.docs
                                           .map((DocumentSnapshot document) {
-                                    return Card(
-                                      color: Colors.transparent,
-                                      child: ListTile(
-                                        title: Text(
-                                          '【${document['concept']}】',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        subtitle: Text(
-                                          document['contents'],
-                                          style: TextStyle(color: Colors.white),
+                                    return InkWell(
+                                      onLongPress: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (_) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                '【${document['concept']}】',
+                                              ),
+                                              content: Text(
+                                                document['contents'],
+                                              ),
+                                              actions: <Widget>[
+                                                // ボタン領域
+                                                ElevatedButton(
+                                                  child: Text("Cancel"),
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
+                                                ),
+                                                ElevatedButton(
+                                                    child: Text("OK"),
+                                                    onPressed: () async {
+                                                      await FirebaseFirestore
+                                                          .instance
+                                                          .collection('users')
+                                                          .doc(model.uid)
+                                                          .collection('trip')
+                                                          .doc(document.id)
+                                                          .delete();
+
+                                                      Navigator.pop(context);
+                                                    }),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                      child: Card(
+                                        color: Colors.transparent,
+                                        child: ListTile(
+                                          title: Text(
+                                            '【${document['concept']}】',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          subtitle: Text(
+                                            document['contents'],
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
                                         ),
                                       ),
                                     );

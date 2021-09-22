@@ -34,56 +34,46 @@ class FavoriteDiary extends StatelessWidget {
                     isScrollControlled: true,
                     context: context,
                     builder: (BuildContext context) {
-                      return Stack(
-                        children: [
-                          Column(
-                            children: [
-                              SizedBox(
-                                height: SizeConfig.screenHeight * 0.1,
+                      return SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Container(
+                              child: StreamBuilder(
+                                stream: FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(model.uid)
+                                    .collection('favorite')
+                                    .snapshots(),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<
+                                            QuerySnapshot<Map<String, dynamic>>>
+                                        snapshot) {
+                                  return Expanded(
+                                    child: ListView(
+                                        children: snapshot.data!.docs
+                                            .map((DocumentSnapshot document) {
+                                      return Card(
+                                        color: Colors.transparent,
+                                        child: ListTile(
+                                          title: Text(
+                                            '【${document['concept']}】',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          subtitle: Text(
+                                            document['contents'],
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList()),
+                                  );
+                                },
                               ),
-                              Center(
-                                child: Container(
-                                  width: SizeConfig.screenWidth * 0.8,
-                                  decoration: BoxDecoration(
-                                    border: const Border(
-                                      bottom: const BorderSide(
-                                        color: Colors.white,
-                                        width: 1,
-                                      ),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                    child: Text(
-                                      'いいね一覧',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              StreamBuilder(
-                                  stream: FirebaseFirestore.instance
-                                      .collection('users')
-                                      .doc(model.uid)
-                                      .collection('trip')
-                                      .snapshots(),
-                                  builder: (BuildContext context,
-                                      AsyncSnapshot<
-                                              QuerySnapshot<
-                                                  Map<String, dynamic>>>
-                                          snapshot) {
-                                    return Container(
-                                      child: Text(''),
-                                    );
-                                  })
-                            ],
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
                       );
                     });
               },

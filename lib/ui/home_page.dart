@@ -27,7 +27,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   bool opa = true;
   bool opa1 = true;
 
-  bool test = false;
+  bool changeIcon = false;
   void startTimer() {
     Timer.periodic(
       Duration(seconds: 3), //９:1秒ごとに処理
@@ -243,13 +243,18 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                                                   );
                                                 }),
                                             Container(
-                                                child: test != false
+                                                child: changeIcon != false
                                                     ? IconButton(
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          changeIcon =
+                                                              !changeIcon;
+                                                        },
                                                         icon: Icon(
                                                             Icons.favorite))
                                                     : IconButton(
                                                         onPressed: () async {
+                                                          changeIcon =
+                                                              !changeIcon;
                                                           await model.add();
                                                           await model
                                                               .addFavorite();

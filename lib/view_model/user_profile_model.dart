@@ -72,4 +72,15 @@ class UserProfileModel extends ChangeNotifier {
     documentNum = documents.toString();
     notifyListeners();
   }
+
+  // ignore: unused_element
+  Future fireStoreDelete() async {
+    // ドキュメント削除
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .collection('trip')
+        .doc('id_123')
+        .delete();
+  }
 }
